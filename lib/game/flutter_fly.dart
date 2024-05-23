@@ -12,7 +12,7 @@ import 'package:flutterfly/game/pipe_duo.dart';
 import 'package:flutterfly/game/score_indicator.dart';
 import 'package:flutterfly/models/user.dart';
 import 'package:flutterfly/services/game_settings.dart';
-import 'package:flutterfly/services/rest/auth_service_flutter_bird.dart';
+import 'package:flutterfly/services/rest/auth_service_flutter_fly.dart';
 import 'package:flutterfly/services/rest/auth_service_leaderboard.dart';
 import 'package:flutterfly/services/settings.dart';
 import 'package:flutterfly/services/user_achievements.dart';
@@ -401,7 +401,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
         }
       }
       if (scoreScreenChangeNotifier.getAchievementEarned().isNotEmpty || updatedWingedWarrior) {
-        AuthServiceFlutterBird().updateAchievements(userAchievements.getAchievements()).then((result) {
+        AuthServiceFlutterFly().updateAchievements(userAchievements.getAchievements()).then((result) {
           if (result.getResult()) {
             // we have updated the score in the db. Do nothing
           }
@@ -426,13 +426,13 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       User? currentUser = settings.getUser();
       if (currentUser != null) {
         if (twoPlayers) {
-          AuthServiceFlutterBird().updateUserScore(null, score, userScore.getScore()).then((result) {
+          AuthServiceFlutterFly().updateUserScore(null, score, userScore.getScore()).then((result) {
             if (result.getResult()) {
               // we have updated the score in the db. Do nothing
             }
           });
         } else {
-          AuthServiceFlutterBird().updateUserScore(score, null, userScore.getScore()).then((result) {
+          AuthServiceFlutterFly().updateUserScore(score, null, userScore.getScore()).then((result) {
             if (result.getResult()) {
               // we have updated the score in the db. Do nothing
             }

@@ -76,10 +76,10 @@ dev_dependencies:
 flutter_launcher_icons:
   ios: true
   android: true
-  image_path_android: "assets/images/flutterbird_icon.png"
-  image_path_ios: "assets/images/flutterbird_icon.png"
-  adaptive_icon_background: "assets/images/flutterbird_icon.png"
-  adaptive_icon_foreground: "assets/images/flutterbird_icon.png"
+  image_path_android: "assets/images/flutterfly_icon.png"
+  image_path_ios: "assets/images/flutterfly_icon.png"
+  adaptive_icon_background: "assets/images/flutterfly_icon.png"
+  adaptive_icon_foreground: "assets/images/flutterfly_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -113,22 +113,22 @@ flutter:
     - assets/images/parallax/city_day/new_background_city_2_day.png
     - assets/images/parallax/city_day/new_background_city_2_day_2.png
     - assets/images/parallax/city_day/new_background_sky_day_gradient_4.png
-    - assets/images/bird/flutter_bird_outline.png
-    - assets/images/bird/flutter_bird_black.png
-    - assets/images/bird/flutter_bird_blue.png
-    - assets/images/bird/flutter_bird_green.png
-    - assets/images/bird/flutter_bird_purple.png
-    - assets/images/bird/flutter_bird_red.png
-    - assets/images/bird/flutter_bird_white.png
-    - assets/images/bird/flutter_bird_yellow.png
-    - assets/images/bird/flutter_bird_outline.png
-    - assets/images/bird/settings/flutter_bird_black_settings.png
-    - assets/images/bird/settings/flutter_bird_blue_settings.png
-    - assets/images/bird/settings/flutter_bird_green_settings.png
-    - assets/images/bird/settings/flutter_bird_purple_settings.png
-    - assets/images/bird/settings/flutter_bird_red_settings.png
-    - assets/images/bird/settings/flutter_bird_white_settings.png
-    - assets/images/bird/settings/flutter_bird_yellow_settings.png
+    - assets/images/bird/flutter_fly_outline.png
+    - assets/images/bird/flutter_fly_black.png
+    - assets/images/bird/flutter_fly_blue.png
+    - assets/images/bird/flutter_fly_green.png
+    - assets/images/bird/flutter_fly_purple.png
+    - assets/images/bird/flutter_fly_red.png
+    - assets/images/bird/flutter_fly_white.png
+    - assets/images/bird/flutter_fly_yellow.png
+    - assets/images/bird/flutter_fly_outline.png
+    - assets/images/bird/settings/flutter_fly_black_settings.png
+    - assets/images/bird/settings/flutter_fly_blue_settings.png
+    - assets/images/bird/settings/flutter_fly_green_settings.png
+    - assets/images/bird/settings/flutter_fly_purple_settings.png
+    - assets/images/bird/settings/flutter_fly_red_settings.png
+    - assets/images/bird/settings/flutter_fly_white_settings.png
+    - assets/images/bird/settings/flutter_fly_yellow_settings.png
     - assets/images/help_messages/message_phone_single.png
     - assets/images/help_messages/message_phone_double.png
     - assets/images/help_messages/message_web_single.png
@@ -178,8 +178,8 @@ flutter:
     - assets/images/achievements/wings_four.png
     - assets/images/achievements/wood_double.png
     - assets/images/achievements/wood_single.png
-    - assets/images/flutterbird_icon.png
-    - assets/images/flutterbird_logo.png
+    - assets/images/flutterfly_icon.png
+    - assets/images/flutterfly_logo.png
     - assets/audio/die.wav
     - assets/audio/hit.wav
     - assets/audio/point.wav

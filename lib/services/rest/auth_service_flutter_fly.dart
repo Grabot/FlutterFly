@@ -7,12 +7,12 @@ import 'package:flutterfly/services/user_score.dart';
 import 'auth_api.dart';
 
 
-class AuthServiceFlutterBird {
-  static AuthServiceFlutterBird? _instance;
+class AuthServiceFlutterFly {
+  static AuthServiceFlutterFly? _instance;
 
-  factory AuthServiceFlutterBird() => _instance ??= AuthServiceFlutterBird._internal();
+  factory AuthServiceFlutterFly() => _instance ??= AuthServiceFlutterFly._internal();
 
-  AuthServiceFlutterBird._internal();
+  AuthServiceFlutterFly._internal();
 
   Future<BaseResponse> getUserScore() async {
     String endPoint = "score/get";

@@ -18,11 +18,11 @@ Widget logo(double maxWidth) {
           height: 250,
           width: logoWidthBrocast,
           child: const Image(
-            image: AssetImage("assets/images/flutterbird_logo.png"),
+            image: AssetImage("assets/images/flutterfly_logo.png"),
           ),
         ),
         const Text(
-            "FlutterBird",
+            "Flutter Fly",
             style: TextStyle(color: Color(0xff949494), fontSize: 35)
         ),
         const SizedBox(height: 30),

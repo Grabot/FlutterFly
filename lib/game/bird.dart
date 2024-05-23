@@ -34,19 +34,19 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
   Future<void> onLoad() async {
     gameSettings = GameSettings();
     if (birdType == 0) {
-      await loadBird("bird/flutter_bird_red.png");
+      await loadBird("bird/flutter_fly_red.png");
     } else if (birdType == 1) {
-      await loadBird("bird/flutter_bird_blue.png");
+      await loadBird("bird/flutter_fly_blue.png");
     } else if (birdType == 2) {
-      await loadBird("bird/flutter_bird_green.png");
+      await loadBird("bird/flutter_fly_green.png");
     } else if (birdType == 3) {
-      await loadBird("bird/flutter_bird_yellow.png");
+      await loadBird("bird/flutter_fly_yellow.png");
     } else if (birdType == 4) {
-      await loadBird("bird/flutter_bird_purple.png");
+      await loadBird("bird/flutter_fly_purple.png");
     } else if (birdType == 5) {
-      await loadBird("bird/flutter_bird_white.png");
+      await loadBird("bird/flutter_fly_white.png");
     } else if (birdType == 6) {
-      await loadBird("bird/flutter_bird_black.png");
+      await loadBird("bird/flutter_fly_black.png");
     }
 
     return super.onLoad();
@@ -86,7 +86,7 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
       minPlayers: 0,
       maxPlayers: 4,
     );
-    birdOutline2.loadBird("bird/flutter_bird_outline.png");
+    birdOutline2.loadBird("bird/flutter_fly_outline.png");
   }
 
   double flapSpeed = 600;
@@ -226,25 +226,25 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
   changeBird(int newBirdType) async {
     if (newBirdType == 0 && newBirdType != birdType) {
       birdType = newBirdType;
-      await loadBird("bird/flutter_bird_red.png");
+      await loadBird("bird/flutter_fly_red.png");
     } else if (newBirdType == 1 && newBirdType != birdType) {
       birdType = newBirdType;
-      await loadBird("bird/flutter_bird_blue.png");
+      await loadBird("bird/flutter_fly_blue.png");
     } else if (newBirdType == 2 && newBirdType != birdType) {
       birdType = newBirdType;
-      await loadBird("bird/flutter_bird_green.png");
+      await loadBird("bird/flutter_fly_green.png");
     } else if (newBirdType == 3 && newBirdType != birdType) {
       birdType = newBirdType;
-      await loadBird("bird/flutter_bird_yellow.png");
+      await loadBird("bird/flutter_fly_yellow.png");
     } else if (newBirdType == 4 && newBirdType != birdType) {
       birdType = newBirdType;
-      await loadBird("bird/flutter_bird_purple.png");
+      await loadBird("bird/flutter_fly_purple.png");
     } else if (newBirdType == 5 && newBirdType != birdType) {
       birdType = newBirdType;
-      await loadBird("bird/flutter_bird_white.png");
+      await loadBird("bird/flutter_fly_white.png");
     } else if (newBirdType == 6 && newBirdType != birdType) {
       birdType = newBirdType;
-      await loadBird("bird/flutter_bird_black.png");
+      await loadBird("bird/flutter_fly_black.png");
     }
     birdOutline2.changeBird();
   }

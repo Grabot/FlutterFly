@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterfly/models/user.dart';
 import 'package:flutterfly/services/game_settings.dart';
 import 'package:flutterfly/services/navigation_service.dart';
-import 'package:flutterfly/services/rest/auth_service_flutter_bird.dart';
+import 'package:flutterfly/services/rest/auth_service_flutter_fly.dart';
 import 'package:flutterfly/services/rest/auth_service_login.dart';
 import 'package:flutterfly/models/rest/login_response.dart';
 import 'package:flutterfly/services/settings.dart';
@@ -89,7 +89,7 @@ getScore(LoginResponse loginResponse, int userId) async {
     }
 
     if (updateScore) {
-      AuthServiceFlutterBird().updateUserScore(score.getBestScoreSingleBird(), score.getBestScoreDoubleBird(), score).then((result) {
+      AuthServiceFlutterFly().updateUserScore(score.getBestScoreSingleBird(), score.getBestScoreDoubleBird(), score).then((result) {
         if (result.getResult()) {
           // we have updated the score in the db. Do nothing.
         }
@@ -241,7 +241,7 @@ getAchievements(LoginResponse loginResponse, int userId) async {
     }
 
     if (updateAchievements) {
-      AuthServiceFlutterBird().updateAchievements(achievements).then((result) {
+      AuthServiceFlutterFly().updateAchievements(achievements).then((result) {
         if (result.getResult()) {
           // we have updated the score in the db. Do nothing.
         }
@@ -433,12 +433,12 @@ int getRankingSelection(bool onePlayer, int currentScore, Settings settings) {
   return -1;
 }
 
-Widget flutterBirdLogo(double width, bool normalMode) {
+Widget flutterFlyLogo(double width, bool normalMode) {
   return Container(
         padding: normalMode
             ? EdgeInsets.only(left: width/4, right: width/4)
             : EdgeInsets.only(left: width/8, right: width/8),
         alignment: Alignment.center,
-        child: Image.asset("assets/images/flutterbird_logo.png")
+        child: Image.asset("assets/images/flutterfly_logo.png")
     );
 }

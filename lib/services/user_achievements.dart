@@ -306,13 +306,13 @@ class UserAchievements {
     wingedWarriorAchievement = Achievement(
         achievementName: "Winged warrior",
         imageName: "winged_warrior",
-        tooltip: "You have played Flutterbird for 7 days in a row!",
+        tooltip: "You have played Flutter Fly for 7 days in a row!",
         achieved: wingedWarrior
     );
     platformsAchievement = Achievement(
         achievementName: "Platforms",
         imageName: "platforms",
-        tooltip: "You have played Flutterbird on the web at flutterbird.eu and also on IOS or Android!\n(Must be logged in to achieve this)",
+        tooltip: "You have played Flutter Fly on the web at flutterfly.nl and also on IOS or Android!\n(Must be logged in to achieve this)",
         achieved: platforms
     );
     leaderboardAchievement = Achievement(

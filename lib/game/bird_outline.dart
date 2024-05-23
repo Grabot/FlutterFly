@@ -22,7 +22,7 @@ class BirdOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
   @override
   Future<void> onLoad() async {
     gameSettings = GameSettings();
-    loadBird("bird/flutter_bird_outline.png");
+    loadBird("bird/flutter_fly_outline.png");
 
     return super.onLoad();
   }
@@ -106,7 +106,7 @@ class BirdOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
   }
 
   changeBird() {
-    loadBird("bird/flutter_bird_outline.png");
+    loadBird("bird/flutter_fly_outline.png");
   }
 
   @override
