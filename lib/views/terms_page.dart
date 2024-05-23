@@ -32,7 +32,7 @@ class _TermsPageState extends State<TermsPage> {
                   children: [
                     SizedBox(height: 10),
                     Text(
-                        "End-User License Agreement (EULA) of FlutterBird",
+                        "End-User License Agreement (EULA) of Flutter Fly",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 30, fontWeight: FontWeight.bold)
                     ),
                     SizedBox(height: 10),
@@ -42,17 +42,17 @@ class _TermsPageState extends State<TermsPage> {
                     ),
                     SizedBox(height: 10),
                     Text(
-                        "This EULA agreement governs your acquisition and use of our FlutterBird software (\"Software\") directly from Zwaar developers or indirectly through a Zwaar developers authorized reseller or distributor (a \"Reseller\").",
+                        "This EULA agreement governs your acquisition and use of our Flutter Fly software (\"Software\") directly from Zwaar developers or indirectly through a Zwaar developers authorized reseller or distributor (a \"Reseller\").",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 16)
                     ),
                     SizedBox(height: 10),
                     Text(
-                        "Please read this EULA agreement carefully before completing the installation process and using the FlutterBird software. It provides a license to use the FlutterBird software and contains warranty information and liability disclaimers.",
+                        "Please read this EULA agreement carefully before completing the installation process and using the Flutter Fly software. It provides a license to use the Flutter Fly software and contains warranty information and liability disclaimers.",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 16)
                     ),
                     SizedBox(height: 10),
                     Text(
-                        "If you register for a free trial of the FlutterBird software, this EULA agreement will also govern that trial. By clicking \"accept\" or installing and/or using the FlutterBird software, you are confirming your acceptance of the Software and agreeing to become bound by the terms of this EULA agreement.",
+                        "If you register for a free trial of the Flutter Fly software, this EULA agreement will also govern that trial. By clicking \"accept\" or installing and/or using the Flutter Fly software, you are confirming your acceptance of the Software and agreeing to become bound by the terms of this EULA agreement.",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 16)
                     ),
                     SizedBox(height: 10),
@@ -72,12 +72,12 @@ class _TermsPageState extends State<TermsPage> {
                     ),
                     SizedBox(height: 10),
                     Text(
-                        "Zwaar developers hereby grants you a personal, non-transferable, non-exclusive licence to use the FlutterBird software on your devices in accordance with the terms of this EULA agreement.",
+                        "Zwaar developers hereby grants you a personal, non-transferable, non-exclusive licence to use the Flutter Fly software on your devices in accordance with the terms of this EULA agreement.",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 16)
                     ),
                     SizedBox(height: 10),
                     Text(
-                        "You are permitted to load the FlutterBird software (for example a PC, laptop, mobile or tablet) under your control. You are responsible for ensuring your device meets the minimum requirements of the FlutterBird software.",
+                        "You are permitted to load the Flutter Fly software (for example a PC, laptop, mobile or tablet) under your control. You are responsible for ensuring your device meets the minimum requirements of the Flutter Fly software.",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 16)
                     ),
                     SizedBox(height: 10),
