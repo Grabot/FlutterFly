@@ -73,7 +73,7 @@ Future<void> main() async {
   runApp(
       OKToast(
         child: MaterialApp(
-          title: "Flutter Bird",
+          title: "Flutter Fly",
           navigatorKey: locator<NavigationService>().navigatorKey,
           theme: ThemeData(
             // Define the default brightness and colors.
