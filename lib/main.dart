@@ -13,6 +13,10 @@ import 'services/navigation_service.dart';
 import 'services/settings.dart';
 import 'services/socket_services.dart';
 import 'services/user_score.dart';
+import 'views/bird_access_page.dart';
+import 'views/password_reset_page.dart';
+import 'views/privacy_page.dart';
+import 'views/terms_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,10 +69,10 @@ Future<void> main() async {
       )
   );
 
-  // Widget birdAccess = BirdAccess(key: UniqueKey(), game: game);
-  // Widget passwordReset = PasswordReset(key: UniqueKey(), game: game);
-  // Widget privacy = PrivacyPage(key: UniqueKey());
-  // Widget terms = TermsPage(key: UniqueKey());
+  Widget birdAccess = BirdAccess(key: UniqueKey(), game: game);
+  Widget passwordReset = PasswordReset(key: UniqueKey(), game: game);
+  Widget privacy = PrivacyPage(key: UniqueKey());
+  Widget terms = TermsPage(key: UniqueKey());
 
   runApp(
       OKToast(
@@ -85,44 +89,44 @@ Future<void> main() async {
           initialRoute: '/',
           routes: {
             routes.HomeRoute: (context) => gameWidget,
-            // routes.BirdAccessRoute: (context) => birdAccess,
-            // routes.PasswordResetRoute: (context) => passwordReset,
-            // routes.PrivacyRoute: (context) => privacy,
-            // routes.TermsRoute: (context) => terms,
+            routes.BirdAccessRoute: (context) => birdAccess,
+            routes.PasswordResetRoute: (context) => passwordReset,
+            routes.PrivacyRoute: (context) => privacy,
+            routes.TermsRoute: (context) => terms,
           },
           scrollBehavior: MyCustomScrollBehavior(),
           onGenerateRoute: (settings) {
-            // if (settings.name != null && settings.name!.startsWith(routes.BirdAccessRoute)) {
-            //   return MaterialPageRoute(
-            //       builder: (context) {
-            //         return birdAccess;
-            //       }
-            //   );
-            // } else if (settings.name!.startsWith(routes.PasswordResetRoute)) {
-            //   return MaterialPageRoute(
-            //       builder: (context) {
-            //         return passwordReset;
-            //       }
-            //   );
-            // } else if (settings.name!.startsWith(routes.PrivacyRoute)) {
-            //   return MaterialPageRoute(
-            //       builder: (context) {
-            //         return privacy;
-            //       }
-            //   );
-            // } else if (settings.name!.startsWith(routes.TermsRoute)) {
-            //   return MaterialPageRoute(
-            //       builder: (context) {
-            //         return terms;
-            //       }
-            //   );
-            // } else {
+            if (settings.name != null && settings.name!.startsWith(routes.BirdAccessRoute)) {
+              return MaterialPageRoute(
+                  builder: (context) {
+                    return birdAccess;
+                  }
+              );
+            } else if (settings.name!.startsWith(routes.PasswordResetRoute)) {
+              return MaterialPageRoute(
+                  builder: (context) {
+                    return passwordReset;
+                  }
+              );
+            } else if (settings.name!.startsWith(routes.PrivacyRoute)) {
+              return MaterialPageRoute(
+                  builder: (context) {
+                    return privacy;
+                  }
+              );
+            } else if (settings.name!.startsWith(routes.TermsRoute)) {
+              return MaterialPageRoute(
+                  builder: (context) {
+                    return terms;
+                  }
+              );
+            } else {
               return MaterialPageRoute(
                   builder: (context) {
                     return gameWidget;
                   }
               );
-            // }
+            }
           },
         ),
       )
