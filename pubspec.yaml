@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  web: ^0.5.1
   flame: ^1.13.1
   flame_audio: ^2.1.6
   get_it: ^7.6.4
