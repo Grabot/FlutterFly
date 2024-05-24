@@ -280,13 +280,13 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
   }
 
   List<String> flutterBirdImagePath = [
-    'assets/images/bird/settings/flutter_bird_red_settings.png',
-    'assets/images/bird/settings/flutter_bird_blue_settings.png',
-    'assets/images/bird/settings/flutter_bird_green_settings.png',
-    'assets/images/bird/settings/flutter_bird_yellow_settings.png',
-    'assets/images/bird/settings/flutter_bird_purple_settings.png',
-    'assets/images/bird/settings/flutter_bird_white_settings.png',
-    'assets/images/bird/settings/flutter_bird_black_settings.png',
+    'assets/images/bird/settings/flutter_fly_red_settings.png',
+    'assets/images/bird/settings/flutter_fly_blue_settings.png',
+    'assets/images/bird/settings/flutter_fly_green_settings.png',
+    'assets/images/bird/settings/flutter_fly_yellow_settings.png',
+    'assets/images/bird/settings/flutter_fly_purple_settings.png',
+    'assets/images/bird/settings/flutter_fly_white_settings.png',
+    'assets/images/bird/settings/flutter_fly_black_settings.png',
   ];
 
   Widget birdSelection1(double gameSettingsWidth, double fontSize) {

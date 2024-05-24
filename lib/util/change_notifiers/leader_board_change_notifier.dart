@@ -5,7 +5,7 @@ class LeaderBoardChangeNotifier extends ChangeNotifier {
 
   bool showLeaderBoard = false;
   int rankingSelection = 4;
-  bool twoPlayer = false;
+  bool twoPlayer = true;
 
   static final LeaderBoardChangeNotifier _instance = LeaderBoardChangeNotifier._internal();
 

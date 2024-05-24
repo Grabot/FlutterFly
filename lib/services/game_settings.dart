@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfly/util/change_notifiers/leader_board_change_notifier.dart';
 import 'package:flutterfly/util/change_notifiers/user_change_notifier.dart';
 import 'package:flutterfly/util/web_storage.dart';
 
@@ -26,6 +27,7 @@ class GameSettings extends ChangeNotifier {
         int newPlayerType = int.parse(value);
         if (newPlayerType != playerType) {
           playerType = newPlayerType;
+          LeaderBoardChangeNotifier().setTwoPlayer(playerType == 0);
         }
       }
       storageLoaded += 1;
@@ -86,6 +88,15 @@ class GameSettings extends ChangeNotifier {
 
   checkIfShouldNotify() {
     if (storageLoaded == 6) {
+      // quick check to see if both birdtypes are given the same value.
+      if (birdType1 == birdType2) {
+        if (birdType1 != 0) {
+          birdType1 = 0;
+        } else {
+          birdType1 = 1;
+        }
+        secureStorage.setBirdType1(birdType1.toString());
+      }
       notify();
     }
   }
