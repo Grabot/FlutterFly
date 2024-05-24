@@ -6,6 +6,17 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
 import 'package:flutterfly/locator.dart';
+import 'package:flutterfly/views/user_interface/achievement_box/achievement_box.dart';
+import 'package:flutterfly/views/user_interface/achievement_close_up/achievement_close_up_box.dart';
+import 'package:flutterfly/views/user_interface/are_you_sure_box/are_you_sure_box.dart';
+import 'package:flutterfly/views/user_interface/change_avatar_box/change_avatar_box.dart';
+import 'package:flutterfly/views/user_interface/game_settings/game_settings_box/game_settings_box.dart';
+import 'package:flutterfly/views/user_interface/game_settings/game_settings_buttons/game_settings_buttons.dart';
+import 'package:flutterfly/views/user_interface/leader_board/leader_board.dart';
+import 'package:flutterfly/views/user_interface/login_screen/login_screen.dart';
+import 'package:flutterfly/views/user_interface/profile/profile_box/profile_box.dart';
+import 'package:flutterfly/views/user_interface/profile/profile_overview/profile_overview.dart';
+import 'package:flutterfly/views/user_interface/score_screen/score_screen.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'services/game_settings.dart';
@@ -40,32 +51,32 @@ Future<void> main() async {
       body: GameWidget(
         focusNode: gameFocus,
         game: game,
-        // overlayBuilderMap: const {
-          // 'profileOverview': _profileOverviewBuilder,
-          // 'gameSettingsButton': _gameSettingsButtonBuilder,
-          // 'scoreScreen': _scoreScreenBuilder,
-          // 'leaderBoard': _leaderBoardBuilder,
-          // 'profileBox': _profileBoxBuilder,
-          // 'loginScreen': _loginScreenBuilder,
-          // 'changeAvatar': _changeAvatarBoxBuilder,
-          // 'gameSettingsBox': _gameSettingsBoxBuilder,
-          // 'areYouSureBox': _areYouSureBoxBuilder,
-          // 'achievementBox': _achievementBoxBuilder,
-          // 'achievementCloseUpBox': _achievementCloseUpBoxBuilder,
-        // },
-        // initialActiveOverlays: const [
-          // 'profileOverview',
-          // 'gameSettingsButton',
-          // 'scoreScreen',
-          // 'profileBox',
-          // 'loginScreen',
-          // 'changeAvatar',
-          // 'gameSettingsBox',
-          // 'areYouSureBox',
-          // 'leaderBoard',
-          // 'achievementBox',
-          // 'achievementCloseUpBox',
-        // ],
+        overlayBuilderMap: const {
+          'profileOverview': _profileOverviewBuilder,
+          'gameSettingsButton': _gameSettingsButtonBuilder,
+          'scoreScreen': _scoreScreenBuilder,
+          'leaderBoard': _leaderBoardBuilder,
+          'profileBox': _profileBoxBuilder,
+          'loginScreen': _loginScreenBuilder,
+          'changeAvatar': _changeAvatarBoxBuilder,
+          'gameSettingsBox': _gameSettingsBoxBuilder,
+          'areYouSureBox': _areYouSureBoxBuilder,
+          'achievementBox': _achievementBoxBuilder,
+          'achievementCloseUpBox': _achievementCloseUpBoxBuilder,
+        },
+        initialActiveOverlays: const [
+          'profileOverview',
+          'gameSettingsButton',
+          'scoreScreen',
+          'profileBox',
+          'loginScreen',
+          'changeAvatar',
+          'gameSettingsBox',
+          'areYouSureBox',
+          'leaderBoard',
+          'achievementBox',
+          'achievementCloseUpBox',
+        ],
       )
   );
 
@@ -131,6 +142,50 @@ Future<void> main() async {
         ),
       )
   );
+}
+
+Widget _scoreScreenBuilder(BuildContext buildContext, FlutterFly game) {
+  return ScoreScreen(key: UniqueKey(), game: game);
+}
+
+Widget _leaderBoardBuilder(BuildContext buildContext, FlutterFly game) {
+  return LeaderBoard(key: UniqueKey(), game: game);
+}
+
+Widget _profileBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  return ProfileBox(key: UniqueKey(), game: game);
+}
+
+Widget _profileOverviewBuilder(BuildContext buildContext, FlutterFly game) {
+  return ProfileOverview(key: UniqueKey(), game: game);
+}
+
+Widget _loginScreenBuilder(BuildContext buildContext, FlutterFly game) {
+  return LoginScreen(key: UniqueKey(), game: game);
+}
+
+Widget _changeAvatarBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  return ChangeAvatarBox(key: UniqueKey(), game: game);
+}
+
+Widget _gameSettingsButtonBuilder(BuildContext buildContext, FlutterFly game) {
+  return GameSettingsButtons(key: UniqueKey(), game: game);
+}
+
+Widget _gameSettingsBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  return GameSettingsBox(key: UniqueKey(), game: game);
+}
+
+Widget _areYouSureBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  return AreYouSureBox(key: UniqueKey(), game: game);
+}
+
+Widget _achievementBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  return AchievementBox(key: UniqueKey(), game: game);
+}
+
+Widget _achievementCloseUpBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  return AchievementCloseUpBox(key: UniqueKey(), game: game);
 }
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {

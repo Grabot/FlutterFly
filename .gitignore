@@ -42,4 +42,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# url definitions
+url_base.dart
+
 web/crop/
