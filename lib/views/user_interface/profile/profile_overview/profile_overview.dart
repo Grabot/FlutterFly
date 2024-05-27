@@ -25,7 +25,7 @@ class ProfileOverview extends StatefulWidget {
 
 class ProfileOverviewState extends State<ProfileOverview> {
 
-  late UserChangeNotifier profileChangeNotifier;
+  late UserChangeNotifier userChangeNotifier;
   Settings settings = Settings();
 
   int friendOverviewState = 0;
@@ -43,9 +43,13 @@ class ProfileOverviewState extends State<ProfileOverview> {
     BackButtonInterceptor.add(myInterceptor);
     super.initState();
 
-    profileChangeNotifier = UserChangeNotifier();
-    profileChangeNotifier.addListener(profileChangeListener);
+    userChangeNotifier = UserChangeNotifier();
+    userChangeNotifier.addListener(profileChangeListener);
     settings.addListener(profileChangeListener);
+    WidgetsFlutterBinding.ensureInitialized();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      profileChangeListener();
+    });
   }
 
   @override
@@ -99,7 +103,7 @@ class ProfileOverviewState extends State<ProfileOverview> {
 
   profileChangeListener() {
     if (mounted) {
-      if (profileChangeNotifier.getProfileOverviewVisible()) {
+      if (userChangeNotifier.getProfileOverviewVisible()) {
         showHideProfile = true;
       } else {
         showHideProfile = false;
@@ -115,10 +119,10 @@ class ProfileOverviewState extends State<ProfileOverview> {
   }
 
   goToProfile() {
-    if (!profileChangeNotifier.getProfileVisible()) {
-      profileChangeNotifier.setProfileVisible(true);
-    } else if (profileChangeNotifier.getProfileVisible()) {
-      profileChangeNotifier.setProfileVisible(false);
+    if (!userChangeNotifier.getProfileVisible()) {
+      userChangeNotifier.setProfileVisible(true);
+    } else if (userChangeNotifier.getProfileVisible()) {
+      userChangeNotifier.setProfileVisible(false);
     }
   }
 

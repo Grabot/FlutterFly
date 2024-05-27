@@ -34,7 +34,7 @@ class ProfileBox extends StatefulWidget {
 
 class ProfileBoxState extends State<ProfileBox> {
 
-  late UserChangeNotifier profileChangeNotifier;
+  late UserChangeNotifier userChangeNotifier;
   Settings settings = Settings();
   UserScore userScore = UserScore();
   UserAchievements userAchievements = UserAchievements();
@@ -66,8 +66,8 @@ class ProfileBoxState extends State<ProfileBox> {
 
   @override
   void initState() {
-    profileChangeNotifier = UserChangeNotifier();
-    profileChangeNotifier.addListener(profileChangeListener);
+    userChangeNotifier = UserChangeNotifier();
+    userChangeNotifier.addListener(profileChangeListener);
 
     currentUser = settings.getUser();
 
@@ -116,10 +116,10 @@ class ProfileBoxState extends State<ProfileBox> {
 
   profileChangeListener() {
     if (mounted) {
-      if (!showProfile && profileChangeNotifier.getProfileVisible()) {
+      if (!showProfile && userChangeNotifier.getProfileVisible()) {
         showProfile = true;
       }
-      if (showProfile && !profileChangeNotifier.getProfileVisible()) {
+      if (showProfile && !userChangeNotifier.getProfileVisible()) {
         showProfile = false;
       }
       setState(() {});
@@ -210,7 +210,7 @@ class ProfileBoxState extends State<ProfileBox> {
     }
     setState(() {
       widget.game.focusGame();
-      profileChangeNotifier.setProfileVisible(false);
+      userChangeNotifier.setProfileVisible(false);
     });
   }
 
@@ -257,7 +257,7 @@ class ProfileBoxState extends State<ProfileBox> {
 
   openAchievementBox() {
     setState(() {
-      profileChangeNotifier.setProfileVisible(false);
+      userChangeNotifier.setProfileVisible(false);
       AchievementBoxChangeNotifier().setAchievementBoxVisible(true);
     });
   }
@@ -327,8 +327,8 @@ class ProfileBoxState extends State<ProfileBox> {
               child: Text.rich(
                   TextSpan(
                       text: kIsWeb
-                          ? "Also try Flutterbird on Android or IOS!"
-                          : "Also try Flutterbird in your browser on flutterbird.eu",
+                          ? "Also try Flutter Fly on Android or IOS!"
+                          : "Also try Flutter Fly in your browser on flutterfly.eu",
                       style: TextStyle(
                           color: const Color(0xFFcba830),
                           fontSize: fontSize*1.4
@@ -455,7 +455,7 @@ class ProfileBoxState extends State<ProfileBox> {
                 child: ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      profileChangeNotifier.setProfileVisible(false);
+                      userChangeNotifier.setProfileVisible(false);
                       LoginScreenChangeNotifier().setLoginScreenVisible(true);
                     });
                   },
@@ -495,7 +495,7 @@ class ProfileBoxState extends State<ProfileBox> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  profileChangeNotifier.setProfileVisible(false);
+                  userChangeNotifier.setProfileVisible(false);
                   LoginScreenChangeNotifier().setLoginScreenVisible(true);
                 });
               },

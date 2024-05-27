@@ -279,7 +279,7 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     );
   }
 
-  List<String> flutterBirdImagePath = [
+  List<String> flutterFlyImagePath = [
     'assets/images/bird/settings/flutter_fly_red_settings.png',
     'assets/images/bird/settings/flutter_fly_blue_settings.png',
     'assets/images/bird/settings/flutter_fly_green_settings.png',
@@ -300,9 +300,9 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
       height: imageWidth + 20,
       child: ListView(
           scrollDirection: Axis.horizontal,
-          children: List.generate(flutterBirdImagePath.length, (int birdType1) {
+          children: List.generate(flutterFlyImagePath.length, (int birdType1) {
             bool selected = gameSettings.getBirdType1() == birdType1;
-            return selectionButton(flutterBirdImagePath[birdType1], imageWidth, imageHeight, birdType1, 1, selected);
+            return selectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight, birdType1, 1, selected);
           }),
       ),
     );
@@ -330,13 +330,13 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
       height: imageWidth + 20,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: List.generate(flutterBirdImagePath.length, (int birdType2) {
+        children: List.generate(flutterFlyImagePath.length, (int birdType2) {
           bool selected = gameSettings.getBirdType2() == birdType2;
           if (gameSettings.getBirdType1() == birdType2) {
-            return nonSelectionButton(flutterBirdImagePath[birdType2], imageWidth, imageHeight);
+            return nonSelectionButton(flutterFlyImagePath[birdType2], imageWidth, imageHeight);
           } else {
             return selectionButton(
-                flutterBirdImagePath[birdType2], imageWidth, imageHeight, birdType2, 2, selected);
+                flutterFlyImagePath[birdType2], imageWidth, imageHeight, birdType2, 2, selected);
           }
         }),
       ),
@@ -367,10 +367,10 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     );
   }
 
-  Widget flutterBird1SelectionRow(double gameSettingsWidth, double fontSize) {
-    String flutterBirdText = "Flutter bird";
-    if (gameSettings.getPlayerType() == 1) {
-      flutterBirdText = "Flutter bird 1";
+  Widget flutterFly1SelectionRow(double gameSettingsWidth, double fontSize) {
+    String flutterFlyText = "Bird selection";
+    if (gameSettings.getPlayerType() == 0) {
+      flutterFlyText = "Bird 1";
     }
     return Column(
         children: [
@@ -378,7 +378,7 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
               children: [
                 const SizedBox(width: 20),
                 Text(
-                    flutterBirdText,
+                    flutterFlyText,
                     style: simpleTextStyle(fontSize)
                 ),
               ]
@@ -390,14 +390,14 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     );
   }
 
-  Widget flutterBird2SelectionRow(double gameSettingsWidth, double fontSize) {
+  Widget flutterFly2SelectionRow(double gameSettingsWidth, double fontSize) {
     return Column(
       children: [
         Row(
             children: [
               const SizedBox(width: 20),
               Text(
-                  "Flutter bird 2",
+                  "Bird 2",
                   style: simpleTextStyle(fontSize)
               ),
             ]
@@ -414,9 +414,9 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     return Column(
       children: [
         playerSelectionRow(gameSettingsWidth, fontSize),
-        flutterBird1SelectionRow(gameSettingsWidth, fontSize),
+        flutterFly1SelectionRow(gameSettingsWidth, fontSize),
         gameSettings.getPlayerType() == 0
-            ? flutterBird2SelectionRow(gameSettingsWidth, fontSize) : Container(),
+            ? flutterFly2SelectionRow(gameSettingsWidth, fontSize) : Container(),
       ]
     );
   }

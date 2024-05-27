@@ -186,7 +186,7 @@ class LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  signInFlutterBird() {
+  signInFlutterFly() {
     if (formKeyLogin.currentState!.validate() && !isLoading) {
       _controller.jumpTo(0);
       isLoading = true;
@@ -216,8 +216,7 @@ class LoginScreenState extends State<LoginScreen> {
     }
   }
 
-
-  signUpFlutterBird() {
+  signUpFlutterFly() {
     if (formKeyRegister.currentState!.validate() && !isLoading) {
       _controller.jumpTo(0);
       isLoading = true;
@@ -705,7 +704,7 @@ class LoginScreenState extends State<LoginScreen> {
               },
               onFieldSubmitted: (value) {
                 if (!isLoading) {
-                  signUpFlutterBird();
+                  signUpFlutterFly();
                 }
               },
               scrollPadding: const EdgeInsets.only(bottom: 100),
@@ -723,7 +722,7 @@ class LoginScreenState extends State<LoginScreen> {
             ElevatedButton(
               onPressed: () {
                 if (!isLoading) {
-                  signUpFlutterBird();
+                  signUpFlutterFly();
                 }
               },
               style: buttonStyle(false, Colors.blue),
@@ -832,7 +831,7 @@ class LoginScreenState extends State<LoginScreen> {
                     },
                     onFieldSubmitted: (value) {
                       if (!isLoading) {
-                        signInFlutterBird();
+                        signInFlutterFly();
                       }
                     },
                     obscureText: true,
@@ -886,7 +885,7 @@ class LoginScreenState extends State<LoginScreen> {
             ElevatedButton(
               onPressed: () {
                 if (!isLoading) {
-                  signInFlutterBird();
+                  signInFlutterFly();
                 }
               },
               style: buttonStyle(false, Colors.blue),
