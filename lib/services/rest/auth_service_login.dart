@@ -220,4 +220,23 @@ class AuthServiceLogin {
       }
     }
   }
+
+  Future<LoginResponse> getLoginGoogle(String accessToken, bool isWeb) async {
+    Settings().setLoggingIn(true);
+    String endPoint = "login/google/token";
+    var response = await AuthApi().dio.post(endPoint,
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+        }),
+        data: jsonEncode(<String, dynamic> {
+          "access_token": accessToken,
+          "is_web": isWeb
+        }));
+
+    LoginResponse loginResponse = LoginResponse.fromJson(response.data);
+    if (loginResponse.getResult()) {
+      successfulLogin(loginResponse);
+    }
+    return loginResponse;
+  }
 }

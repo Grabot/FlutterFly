@@ -168,6 +168,11 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     userAchievements = UserAchievements();
     settingsChangeListener();
     dataLoaded = true;
+
+    // to avoid any remaining issues with the outline not matching
+    // We will reset the birds
+    bird1.reset(size.y);
+    bird2.reset(size.y);
     return super.onLoad();
   }
 
@@ -721,9 +726,11 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
 
     if (dataLoaded) {
       bird1.setInitialPos(initialPosBird1);
-      bird2.setInitialPos(initialPosBird2);
       bird1.reset(gameSize.y);
+      if (twoPlayers) {
+      bird2.setInitialPos(initialPosBird2);
       bird2.reset(gameSize.y);
+      }
     }
     super.onGameResize(gameSize);
   }

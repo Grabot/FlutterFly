@@ -302,7 +302,11 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
           scrollDirection: Axis.horizontal,
           children: List.generate(flutterFlyImagePath.length, (int birdType1) {
             bool selected = gameSettings.getBirdType1() == birdType1;
-            return selectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight, birdType1, 1, selected);
+            if (gameSettings.getBirdType2() == birdType1) {
+              return nonSelectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight);
+            } else {
+              return selectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight,birdType1, 1, selected);
+            }
           }),
       ),
     );

@@ -63,7 +63,6 @@ class LoginResponse {
           }
         }
         if (json.containsKey("platform_achievement")) {
-          // If the variable is in the json it is probably true, but check it anyway
           if (json["platform_achievement"]) {
             // The user has achieved the platform achievement
             UserAchievements userAchievements = UserAchievements();

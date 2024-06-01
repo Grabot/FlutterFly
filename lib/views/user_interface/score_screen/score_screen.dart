@@ -290,7 +290,7 @@ class ScoreScreenState extends State<ScoreScreen> {
               fontSize: fontSize*2-5,
               foreground: Paint()
                 ..style = PaintingStyle.stroke
-                ..strokeWidth = (fontSize / 2)
+                ..strokeWidth = (fontSize / 1.5)
                 ..color = Colors.black,
             ),
           ),
@@ -561,7 +561,6 @@ class ScoreScreenState extends State<ScoreScreen> {
   Widget scoreScreenWidget(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     double heightScale = height / 800;
     double scoreWidth = 800 * heightScale;
     double fontSize = 20 * heightScale;
@@ -569,6 +568,12 @@ class ScoreScreenState extends State<ScoreScreen> {
       scoreWidth = width-100;
       // double newHeightScaleFont = width / 800;
       fontSize = 12 * heightScale;
+    }
+    // Quick fontsize fix for mobile screens.
+    if (width < height) {
+      if (width < 1000) {
+        fontSize = width / 40;
+      }
     }
 
     return Column(

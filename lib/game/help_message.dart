@@ -17,21 +17,7 @@ class HelpMessage extends SpriteComponent with HasGameRef<FlutterFly> {
   @override
   Future<void> onLoad() async {
     anchor = Anchor.center;
-    // dirty check for phone or computer
-    showSingleWeb = true;
-    Image image = await Flame.images.load('help_messages/message_web_single.png');
-    // placed in the center with a size of 200x267
-    position = Vector2(gameRef.size.x/2, gameRef.size.y/2);
-    position.y -= gameRef.size.y/8;
-    double heightScale = gameRef.size.y / 800;
-
-    if (gameRef.size.x <= 800 || gameRef.size.y > gameRef.size.x) {
-      size = Vector2(200 * heightScale * 1.2, 267 * heightScale * 1.2);
-    } else {
-      size = Vector2(200 * heightScale * 2, 267 * heightScale * 2);
-    }
-
-    sprite = Sprite(image);
+    updateMessageImage(gameRef.size);
     return super.onLoad();
   }
 

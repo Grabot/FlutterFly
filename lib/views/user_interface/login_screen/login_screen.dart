@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'package:flutterfly/util/change_notifiers/login_screen_change_notifier.da
 import 'package:flutterfly/util/change_notifiers/score_screen_change_notifier.dart';
 import 'package:flutterfly/util/util.dart';
 import 'package:flutterfly/constants/route_paths.dart' as routes;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uni_links/uni_links.dart';
 
@@ -387,10 +389,7 @@ class LoginScreenState extends State<LoginScreen> {
                 children: [
                   InkWell(
                     onTap: () {
-                      final Uri url0 = Uri.parse(googleLogin);
-                      _launchUrl(url0);
-                      // final Uri url = Uri.parse(googleLogin);
-                      // launchGoogle();
+                      _handleSignInGoogle();
                     },
                     child: SizedBox(
                       height: loginBoxSize,
@@ -1022,5 +1021,66 @@ class LoginScreenState extends State<LoginScreen> {
         throw 'Could not launch $url';
       }
     }
+  }
+
+  Future<void> _handleSignInGoogle() async {
+
+    isLoading = true;
+    const List<String> scopes = <String>[
+      'email',
+    ];
+
+    GoogleSignIn googleSignIn;
+    bool fromWeb = false;
+    if (kIsWeb) {
+      // Web
+      fromWeb = true;
+      googleSignIn = GoogleSignIn(
+        clientId: clientIdLoginWeb,
+        scopes: scopes,
+      );
+    } else if (Platform.isIOS || Platform.isMacOS) {
+      // IOS
+      googleSignIn = GoogleSignIn(
+        clientId: clientIdLoginIOS,
+        scopes: scopes,
+      );
+    } else {
+      // Android
+      googleSignIn = GoogleSignIn(
+        scopes: scopes,
+      );
+    }
+
+    String? googleAccessToken;
+    try {
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+      googleAccessToken = googleSignInAuthentication.accessToken;
+
+      if (googleAccessToken == null) {
+        isLoading = false;
+        showToastMessage("Google login failed");
+        return;
+      }
+    } catch (error) {
+      isLoading = false;
+      return;
+    }
+
+    AuthServiceLogin().getLoginGoogle(googleAccessToken, fromWeb).then((
+        loginResponse) {
+      if (loginResponse.getResult()) {
+        ScoreScreenChangeNotifier().notify();
+        goBack();
+        isLoading = false;
+        setState(() {});
+      } else if (!loginResponse.getResult()) {
+        showToastMessage(loginResponse.getMessage());
+      }
+    }).onError((error, stackTrace) {
+      showToastMessage(error.toString());
+    });
+    isLoading = false;
   }
 }
