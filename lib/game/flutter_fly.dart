@@ -252,10 +252,11 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
 
   @override
   KeyEventResult onKeyEvent(
-      RawKeyEvent event,
+      KeyEvent event,
       Set<LogicalKeyboardKey> keysPressed,
       ) {
-    final isKeyDown = event is RawKeyDownEvent;
+    final isKeyDown = event is KeyDownEvent;
+
     if (!playFieldFocus && isKeyDown) {
       return KeyEventResult.ignored;
     } else {

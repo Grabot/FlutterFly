@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +19,6 @@ import 'package:flutterfly/util/util.dart';
 import 'package:flutterfly/constants/route_paths.dart' as routes;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:uni_links/uni_links.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -77,6 +77,7 @@ class LoginScreenState extends State<LoginScreen> {
     _handleInitialUri();
   }
 
+  final _appLinks = AppLinks();
   bool _initialUriIsHandled = false;
   Uri? _initialUri;
   Uri? _latestUri;
@@ -104,7 +105,7 @@ class LoginScreenState extends State<LoginScreen> {
     if (!kIsWeb) {
       // It will handle app links while the app is already started - be it in
       // the foreground or in the background.
-      _sub = uriLinkStream.listen((Uri? uri) {
+      _sub = _appLinks.uriLinkStream.listen((uri) {
         if (!mounted) return;
         setState(() {
           if (uri != null) {
@@ -134,7 +135,7 @@ class LoginScreenState extends State<LoginScreen> {
     if (!_initialUriIsHandled) {
       _initialUriIsHandled = true;
       try {
-        final uri = await getInitialUri();
+        final uri = await _appLinks.getInitialLink();
         if (!mounted) return;
         setState(() => _initialUri = uri);
       } on PlatformException {
