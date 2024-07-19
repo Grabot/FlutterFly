@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
+import 'package:flutterfly/constants/flutterfly_constant.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
 import 'package:flutterfly/services/game_settings.dart';
 
@@ -15,9 +16,6 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
   double heightScale = 1;
 
   late GameSettings gameSettings;
-
-  double butterflyWidth = 27;
-  double butterflyHeight = 18;
 
   @override
   Future<void> onLoad() async {

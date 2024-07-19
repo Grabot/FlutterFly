@@ -4,6 +4,7 @@ import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterfly/constants/flutterfly_constant.dart';
 import 'package:flutterfly/game/butterfly.dart';
 import 'package:flutterfly/game/butterfly_outline.dart';
 import 'package:flutterfly/game/floor.dart';
@@ -91,9 +92,6 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   bool spaceBarUsed = false;
 
   Vector2 butterflySize = Vector2(85, 60);
-
-  double butterflyWidth = 27;
-  double butterflyHeight = 18;
 
   @override
   Future<void> onLoad() async {

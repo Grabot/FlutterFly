@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:flutterfly/constants/flutterfly_constant.dart';
 import 'package:flutterfly/game/butterfly_outline.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
 import 'package:flutterfly/game/pipe.dart';
@@ -26,9 +27,6 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
   late AudioPool wingPool;
 
   late GameSettings gameSettings;
-
-  double butterflyWidth = 27;
-  double butterflyHeight = 18;
 
   @override
   Future<void> onLoad() async {
