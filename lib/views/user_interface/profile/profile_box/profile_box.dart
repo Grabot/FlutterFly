@@ -300,10 +300,10 @@ class ProfileBoxState extends State<ProfileBox> {
   Widget userStats(double userStatsWidth, double fontSize) {
     return Column(
       children: [
-        expandedText(userStatsWidth, "Best score single bird: ", fontSize, false),
+        expandedText(userStatsWidth, "Best score single butterfly: ", fontSize, false),
         expandedText(userStatsWidth, "${userScore.getBestScoreSingleButterfly()}", fontSize+6, true),
         const SizedBox(height: 20),
-        expandedText(userStatsWidth, "Best score double bird: ", fontSize, false),
+        expandedText(userStatsWidth, "Best score double butterfly: ", fontSize, false),
         expandedText(userStatsWidth, "${userScore.getBestScoreDoubleButterfly()}", fontSize+6, true),
         const SizedBox(height: 20),
         expandedText(userStatsWidth, "Number of games played: ", fontSize, false),

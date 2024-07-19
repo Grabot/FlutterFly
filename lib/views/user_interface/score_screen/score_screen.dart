@@ -243,10 +243,10 @@ class ScoreScreenState extends State<ScoreScreen> {
     );
   }
 
-  Widget scoreSingleBirdDoubleBirdHeader(double scoreWidth, double scoreHeight, double fontSize) {
-    String birdHeader = "single bird";
+  Widget scoreSingleButterflyDoubleButterflyHeader(double scoreWidth, double scoreHeight, double fontSize) {
+    String butterflyHeader = "single butterfly";
     if (scoreScreenChangeNotifier.isTwoPlayer()) {
-      birdHeader = "double bird";
+      butterflyHeader = "double butterfly";
     }
     return Container(
       margin: const EdgeInsets.only(right: 20),
@@ -254,7 +254,7 @@ class ScoreScreenState extends State<ScoreScreen> {
       width: scoreWidth-20,
       height: scoreHeight,
       child: Text(
-          birdHeader,
+          butterflyHeader,
           style: TextStyle(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
@@ -332,7 +332,7 @@ class ScoreScreenState extends State<ScoreScreen> {
     );
   }
 
-  Widget scoreBestDoubleBird(double scoreWidth, double scoreHeight, double fontSize) {
+  Widget scoreBestDoubleButterfly(double scoreWidth, double scoreHeight, double fontSize) {
     return Container(
       margin: const EdgeInsets.only(right: 20),
       alignment: Alignment.centerRight,
@@ -342,7 +342,7 @@ class ScoreScreenState extends State<ScoreScreen> {
     );
   }
 
-  Widget scoreBestSingleBird(double scoreWidth, double scoreHeight, double fontSize) {
+  Widget scoreBestSingleButterfly(double scoreWidth, double scoreHeight, double fontSize) {
     return Container(
       margin: const EdgeInsets.only(right: 20),
       alignment: Alignment.centerRight,
@@ -435,13 +435,13 @@ class ScoreScreenState extends State<ScoreScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    scoreSingleBirdDoubleBirdHeader(rightWidth, (2*rightWidth)/12, fontSize),
+                    scoreSingleButterflyDoubleButterflyHeader(rightWidth, (2*rightWidth)/12, fontSize),
                     scoreNowHeader(rightWidth, rightWidth/6, fontSize),
                     scoreNow(rightWidth, scoreHeight, fontSize),
                     scoreBestHeader(rightWidth, rightWidth/6, fontSize),
                     scoreScreenChangeNotifier.isTwoPlayer()
-                        ? scoreBestDoubleBird(rightWidth, scoreHeight, fontSize)
-                        : scoreBestSingleBird(rightWidth, scoreHeight, fontSize),
+                        ? scoreBestDoubleButterfly(rightWidth, scoreHeight, fontSize)
+                        : scoreBestSingleButterfly(rightWidth, scoreHeight, fontSize),
                   ],
                 ),
               ),

@@ -252,43 +252,43 @@ class UserAchievements {
     flutterOneAchievement = Achievement(
         achievementName: "Flutter one",
         imageName: "wings_one",
-        tooltip: "You have fluttered your birds already more than a thousand times",
+        tooltip: "You have fluttered your butterflies already more than a thousand times",
         achieved: flutterOne
     );
     flutterTwoAchievement = Achievement(
         achievementName: "Flutter two",
         imageName: "wings_two",
-        tooltip: "You have fluttered your birds already more than two thousand and five hundred times!",
+        tooltip: "You have fluttered your butterflies already more than two thousand and five hundred times!",
         achieved: flutterTwo
     );
     flutterThreeAchievement = Achievement(
         achievementName: "Flutter three",
         imageName: "wings_three",
-        tooltip: "You have fluttered your birds already more than ten thousand times!!",
+        tooltip: "You have fluttered your butterflies already more than ten thousand times!!",
         achieved: flutterThree
     );
     flutterFourAchievement = Achievement(
         achievementName: "Flutter four",
         imageName: "wings_four",
-        tooltip: "You have fluttered your birds already more than fifty thousand times!!!",
+        tooltip: "You have fluttered your butterflies already more than fifty thousand times!!!",
         achieved: flutterFour
     );
     pipesOneAchievement = Achievement(
         achievementName: "Pipes one",
         imageName: "pipes_one",
-        tooltip: "Your birds have passed a total of two hundred and fifty pipes",
+        tooltip: "Your butterflies have passed a total of two hundred and fifty pipes",
         achieved: pipesOne
     );
     pipesTwoAchievement = Achievement(
         achievementName: "Pipes two",
         imageName: "pipes_two",
-        tooltip: "Your birds have passed a total of one thousand pipes!",
+        tooltip: "Your butterflies have passed a total of one thousand pipes!",
         achieved: pipesTwo
     );
     pipesThreeAchievement = Achievement(
         achievementName: "Pipes three",
         imageName: "pipes_three",
-        tooltip: "Your birds have passed a total of five thousand pipes!",
+        tooltip: "Your butterflies have passed a total of five thousand pipes!",
         achieved: pipesThree
     );
     perseveranceAchievement = Achievement(

@@ -196,10 +196,10 @@ class Score {
   setTotalFlutters(int flutters) {
     totalFlutters = flutters;
   }
-  setBestScoreSingleButterfly(int scoreSingleBird) {
-    bestScoreSingleButterfly = scoreSingleBird;
+  setBestScoreSingleButterfly(int scoreSingleButterfly) {
+    bestScoreSingleButterfly = scoreSingleButterfly;
   }
-  setBestScoreDoubleButterfly(int scoreDoubleBird) {
-    bestScoreDoubleButterfly = scoreDoubleBird;
+  setBestScoreDoubleButterfly(int scoreDoubleButterfly) {
+    bestScoreDoubleButterfly = scoreDoubleButterfly;
   }
 }

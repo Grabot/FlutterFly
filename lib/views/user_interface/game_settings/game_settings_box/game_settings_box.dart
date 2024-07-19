@@ -137,17 +137,17 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     }
   }
 
-  pressedBird1Change(int birdType1) {
-    if (gameSettings.getButterflyType1() != birdType1) {
-      gameSettings.setButterflyType1(birdType1);
-      widget.game.changeButterfly1(birdType1);
+  pressedButterfly1Change(int butterflyType1) {
+    if (gameSettings.getButterflyType1() != butterflyType1) {
+      gameSettings.setButterflyType1(butterflyType1);
+      widget.game.changeButterfly1(butterflyType1);
     }
   }
 
-  pressedBird2Change(int birdType2) {
-    if (gameSettings.getButterflyType2() != birdType2) {
-      gameSettings.setButterflyType2(birdType2);
-      widget.game.changeButterfly2(birdType2);
+  pressedButterfly2Change(int butterflyType2) {
+    if (gameSettings.getButterflyType2() != butterflyType2) {
+      gameSettings.setButterflyType2(butterflyType2);
+      widget.game.changeButterfly2(butterflyType2);
     }
   }
 
@@ -168,9 +168,9 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
             _controller.jumpTo(0);
             pressedPlayerChange(selectionType);
           } else if (category == 1) {
-            pressedBird1Change(selectionType);
+            pressedButterfly1Change(selectionType);
           } else if (category == 2) {
-            pressedBird2Change(selectionType);
+            pressedButterfly2Change(selectionType);
           }
         });
       },
@@ -289,7 +289,7 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     'assets/images/butterfly/settings/flutter_fly_black_settings.png',
   ];
 
-  Widget birdSelection1(double gameSettingsWidth, double fontSize) {
+  Widget butterflySelection1(double gameSettingsWidth, double fontSize) {
     double imageWidth = gameSettingsWidth / 6;
     if (imageWidth > 100) {
       imageWidth = 100;
@@ -300,21 +300,21 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
       height: imageWidth + 20,
       child: ListView(
           scrollDirection: Axis.horizontal,
-          children: List.generate(flutterFlyImagePath.length, (int birdType1) {
-            bool selected = gameSettings.getButterflyType1() == birdType1;
-            if (gameSettings.getButterflyType2() == birdType1) {
-              return nonSelectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight);
+          children: List.generate(flutterFlyImagePath.length, (int butterflyType1) {
+            bool selected = gameSettings.getButterflyType1() == butterflyType1;
+            if (gameSettings.getButterflyType2() == butterflyType1) {
+              return nonSelectionButton(flutterFlyImagePath[butterflyType1], imageWidth, imageHeight);
             } else {
-              return selectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight,birdType1, 1, selected);
+              return selectionButton(flutterFlyImagePath[butterflyType1], imageWidth, imageHeight,butterflyType1, 1, selected);
             }
           }),
       ),
     );
   }
 
-  Widget birdSelection2(double gameSettingsWidth, double fontSize) {
+  Widget butterflySelection2(double gameSettingsWidth, double fontSize) {
     int playerType = gameSettings.getPlayerType();
-    // If the user has selected 2 birds, we don't want to show the same bird twice.
+    // If the user has selected 2 butterflies, we don't want to show the same butterflies twice.
     double imageWidth = gameSettingsWidth / 6;
     if (imageWidth > 100) {
       imageWidth = 100;
@@ -323,9 +323,9 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     if (playerType == 1) {
       if (gameSettings.getButterflyType1() == gameSettings.getButterflyType2()) {
         if (gameSettings.getButterflyType1() == 0) {
-          pressedBird2Change(1);
+          pressedButterfly2Change(1);
         } else {
-          pressedBird2Change(gameSettings.getButterflyType1()-1);
+          pressedButterfly2Change(gameSettings.getButterflyType1()-1);
         }
       }
     }
@@ -334,13 +334,13 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
       height: imageWidth + 20,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: List.generate(flutterFlyImagePath.length, (int birdType2) {
-          bool selected = gameSettings.getButterflyType2() == birdType2;
-          if (gameSettings.getButterflyType1() == birdType2) {
-            return nonSelectionButton(flutterFlyImagePath[birdType2], imageWidth, imageHeight);
+        children: List.generate(flutterFlyImagePath.length, (int butterflyType2) {
+          bool selected = gameSettings.getButterflyType2() == butterflyType2;
+          if (gameSettings.getButterflyType1() == butterflyType2) {
+            return nonSelectionButton(flutterFlyImagePath[butterflyType2], imageWidth, imageHeight);
           } else {
             return selectionButton(
-                flutterFlyImagePath[birdType2], imageWidth, imageHeight, birdType2, 2, selected);
+                flutterFlyImagePath[butterflyType2], imageWidth, imageHeight, butterflyType2, 2, selected);
           }
         }),
       ),
@@ -372,9 +372,9 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
   }
 
   Widget flutterFly1SelectionRow(double gameSettingsWidth, double fontSize) {
-    String flutterFlyText = "Bird selection";
+    String flutterFlyText = "Butterfly selection";
     if (gameSettings.getPlayerType() == 0) {
-      flutterFlyText = "Bird 1";
+      flutterFlyText = "Butterfly 1";
     }
     return Column(
         children: [
@@ -388,7 +388,7 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
               ]
           ),
           const SizedBox(height: 20),
-          birdSelection1(gameSettingsWidth, fontSize),
+          butterflySelection1(gameSettingsWidth, fontSize),
           const SizedBox(height: 40),
         ],
     );
@@ -401,13 +401,13 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
             children: [
               const SizedBox(width: 20),
               Text(
-                  "Bird 2",
+                  "Butterfly 2",
                   style: simpleTextStyle(fontSize)
               ),
             ]
         ),
         const SizedBox(height: 20),
-        birdSelection2(gameSettingsWidth, fontSize),
+        butterflySelection2(gameSettingsWidth, fontSize),
         const SizedBox(height: 40),
       ],
     );

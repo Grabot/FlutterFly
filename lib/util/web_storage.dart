@@ -24,8 +24,8 @@ class SecureStorage {
     return await storage.read(key: _keyRefreshToken);
   }
 
-  final String _keyBestScoreSingleBird = 'bestScoreSingleBird';
-  final String _keyBestScoreDoubleBird = 'bestScoreDoubleBird';
+  final String _keyBestScoreSingleButterfly = 'bestScoreSingleButterfly';
+  final String _keyBestScoreDoubleButterfly = 'bestScoreDoubleButterfly';
   final String _keyTotalFluttersToken = 'totalFlutterToken';
   final String _keyTotalPipesToken = 'totalPipesToken';
   final String _keyTotalGamesToken = 'totalGamesToken';
@@ -54,43 +54,43 @@ class SecureStorage {
     return await storage.read(key: _keyTotalGamesToken);
   }
 
-  Future setBestScoreSingleButterfly(String bestScoreSingleBird) async {
-    await storage.write(key: _keyBestScoreSingleBird, value: bestScoreSingleBird);
+  Future setBestScoreSingleButterfly(String bestScoreSingleButterfly) async {
+    await storage.write(key: _keyBestScoreSingleButterfly, value: bestScoreSingleButterfly);
   }
 
   Future<String?> getBestScoreSingleButterfly() async {
-    return await storage.read(key: _keyBestScoreSingleBird);
+    return await storage.read(key: _keyBestScoreSingleButterfly);
   }
 
-  Future setBestScoreDoubleButterfly(String bestScoreDoubleBird) async {
-    await storage.write(key: _keyBestScoreDoubleBird, value: bestScoreDoubleBird);
+  Future setBestScoreDoubleButterfly(String bestScoreDoubleButterfly) async {
+    await storage.write(key: _keyBestScoreDoubleButterfly, value: bestScoreDoubleButterfly);
   }
 
   Future<String?> getBestScoreDoubleButterfly() async {
-    return await storage.read(key: _keyBestScoreDoubleBird);
+    return await storage.read(key: _keyBestScoreDoubleButterfly);
   }
 
-  final String _keyBirdType1 = 'birdType1';
-  final String _keyBirdType2 = 'birdType2';
+  final String _keyButterflyType1 = 'butterflyType1';
+  final String _keyButterflyType2 = 'butterflyType2';
   final String _keyPipeType = 'pipeType';
   final String _keyPlayerType = 'playerType';
   final String _keySound = 'sound';
   final String _keyButtonVisibility = 'buttonVisibility';
 
-  Future setButterflyType1(String birdType1) async {
-    await storage.write(key: _keyBirdType1, value: birdType1);
+  Future setButterflyType1(String butterflyType1) async {
+    await storage.write(key: _keyButterflyType1, value: butterflyType1);
   }
 
   Future<String?> getButterflyType1() async {
-    return await storage.read(key: _keyBirdType1);
+    return await storage.read(key: _keyButterflyType1);
   }
 
-  Future setButterflyType2(String birdType2) async {
-    await storage.write(key: _keyBirdType2, value: birdType2);
+  Future setButterflyType2(String butterflyType2) async {
+    await storage.write(key: _keyButterflyType2, value: butterflyType2);
   }
 
   Future<String?> getButterflyType2() async {
-    return await storage.read(key: _keyBirdType2);
+    return await storage.read(key: _keyButterflyType2);
   }
 
   Future setPipeType(String pipeType) async {
@@ -290,14 +290,14 @@ class SecureStorage {
     await storage.write(key: _keyAccessToken, value: null);
     await storage.write(key: _keyRefreshToken, value: null);
 
-    await storage.write(key: _keyBestScoreSingleBird, value: null);
-    await storage.write(key: _keyBestScoreDoubleBird, value: null);
+    await storage.write(key: _keyBestScoreSingleButterfly, value: null);
+    await storage.write(key: _keyBestScoreDoubleButterfly, value: null);
     await storage.write(key: _keyTotalFluttersToken, value: null);
     await storage.write(key: _keyTotalPipesToken, value: null);
     await storage.write(key: _keyTotalGamesToken, value: null);
 
-    await storage.write(key: _keyBirdType1, value: null);
-    await storage.write(key: _keyBirdType2, value: null);
+    await storage.write(key: _keyButterflyType1, value: null);
+    await storage.write(key: _keyButterflyType2, value: null);
     await storage.write(key: _keyPipeType, value: null);
     await storage.write(key: _keyPlayerType, value: null);
     await storage.write(key: _keySound, value: null);
