@@ -87,15 +87,15 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
     butterflyOutline2.loadButterfly("butterfly/flutter_fly_outline.png");
   }
 
-  double flapSpeed = 600;
-  double velocityY = 0;
-  double accelerationY = 5000;
-  double rotation = 0;
+  double flapSpeed = defaultFlapSpeed;
+  double velocityY = resetVelocityY;
+  double accelerationY = defaultAccelerationY;
+  double rotation = resetRotation;
   gameStarted() {
-    flapSpeed = 600;
-    velocityY = 0;
-    accelerationY = 5000;
-    rotation = 0;
+    flapSpeed = defaultFlapSpeed;
+    velocityY = resetVelocityY;
+    accelerationY = defaultAccelerationY;
+    rotation = resetRotation;
     butterflyOutline2.gameStarted();
   }
 
@@ -106,10 +106,10 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
     size.x = (size.y / butterflyHeight) * butterflyWidth;
 
     position = Vector2(initialPos.x, initialPos.y);
-    flapSpeed = 600;
-    velocityY = 0;
-    accelerationY = 5000;
-    rotation = 0;
+    flapSpeed = defaultFlapSpeed;
+    velocityY = resetVelocityY;
+    accelerationY = defaultAccelerationY;
+    rotation = resetRotation;
     butterflyOutline2.reset(screenSizeY);
   }
 
@@ -134,8 +134,8 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
   _updatePositionDeath(double dt) {
     double floorHeight = gameRef.size.y * 0.785;
     if (position.y >= floorHeight) {
-      velocityY = 0;
-      butterflyOutline2.velocityY = 0;
+      velocityY = resetVelocityY;
+      butterflyOutline2.velocityY = resetVelocityY;
       return;
     }
     velocityY -= (((accelerationY * dt) / 2) * -1);

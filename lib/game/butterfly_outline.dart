@@ -56,15 +56,15 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
     position = Vector2(initialPos.x, initialPos.y);
   }
 
-  double flapSpeed = 600;
-  double velocityY = 0;
-  double accelerationY = 5000;
-  double rotation = 0;
+  double flapSpeed = defaultFlapSpeed;
+  double velocityY = resetVelocityY;
+  double accelerationY = defaultAccelerationY;
+  double rotation = resetRotation;
   gameStarted() {
-    flapSpeed = 600;
-    velocityY = 0;
-    accelerationY = 5000;
-    rotation = 0;
+    flapSpeed = defaultFlapSpeed;
+    velocityY = resetVelocityY;
+    accelerationY = defaultAccelerationY;
+    rotation = resetRotation;
   }
 
   reset(double screenSizeY) {
@@ -77,10 +77,10 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
 
     position = Vector2(initialPos.x, initialPos.y);
 
-    flapSpeed = 600;
-    velocityY = 0;
-    accelerationY = 5000;
-    rotation = 0;
+    flapSpeed = defaultFlapSpeed;
+    velocityY = resetVelocityY;
+    accelerationY = defaultAccelerationY;
+    rotation = resetRotation;
   }
 
   double startupTimer = 0.5;
