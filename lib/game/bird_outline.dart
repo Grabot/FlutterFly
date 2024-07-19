@@ -5,10 +5,10 @@ import 'package:flame/flame.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
 import 'package:flutterfly/services/game_settings.dart';
 
-class BirdOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
+class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
 
   Vector2 initialPos;
-  BirdOutline({
+  ButterflyOutline({
     required this.initialPos,
   }) : super(size: Vector2(95, 70));
 
@@ -16,13 +16,13 @@ class BirdOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
 
   late GameSettings gameSettings;
 
-  double birdWidth = 27;
-  double birdHeight = 18;
+  double butterflyWidth = 27;
+  double butterflyHeight = 18;
 
   @override
   Future<void> onLoad() async {
     gameSettings = GameSettings();
-    loadBird("butterfly/flutter_fly_outline.png");
+    loadButterfly("butterfly/flutter_fly_outline.png");
 
     return super.onLoad();
   }
@@ -35,25 +35,25 @@ class BirdOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
 
   setSize(Vector2 newSize) {
     size = newSize;
-    size.x = (size.x / birdWidth) * (birdWidth + 2);
-    size.y = (size.y / birdHeight) * (birdHeight + 2);
+    size.x = (size.x / butterflyWidth) * (butterflyWidth + 2);
+    size.y = (size.y / butterflyHeight) * (butterflyHeight + 2);
   }
 
-  loadBird(String birdImageName) async {
-    final image = await Flame.images.load(birdImageName);
+  loadButterfly(String butterflyImageName) async {
+    final image = await Flame.images.load(butterflyImageName);
     animation = SpriteAnimation.fromFrameData(image, SpriteAnimationData.sequenced(
       amount: 3,
       stepTime: 0.10,
-      textureSize: Vector2((birdWidth + 2), (birdHeight + 2)),
+      textureSize: Vector2((butterflyWidth + 2), (butterflyHeight + 2)),
     ));
     anchor = Anchor.center;
 
     heightScale = gameRef.size.y / 800;
 
     size.y = (gameRef.size.y / 10000) * 466;
-    size.x = (size.y / birdHeight) * birdWidth;
-    size.x = (size.x / birdWidth) * (birdWidth + 2);
-    size.y = (size.y / birdHeight) * (birdHeight + 2);
+    size.x = (size.y / butterflyHeight) * butterflyWidth;
+    size.x = (size.x / butterflyWidth) * (butterflyWidth + 2);
+    size.y = (size.y / butterflyHeight) * (butterflyHeight + 2);
 
     position = Vector2(initialPos.x, initialPos.y);
   }
@@ -73,9 +73,9 @@ class BirdOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
     heightScale = screenSizeY / 800;
 
     size.y = (screenSizeY / 10000) * 466;
-    size.x = (size.y / birdHeight) * birdWidth;
-    size.x = (size.x / birdWidth) * (birdWidth + 2);
-    size.y = (size.y / birdHeight) * (birdHeight + 2);
+    size.x = (size.y / butterflyHeight) * butterflyWidth;
+    size.x = (size.x / butterflyWidth) * (butterflyWidth + 2);
+    size.y = (size.y / butterflyHeight) * (butterflyHeight + 2);
 
     position = Vector2(initialPos.x, initialPos.y);
 
@@ -105,8 +105,8 @@ class BirdOutline extends SpriteAnimationComponent with HasGameRef<FlutterFly> {
     velocityY = flapSpeed * -1;
   }
 
-  changeBird() {
-    loadBird("butterfly/flutter_fly_outline.png");
+  changeButterfly() {
+    loadButterfly("butterfly/flutter_fly_outline.png");
   }
 
   @override

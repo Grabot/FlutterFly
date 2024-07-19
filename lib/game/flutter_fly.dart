@@ -30,8 +30,8 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   bool twoPlayers = true;
   late final Butterfly bird1;
   late final Butterfly bird2;
-  late final BirdOutline birdOutlineBird1;
-  late final BirdOutline birdOutlineBird2;
+  late final ButterflyOutline birdOutlineBird1;
+  late final ButterflyOutline birdOutlineBird2;
 
   bool gameStarted = false;
   bool gameEnded = false;
@@ -102,10 +102,10 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
 
     Vector2 initialPosBird2 = determineBirdPos(size);
 
-    birdOutlineBird1 = BirdOutline(
+    birdOutlineBird1 = ButterflyOutline(
         initialPos: initialPosBird1
     )..priority = 10;
-    birdOutlineBird2 = BirdOutline(
+    birdOutlineBird2 = ButterflyOutline(
         initialPos: initialPosBird2
     )..priority = 10;
     bird1 = Butterfly(

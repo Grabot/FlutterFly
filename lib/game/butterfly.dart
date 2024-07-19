@@ -13,7 +13,7 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
 
   int butterflyType;
   Vector2 initialPos;
-  BirdOutline butterflyOutline2;
+  ButterflyOutline butterflyOutline2;
 
   Butterfly({
     required this.butterflyType,
@@ -86,7 +86,7 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
       minPlayers: 0,
       maxPlayers: 4,
     );
-    butterflyOutline2.loadBird("butterfly/flutter_fly_outline.png");
+    butterflyOutline2.loadButterfly("butterfly/flutter_fly_outline.png");
   }
 
   double flapSpeed = 600;
@@ -246,7 +246,7 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
       butterflyType = newBirdType;
       await loadButterfly("butterfly/flutter_fly_black.png");
     }
-    butterflyOutline2.changeBird();
+    butterflyOutline2.changeButterfly();
   }
 
   int getBirdType() {
