@@ -57,16 +57,16 @@ getScore(LoginResponse loginResponse, int userId) async {
   if (score != null) {
     bool updateScore = false;
 
-    if (score.getBestScoreSingleBird() > userScore.getBestScoreSingleBird()) {
-      userScore.setBestScoreSingleBird(score.getBestScoreSingleBird());
-    } else if (userScore.getBestScoreSingleBird() > score.getBestScoreSingleBird()) {
-      score.setBestScoreSingleBird(userScore.getBestScoreSingleBird());
+    if (score.getBestScoreSingleBird() > userScore.getBestScoreSingleButterfly()) {
+      userScore.setBestScoreSingleButterfly(score.getBestScoreSingleBird());
+    } else if (userScore.getBestScoreSingleButterfly() > score.getBestScoreSingleBird()) {
+      score.setBestScoreSingleBird(userScore.getBestScoreSingleButterfly());
       updateScore = true;
     }
-    if (score.getBestScoreDoubleBird() > userScore.getBestScoreDoubleBird()) {
-      userScore.setBestScoreDoubleBird(score.getBestScoreDoubleBird());
-    } else if (userScore.getBestScoreDoubleBird() > score.getBestScoreDoubleBird()) {
-      score.setBestScoreDoubleBird(userScore.getBestScoreDoubleBird());
+    if (score.getBestScoreDoubleBird() > userScore.getBestScoreDoubleButterfly()) {
+      userScore.setBestScoreDoubleButterfly(score.getBestScoreDoubleBird());
+    } else if (userScore.getBestScoreDoubleButterfly() > score.getBestScoreDoubleBird()) {
+      score.setBestScoreDoubleBird(userScore.getBestScoreDoubleButterfly());
       updateScore = true;
     }
     if (score.getTotalFlutters() > userScore.getTotalFlutters()) {

@@ -49,20 +49,20 @@ class UserScore {
     return _instance;
   }
 
-  int getBestScoreSingleBird() {
+  int getBestScoreSingleButterfly() {
     return bestScoreSingleBird;
   }
 
-  setBestScoreSingleBird(int bestScoreSingleBird) async {
+  setBestScoreSingleButterfly(int bestScoreSingleBird) async {
     this.bestScoreSingleBird = bestScoreSingleBird;
     await secureStorage.setBestScoreSingleBird(bestScoreSingleBird.toString());
   }
 
-  int getBestScoreDoubleBird() {
+  int getBestScoreDoubleButterfly() {
     return bestScoreDoubleBird;
   }
 
-  setBestScoreDoubleBird(int bestScoreDoubleBird) async {
+  setBestScoreDoubleButterfly(int bestScoreDoubleBird) async {
     this.bestScoreDoubleBird = bestScoreDoubleBird;
     await secureStorage.setBestScoreSingleBird(bestScoreDoubleBird.toString());
   }

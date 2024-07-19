@@ -28,18 +28,18 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   bool playFieldFocus = true;
 
   bool twoPlayers = true;
-  late final Butterfly bird1;
-  late final Butterfly bird2;
-  late final ButterflyOutline birdOutlineBird1;
-  late final ButterflyOutline birdOutlineBird2;
+  late final Butterfly butterfly1;
+  late final Butterfly butterfly2;
+  late final ButterflyOutline butterflyOutlineButterfly1;
+  late final ButterflyOutline butterflyOutlineButterfly2;
 
   bool gameStarted = false;
   bool gameEnded = false;
   double speed = 130;
   double heightScale = 1;
 
-  PipeDuo? lastPipeDuoBird1;
-  PipeDuo? lastPipeDuoBird2;
+  PipeDuo? lastPipeDuoButterfly1;
+  PipeDuo? lastPipeDuoButterfly2;
   double pipeBuffer = 1000;
   double pipeGap = 300;
   double pipeInterval = 0;
@@ -68,8 +68,8 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   int fps = 0;
   int variant = 0;
 
-  List<PipeDuo> pipesBird1 = [];
-  List<PipeDuo> pipesBird2 = [];
+  List<PipeDuo> pipesButterfly1 = [];
+  List<PipeDuo> pipesButterfly2 = [];
 
   late ScoreScreenChangeNotifier scoreScreenChangeNotifier;
   late Settings settings;
@@ -83,48 +83,48 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   int nightTimeScore = 0;
 
   bool dataLoaded = false;
-  late Vector2 initialPosBird1;
+  late Vector2 initialPosButterfly1;
 
-  int pipeBird1Priority = 0;
-  int pipeBird2Priority = 2;
+  int pipeButterfly1Priority = 0;
+  int pipeButterfly2Priority = 2;
 
   bool spaceBarUsed = false;
 
-  Vector2 birdSize = Vector2(85, 60);
+  Vector2 butterflySize = Vector2(85, 60);
 
-  double birdWidth = 27;
-  double birdHeight = 18;
+  double butterflyWidth = 27;
+  double butterflyHeight = 18;
 
   @override
   Future<void> onLoad() async {
     sky = Sky();
     heightScale = size.y / 800;
 
-    Vector2 initialPosBird2 = determineBirdPos(size);
+    Vector2 initialPosButterfly2 = determineButterflyPos(size);
 
-    birdOutlineBird1 = ButterflyOutline(
-        initialPos: initialPosBird1
+    butterflyOutlineButterfly1 = ButterflyOutline(
+        initialPos: initialPosButterfly1
     )..priority = 10;
-    birdOutlineBird2 = ButterflyOutline(
-        initialPos: initialPosBird2
+    butterflyOutlineButterfly2 = ButterflyOutline(
+        initialPos: initialPosButterfly2
     )..priority = 10;
-    bird1 = Butterfly(
+    butterfly1 = Butterfly(
       butterflyType: 0,
-      initialPos: initialPosBird1,
-      butterflyOutline2: birdOutlineBird1,
+      initialPos: initialPosButterfly1,
+      butterflyOutline2: butterflyOutlineButterfly1,
     )..priority = 1;
-    bird2 = Butterfly(
+    butterfly2 = Butterfly(
         butterflyType: 1,
-        initialPos: initialPosBird2,
-        butterflyOutline2: birdOutlineBird2
+        initialPos: initialPosButterfly2,
+        butterflyOutline2: butterflyOutlineButterfly2
     )..priority = 3;
 
     helpMessage = HelpMessage()..priority = 10;
     scoreIndicator = ScoreIndicator();
     add(sky);
-    add(bird1);
-    add(bird2);
-    add(birdOutlineBird1);
+    add(butterfly1);
+    add(butterfly2);
+    add(butterflyOutlineButterfly1);
     add(Floor());
     add(helpMessage);
     add(ScreenHitbox());
@@ -138,8 +138,8 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     double pipeX = -pipeWidth-50;
     PipeDuo newPipeDuo = PipeDuo(
       position: Vector2(pipeX, 0),
-      butterflyType: bird1.getButterflyType(),
-    )..priority = pipeBird1Priority;
+      butterflyType: butterfly1.getButterflyType(),
+    )..priority = pipeButterfly1Priority;
     newPipeDuo.pipePassedButterfly1();
     newPipeDuo.pipePassedButterfly2();
     add(newPipeDuo);
@@ -170,9 +170,9 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     dataLoaded = true;
 
     // to avoid any remaining issues with the outline not matching
-    // We will reset the birds
-    bird1.reset(size.y);
-    bird2.reset(size.y);
+    // We will reset the butterflies
+    butterfly1.reset(size.y);
+    butterfly2.reset(size.y);
     return super.onLoad();
   }
 
@@ -189,28 +189,28 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     scoreRemoved = true;
     deathTimeEnded = false;
     clearPipes();
-    bird1.reset(size.y);
+    butterfly1.reset(size.y);
     if (twoPlayers) {
-      bird2.reset(size.y);
+      butterfly2.reset(size.y);
     }
     sky.reset();
   }
 
-  birdInteraction(Butterfly bird) {
+  butterflyInteraction(Butterfly butterfly) {
     if (!gameStarted && !gameEnded) {
       // start game
       gameStarted = true;
       death = false;
       deathTimer = 1;
-      bird1.gameStarted();
+      butterfly1.gameStarted();
       if (twoPlayers) {
-        bird2.gameStarted();
+        butterfly2.gameStarted();
       }
       remove(helpMessage);
       add(scoreIndicator);
       scoreRemoved = false;
       spawnInitialPipes();
-      bird.fly();
+      butterfly.fly();
     } else if (!gameStarted && gameEnded) {
       // go to the main screen with help message
       if (timeSinceEnded < 0.4) {
@@ -222,7 +222,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       startGame();
     } else if (gameStarted) {
       // game running
-      bird.fly();
+      butterfly.fly();
       flutters += 1;
     }
   }
@@ -232,20 +232,20 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     Vector2 screenPos = tapUpInfo.eventPosition.global;
     if (twoPlayers) {
       // If the user has pressed the space bar
-      // than the user can click anywhere for the first bird
+      // than the user can click anywhere for the first butterfly
       if (spaceBarUsed) {
-        birdInteraction(bird1);
+        butterflyInteraction(butterfly1);
       } else {
         // If the user is not using the space bar we will decide they are
-        // behind a mobile. Left side is left bird, right side is right bird.
+        // behind a mobile. Left side is left butterfly, right side is right butterfly.
         if (screenPos.x > size.x / 2) {
-          birdInteraction(bird1);
+          butterflyInteraction(butterfly1);
         } else {
-          birdInteraction(bird2);
+          butterflyInteraction(butterfly2);
         }
       }
     } else {
-      birdInteraction(bird1);
+      butterflyInteraction(butterfly1);
     }
     super.onTapUp(pointerId, tapUpInfo);
   }
@@ -265,10 +265,10 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
         // we will know they are behind a desktop
         spaceBarUsed = true;
         if (twoPlayers) {
-          birdInteraction(bird2);
+          butterflyInteraction(butterfly2);
         } else {
-          // In single bird mode you can use the mouse click or the space bar.
-          birdInteraction(bird1);
+          // In single butterfly mode you can use the mouse click or the space bar.
+          butterflyInteraction(butterfly1);
         }
       }
       return KeyEventResult.handled;
@@ -451,16 +451,16 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   }
 
   Future<void> clearPipes() async {
-    for (PipeDuo pipeDuo in pipesBird1) {
+    for (PipeDuo pipeDuo in pipesButterfly1) {
       remove(pipeDuo);
     }
-    pipesBird1.clear();
-    for (PipeDuo pipeDuo in pipesBird2) {
+    pipesButterfly1.clear();
+    for (PipeDuo pipeDuo in pipesButterfly2) {
       remove(pipeDuo);
     }
-    pipesBird2.clear();
-    lastPipeDuoBird1 = null;
-    lastPipeDuoBird2 = null;
+    pipesButterfly2.clear();
+    lastPipeDuoButterfly1 = null;
+    lastPipeDuoButterfly2 = null;
 
     double pipeWidth = (52 * heightScale) * 1.5;
     pipeInterval = (pipeGap * heightScale) + pipeWidth;
@@ -470,16 +470,16 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     double pipeX = -pipeWidth-50;
     PipeDuo newPipeDuo = PipeDuo(
       position: Vector2(pipeX, 0),
-      butterflyType: bird1.getButterflyType(),
-    )..priority = pipeBird1Priority;
+      butterflyType: butterfly1.getButterflyType(),
+    )..priority = pipeButterfly1Priority;
     newPipeDuo.pipePassedButterfly1();
     newPipeDuo.pipePassedButterfly2();
     add(newPipeDuo);
     if (twoPlayers) {
       PipeDuo newPipeDuo2 = PipeDuo(
         position: Vector2(pipeX, 0),
-        butterflyType: bird2.getButterflyType(),
-      )..priority = pipeBird2Priority;
+        butterflyType: butterfly2.getButterflyType(),
+      )..priority = pipeButterfly2Priority;
       newPipeDuo2.pipePassedButterfly1();
       newPipeDuo2.pipePassedButterfly2();
       add(newPipeDuo2);
@@ -488,17 +488,17 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
 
   removePipe(PipeDuo pipeDuo) {
     if (twoPlayers) {
-      if (bird1.getButterflyType() == pipeDuo.butterflyType) {
-        pipesBird1.remove(pipeDuo);
+      if (butterfly1.getButterflyType() == pipeDuo.butterflyType) {
+        pipesButterfly1.remove(pipeDuo);
         remove(pipeDuo);
-      } else if (bird2.getButterflyType() == pipeDuo.butterflyType) {
-        pipesBird2.remove(pipeDuo);
+      } else if (butterfly2.getButterflyType() == pipeDuo.butterflyType) {
+        pipesButterfly2.remove(pipeDuo);
         remove(pipeDuo);
       } else {
         remove(pipeDuo);
       }
     } else {
-      pipesBird1.remove(pipeDuo);
+      pipesButterfly1.remove(pipeDuo);
       remove(pipeDuo);
     }
   }
@@ -507,37 +507,37 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     double pipeX = pipeBuffer;
     PipeDuo newPipeDuo1 = PipeDuo(
       position: Vector2(pipeX, 0),
-      butterflyType: bird1.getButterflyType(),
-    )..priority = pipeBird1Priority;
+      butterflyType: butterfly1.getButterflyType(),
+    )..priority = pipeButterfly1Priority;
     add(newPipeDuo1);
-    lastPipeDuoBird1 = newPipeDuo1;
-    pipesBird1.add(newPipeDuo1);
+    lastPipeDuoButterfly1 = newPipeDuo1;
+    pipesButterfly1.add(newPipeDuo1);
     if (twoPlayers) {
       PipeDuo newPipeDuo2 = PipeDuo(
         position: Vector2(pipeX + 50, 0),
-        butterflyType: bird2.getButterflyType(),
-      )..priority = pipeBird2Priority;
+        butterflyType: butterfly2.getButterflyType(),
+      )..priority = pipeButterfly2Priority;
       add(newPipeDuo2);
-      lastPipeDuoBird2 = newPipeDuo2;
-      pipesBird2.add(newPipeDuo2);
+      lastPipeDuoButterfly2 = newPipeDuo2;
+      pipesButterfly2.add(newPipeDuo2);
     }
 
     pipeX -= pipeInterval;
-    while(pipeX > initialPosBird1.x + pipeInterval) {
+    while(pipeX > initialPosButterfly1.x + pipeInterval) {
       PipeDuo newPipeDuo1 = PipeDuo(
         position: Vector2(pipeX, 0),
-        butterflyType: bird1.getButterflyType(),
-      )..priority = pipeBird1Priority;
+        butterflyType: butterfly1.getButterflyType(),
+      )..priority = pipeButterfly1Priority;
       add(newPipeDuo1);
-      pipesBird1.add(newPipeDuo1);
+      pipesButterfly1.add(newPipeDuo1);
       if (twoPlayers) {
         PipeDuo newPipeDuo2 = PipeDuo(
           position: Vector2(pipeX + 50, 0),
-          butterflyType: bird2.getButterflyType(),
-        )..priority = pipeBird2Priority;
+          butterflyType: butterfly2.getButterflyType(),
+        )..priority = pipeButterfly2Priority;
         add(newPipeDuo2);
-        lastPipeDuoBird2 = newPipeDuo2;
-        pipesBird2.add(newPipeDuo2);
+        lastPipeDuoButterfly2 = newPipeDuo2;
+        pipesButterfly2.add(newPipeDuo2);
       }
       pipeX -= pipeInterval;
     }
@@ -547,23 +547,23 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   Future<void> update(double dt) async {
     super.update(dt);
     if (gameStarted) {
-      if (lastPipeDuoBird1 != null) {
-        if (lastPipeDuoBird1!.position.x < pipeBuffer - pipeInterval) {
+      if (lastPipeDuoButterfly1 != null) {
+        if (lastPipeDuoButterfly1!.position.x < pipeBuffer - pipeInterval) {
           PipeDuo newPipeDuo = PipeDuo(
             position: Vector2(pipeBuffer, 0),
-            butterflyType: bird1.getButterflyType(),
-          )..priority = pipeBird1Priority;
+            butterflyType: butterfly1.getButterflyType(),
+          )..priority = pipeButterfly1Priority;
           add(newPipeDuo);
-          pipesBird1.add(newPipeDuo);
-          lastPipeDuoBird1 = newPipeDuo;
+          pipesButterfly1.add(newPipeDuo);
+          lastPipeDuoButterfly1 = newPipeDuo;
           if (twoPlayers) {
             PipeDuo newPipeDuo2 = PipeDuo(
               position: Vector2(pipeBuffer + 50, 0),
-              butterflyType: bird2.getButterflyType(),
-            )..priority = pipeBird2Priority;
+              butterflyType: butterfly2.getButterflyType(),
+            )..priority = pipeButterfly2Priority;
             add(newPipeDuo2);
-            lastPipeDuoBird2 = newPipeDuo2;
-            pipesBird2.add(newPipeDuo2);
+            lastPipeDuoButterfly2 = newPipeDuo2;
+            pipesButterfly2.add(newPipeDuo2);
           }
         }
       }
@@ -572,14 +572,14 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     } else if (gameEnded && !deathTimeEnded) {
       bool isHighScore = false;
       if (twoPlayers) {
-        if (score > userScore.getBestScoreDoubleBird()) {
+        if (score > userScore.getBestScoreDoubleButterfly()) {
           isHighScore = true;
-          userScore.setBestScoreDoubleBird(score);
+          userScore.setBestScoreDoubleButterfly(score);
         }
       } else {
-        if (score > userScore.getBestScoreSingleBird()) {
+        if (score > userScore.getBestScoreSingleButterfly()) {
           isHighScore = true;
-          userScore.setBestScoreSingleBird(score);
+          userScore.setBestScoreSingleButterfly(score);
         }
       }
       scoreScreenChangeNotifier.setScore(score, isHighScore);
@@ -634,7 +634,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   }
 
   checkPipePassed() {
-    for (PipeDuo pipe in pipesBird1) {
+    for (PipeDuo pipe in pipesButterfly1) {
       if (twoPlayers) {
         if (pipe.passedButterfly1 && pipe.passedButterfly2) {
           continue;
@@ -645,7 +645,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
         }
       }
 
-      if ((pipe.position.x < bird1.position.x) && !pipe.passedButterfly1) {
+      if ((pipe.position.x < butterfly1.position.x) && !pipe.passedButterfly1) {
         pipe.pipePassedButterfly1();
         score += 1;
         scoreIndicator.scoreChange(score);
@@ -655,23 +655,23 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
         }
       }
       if (twoPlayers) {
-        if (pipe.position.x < bird2.position.x) {
+        if (pipe.position.x < butterfly2.position.x) {
           pipe.pipePassedButterfly2();
         }
       }
     }
-    for (PipeDuo pipe in pipesBird2) {
+    for (PipeDuo pipe in pipesButterfly2) {
       if (twoPlayers) {
         if (pipe.passedButterfly1 && pipe.passedButterfly2) {
           continue;
         }
       }
 
-      if ((pipe.position.x < bird1.position.x) && !pipe.passedButterfly1) {
+      if ((pipe.position.x < butterfly1.position.x) && !pipe.passedButterfly1) {
         pipe.pipePassedButterfly1();
       }
       if (twoPlayers) {
-        if (pipe.position.x < bird2.position.x) {
+        if (pipe.position.x < butterfly2.position.x) {
           pipe.pipePassedButterfly2();
           score += 1;
           scoreIndicator.scoreChange(score);
@@ -685,35 +685,35 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   }
 
   checkOutOfBounds() {
-    // There is a bug where the bird can go out of bounds when the frame rate drops and the
+    // There is a bug where the butterfly can go out of bounds when the frame rate drops and the
     // acceleration gets super high. The collision with the screen is not triggered and the
-    // bird flies below all the pipes and gets all the points.
+    // butterfly flies below all the pipes and gets all the points.
     // We add this simple check to ensure that this bug is not exploited.
-    if (bird1.position.y < -100) {
+    if (butterfly1.position.y < -100) {
       gameOver();
-    } else if (bird1.position.y > (size.y + 100)) {
+    } else if (butterfly1.position.y > (size.y + 100)) {
       gameOver();
     }
     if (twoPlayers) {
-      if (bird2.position.y < -100) {
+      if (butterfly2.position.y < -100) {
         gameOver();
-      } else if (bird2.position.y > (size.y + 100)) {
+      } else if (butterfly2.position.y > (size.y + 100)) {
         gameOver();
       }
     }
   }
 
-  Vector2 determineBirdPos(Vector2 gameSize) {
-    birdSize.y = (gameSize.y / 10000) * 466;
-    birdSize.x = (birdSize.y / birdHeight) * birdWidth;
+  Vector2 determineButterflyPos(Vector2 gameSize) {
+    butterflySize.y = (gameSize.y / 10000) * 466;
+    butterflySize.x = (butterflySize.y / butterflyHeight) * butterflyWidth;
 
-    // The bird is anchored in the center, so subtract half of himself.
-    double birdSeparationX = gameSize.x / 100;
-    // Add separation on side of the screen for the first bird and the between the birds themselves.
-    double bird1PosX = birdSize.x - (birdSize.x / 2) + birdSeparationX;
-    double bird2PosX = bird1PosX + birdSize.x + birdSeparationX;
-    initialPosBird1 = Vector2(bird2PosX, (gameSize.y/2));
-    return Vector2(bird1PosX, (gameSize.y/2));
+    // The butterfly is anchored in the center, so subtract half of himself.
+    double butterflySeparationX = gameSize.x / 100;
+    // Add separation on side of the screen for the first butterfly and the between the butterflies themselves.
+    double butterfly1PosX = butterflySize.x - (butterflySize.x / 2) + butterflySeparationX;
+    double butterfly2PosX = butterfly1PosX + butterflySize.x + butterflySeparationX;
+    initialPosButterfly1 = Vector2(butterfly2PosX, (gameSize.y/2));
+    return Vector2(butterfly1PosX, (gameSize.y/2));
   }
 
   @override
@@ -723,14 +723,14 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     pipeInterval = (pipeGap * heightScale) + pipeWidth;
     pipeBuffer = gameSize.x + pipeInterval;
 
-    Vector2 initialPosBird2 = determineBirdPos(gameSize);
+    Vector2 initialPosButterfly2 = determineButterflyPos(gameSize);
 
     if (dataLoaded) {
-      bird1.setInitialPos(initialPosBird1);
-      bird1.reset(gameSize.y);
+      butterfly1.setInitialPos(initialPosButterfly1);
+      butterfly1.reset(gameSize.y);
       if (twoPlayers) {
-      bird2.setInitialPos(initialPosBird2);
-      bird2.reset(gameSize.y);
+      butterfly2.setInitialPos(initialPosButterfly2);
+      butterfly2.reset(gameSize.y);
       }
     }
     super.onGameResize(gameSize);
@@ -741,9 +741,9 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       settings.getLeaderBoardsOnePlayer();
       twoPlayers = false;
       helpMessage.updateMessageImage(size);
-      remove(bird2);
-      remove(birdOutlineBird2);
-      bird1.reset(size.y);
+      remove(butterfly2);
+      remove(butterflyOutlineButterfly2);
+      butterfly1.reset(size.y);
       clearPipes();
       speed = 160;
     }
@@ -752,24 +752,24 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       twoPlayers = true;
       helpMessage.updateMessageImage(size);
 
-      birdSize.y = (size.y / 10000) * 466;
-      birdSize.x = (birdSize.y / birdHeight) * birdWidth;
+      butterflySize.y = (size.y / 10000) * 466;
+      butterflySize.x = (butterflySize.y / butterflyHeight) * butterflyWidth;
 
-      Vector2 initialPosBird2 = determineBirdPos(size);
-      bird2.setInitialPos(initialPosBird2);
-      bird2.reset(size.y);
-      add(bird2);
-      add(birdOutlineBird2);
-      bird1.reset(size.y);
+      Vector2 initialPosButterfly2 = determineButterflyPos(size);
+      butterfly2.setInitialPos(initialPosButterfly2);
+      butterfly2.reset(size.y);
+      add(butterfly2);
+      add(butterflyOutlineButterfly2);
+      butterfly1.reset(size.y);
       clearPipes();
       speed = 130;
     }
-    if (gameSettings.getBirdType1() != bird1.getButterflyType()) {
-      bird1.changeButterfly(gameSettings.getBirdType1());
+    if (gameSettings.getButterflyType1() != butterfly1.getButterflyType()) {
+      butterfly1.changeButterfly(gameSettings.getButterflyType1());
       clearPipes();
     }
-    if (gameSettings.getBirdType2() != bird2.getButterflyType()) {
-      bird2.changeButterfly(gameSettings.getBirdType2());
+    if (gameSettings.getButterflyType2() != butterfly2.getButterflyType()) {
+      butterfly2.changeButterfly(gameSettings.getButterflyType2());
       clearPipes();
     }
   }
@@ -781,33 +781,33 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       helpMessage.updateMessageImage(size);
       settings.getLeaderBoardsTwoPlayer();
 
-      birdSize.y = (size.y / 10000) * 466;
-      birdSize.x = (birdSize.y / birdHeight) * birdWidth;
+      butterflySize.y = (size.y / 10000) * 466;
+      butterflySize.x = (butterflySize.y / butterflyHeight) * butterflyWidth;
 
-      Vector2 initialPosBird2 = determineBirdPos(size);
-      bird2.setInitialPos(initialPosBird2);
-      bird1.reset(size.y);
-      bird2.reset(size.y);
-      add(bird2);
-      add(birdOutlineBird2);
+      Vector2 initialPosButterfly2 = determineButterflyPos(size);
+      butterfly2.setInitialPos(initialPosButterfly2);
+      butterfly1.reset(size.y);
+      butterfly2.reset(size.y);
+      add(butterfly2);
+      add(butterflyOutlineButterfly2);
       clearPipes();
     } else {
       twoPlayers = false;
       speed = 160;
       helpMessage.updateMessageImage(size);
-      remove(bird2);
-      bird1.reset(size.y);
-      remove(birdOutlineBird2);
+      remove(butterfly2);
+      butterfly1.reset(size.y);
+      remove(butterflyOutlineButterfly2);
       clearPipes();
     }
   }
 
-  changeBird1(int birdType1) async {
-    bird1.changeButterfly(birdType1);
+  changeButterfly1(int butterflyType1) async {
+    butterfly1.changeButterfly(butterflyType1);
     clearPipes();
   }
-  changeBird2(int birdType2) async {
-    bird2.changeButterfly(birdType2);
+  changeButterfly2(int butterflyType2) async {
+    butterfly2.changeButterfly(butterflyType2);
     clearPipes();
   }
 

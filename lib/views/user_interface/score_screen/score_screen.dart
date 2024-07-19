@@ -338,7 +338,7 @@ class ScoreScreenState extends State<ScoreScreen> {
       alignment: Alignment.centerRight,
       width: scoreWidth-20,
       height: scoreHeight,
-      child: textWithBlackBorders("${userScore.getBestScoreDoubleBird()}", fontSize)
+      child: textWithBlackBorders("${userScore.getBestScoreDoubleButterfly()}", fontSize)
     );
   }
 
@@ -348,7 +348,7 @@ class ScoreScreenState extends State<ScoreScreen> {
       alignment: Alignment.centerRight,
       width: scoreWidth-20,
       height: scoreHeight,
-      child: textWithBlackBorders("${userScore.getBestScoreSingleBird()}", fontSize)
+      child: textWithBlackBorders("${userScore.getBestScoreSingleButterfly()}", fontSize)
     );
   }
 

@@ -114,7 +114,7 @@ class GameSettings extends ChangeNotifier {
     secureStorage.setBirdType1(birdType1.toString());
   }
 
-  int getBirdType1() {
+  int getButterflyType1() {
     return birdType1;
   }
 
@@ -123,7 +123,7 @@ class GameSettings extends ChangeNotifier {
     secureStorage.setBirdType2(birdType2.toString());
   }
 
-  int getBirdType2() {
+  int getButterflyType2() {
     return birdType2;
   }
 

@@ -301,10 +301,10 @@ class ProfileBoxState extends State<ProfileBox> {
     return Column(
       children: [
         expandedText(userStatsWidth, "Best score single bird: ", fontSize, false),
-        expandedText(userStatsWidth, "${userScore.getBestScoreSingleBird()}", fontSize+6, true),
+        expandedText(userStatsWidth, "${userScore.getBestScoreSingleButterfly()}", fontSize+6, true),
         const SizedBox(height: 20),
         expandedText(userStatsWidth, "Best score double bird: ", fontSize, false),
-        expandedText(userStatsWidth, "${userScore.getBestScoreDoubleBird()}", fontSize+6, true),
+        expandedText(userStatsWidth, "${userScore.getBestScoreDoubleButterfly()}", fontSize+6, true),
         const SizedBox(height: 20),
         expandedText(userStatsWidth, "Number of games played: ", fontSize, false),
         expandedText(userStatsWidth, "${userScore.getTotalGames()}", fontSize+6, true),

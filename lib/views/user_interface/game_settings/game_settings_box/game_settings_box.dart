@@ -138,16 +138,16 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
   }
 
   pressedBird1Change(int birdType1) {
-    if (gameSettings.getBirdType1() != birdType1) {
+    if (gameSettings.getButterflyType1() != birdType1) {
       gameSettings.setBirdType1(birdType1);
-      widget.game.changeBird1(birdType1);
+      widget.game.changeButterfly1(birdType1);
     }
   }
 
   pressedBird2Change(int birdType2) {
-    if (gameSettings.getBirdType2() != birdType2) {
+    if (gameSettings.getButterflyType2() != birdType2) {
       gameSettings.setBirdType2(birdType2);
-      widget.game.changeBird2(birdType2);
+      widget.game.changeButterfly2(birdType2);
     }
   }
 
@@ -301,8 +301,8 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
       child: ListView(
           scrollDirection: Axis.horizontal,
           children: List.generate(flutterFlyImagePath.length, (int birdType1) {
-            bool selected = gameSettings.getBirdType1() == birdType1;
-            if (gameSettings.getBirdType2() == birdType1) {
+            bool selected = gameSettings.getButterflyType1() == birdType1;
+            if (gameSettings.getButterflyType2() == birdType1) {
               return nonSelectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight);
             } else {
               return selectionButton(flutterFlyImagePath[birdType1], imageWidth, imageHeight,birdType1, 1, selected);
@@ -321,11 +321,11 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
     }
     double imageHeight = imageWidth * 0.71;
     if (playerType == 1) {
-      if (gameSettings.getBirdType1() == gameSettings.getBirdType2()) {
-        if (gameSettings.getBirdType1() == 0) {
+      if (gameSettings.getButterflyType1() == gameSettings.getButterflyType2()) {
+        if (gameSettings.getButterflyType1() == 0) {
           pressedBird2Change(1);
         } else {
-          pressedBird2Change(gameSettings.getBirdType1()-1);
+          pressedBird2Change(gameSettings.getButterflyType1()-1);
         }
       }
     }
@@ -335,8 +335,8 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: List.generate(flutterFlyImagePath.length, (int birdType2) {
-          bool selected = gameSettings.getBirdType2() == birdType2;
-          if (gameSettings.getBirdType1() == birdType2) {
+          bool selected = gameSettings.getButterflyType2() == birdType2;
+          if (gameSettings.getButterflyType1() == birdType2) {
             return nonSelectionButton(flutterFlyImagePath[birdType2], imageWidth, imageHeight);
           } else {
             return selectionButton(
