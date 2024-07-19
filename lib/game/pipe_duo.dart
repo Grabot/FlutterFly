@@ -6,11 +6,11 @@ import 'package:flutterfly/game/pipe.dart';
 
 class PipeDuo extends PositionComponent with HasGameRef<FlutterFly> {
 
-  int birdType;
+  int butterflyType;
 
   PipeDuo({
     super.position,
-    required this.birdType,
+    required this.butterflyType,
   });
 
   double pipe_gap = 300;
@@ -30,8 +30,8 @@ class PipeDuo extends PositionComponent with HasGameRef<FlutterFly> {
 
   double totalShiftX = 0;
 
-  bool passedBird1 = false;
-  bool passedBird2 = false;
+  bool passedButterfly1 = false;
+  bool passedButterfly2 = false;
 
   @override
   Future<void> onLoad() async {
@@ -60,11 +60,11 @@ class PipeDuo extends PositionComponent with HasGameRef<FlutterFly> {
     super.update(dt);
   }
 
-  pipePassedBird1() {
-    passedBird1 = true;
+  pipePassedButterfly1() {
+    passedButterfly1 = true;
   }
-  pipePassedBird2() {
-    passedBird2 = true;
+  pipePassedButterfly2() {
+    passedButterfly2 = true;
   }
 
   spawnNewPipes() {
@@ -82,13 +82,13 @@ class PipeDuo extends PositionComponent with HasGameRef<FlutterFly> {
 
     Pipe lowerPipe = Pipe(
       position: Vector2(0, uLower),
-      birdType: birdType,
+      butterflyType: butterflyType,
     )..priority = priority;
 
     double yUpper = uLower - (pipe_gap * heightScale) - pipe_height;
     Pipe upperPipe = Pipe(
       position: Vector2(0, yUpper),
-      birdType: birdType,
+      butterflyType: butterflyType,
     )..priority = priority;
 
     upper = upperPipe;

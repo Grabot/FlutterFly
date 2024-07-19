@@ -4,11 +4,11 @@ import 'package:flame/flame.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
 
 class Pipe extends SpriteComponent with HasGameRef<FlutterFly> {
-  int birdType;
+  int butterflyType;
 
   Pipe({
     super.position,
-    required this.birdType,
+    required this.butterflyType,
   });
 
   double heightScale = 1;
@@ -23,25 +23,25 @@ class Pipe extends SpriteComponent with HasGameRef<FlutterFly> {
   }
 
   loadPipeDetails() async {
-    if (birdType == 0) {
+    if (butterflyType == 0) {
       final image = await Flame.images.load('pipes/pipe-red_big.png');
       sprite = Sprite(image);
-    } else if (birdType == 1) {
+    } else if (butterflyType == 1) {
       final image = await Flame.images.load('pipes/pipe-blue_big.png');
       sprite = Sprite(image);
-    } else if (birdType == 2) {
+    } else if (butterflyType == 2) {
       final image = await Flame.images.load('pipes/pipe-green_big.png');
       sprite = Sprite(image);
-    } else if (birdType == 3) {
+    } else if (butterflyType == 3) {
       final image = await Flame.images.load('pipes/pipe-yellow_big.png');
       sprite = Sprite(image);
-    } else if (birdType == 4) {
+    } else if (butterflyType == 4) {
       final image = await Flame.images.load('pipes/pipe-purple_big.png');
       sprite = Sprite(image);
-    } else if (birdType == 5) {
+    } else if (butterflyType == 5) {
       final image = await Flame.images.load('pipes/pipe-white_big.png');
       sprite = Sprite(image);
-    } else if (birdType == 6) {
+    } else if (butterflyType == 6) {
       final image = await Flame.images.load('pipes/pipe-black_big.png');
       sprite = Sprite(image);
     }

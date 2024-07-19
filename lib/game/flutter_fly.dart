@@ -5,7 +5,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterfly/game/butterfly.dart';
-import 'package:flutterfly/game/bird_outline.dart';
+import 'package:flutterfly/game/butterfly_outline.dart';
 import 'package:flutterfly/game/floor.dart';
 import 'package:flutterfly/game/help_message.dart';
 import 'package:flutterfly/game/pipe_duo.dart';
@@ -138,10 +138,10 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     double pipeX = -pipeWidth-50;
     PipeDuo newPipeDuo = PipeDuo(
       position: Vector2(pipeX, 0),
-      birdType: bird1.getBirdType(),
+      butterflyType: bird1.getButterflyType(),
     )..priority = pipeBird1Priority;
-    newPipeDuo.pipePassedBird1();
-    newPipeDuo.pipePassedBird2();
+    newPipeDuo.pipePassedButterfly1();
+    newPipeDuo.pipePassedButterfly2();
     add(newPipeDuo);
 
     pointPool = await FlameAudio.createPool(
@@ -470,28 +470,28 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     double pipeX = -pipeWidth-50;
     PipeDuo newPipeDuo = PipeDuo(
       position: Vector2(pipeX, 0),
-      birdType: bird1.getBirdType(),
+      butterflyType: bird1.getButterflyType(),
     )..priority = pipeBird1Priority;
-    newPipeDuo.pipePassedBird1();
-    newPipeDuo.pipePassedBird2();
+    newPipeDuo.pipePassedButterfly1();
+    newPipeDuo.pipePassedButterfly2();
     add(newPipeDuo);
     if (twoPlayers) {
       PipeDuo newPipeDuo2 = PipeDuo(
         position: Vector2(pipeX, 0),
-        birdType: bird2.getBirdType(),
+        butterflyType: bird2.getButterflyType(),
       )..priority = pipeBird2Priority;
-      newPipeDuo2.pipePassedBird1();
-      newPipeDuo2.pipePassedBird2();
+      newPipeDuo2.pipePassedButterfly1();
+      newPipeDuo2.pipePassedButterfly2();
       add(newPipeDuo2);
     }
   }
 
   removePipe(PipeDuo pipeDuo) {
     if (twoPlayers) {
-      if (bird1.getBirdType() == pipeDuo.birdType) {
+      if (bird1.getButterflyType() == pipeDuo.butterflyType) {
         pipesBird1.remove(pipeDuo);
         remove(pipeDuo);
-      } else if (bird2.getBirdType() == pipeDuo.birdType) {
+      } else if (bird2.getButterflyType() == pipeDuo.butterflyType) {
         pipesBird2.remove(pipeDuo);
         remove(pipeDuo);
       } else {
@@ -507,7 +507,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     double pipeX = pipeBuffer;
     PipeDuo newPipeDuo1 = PipeDuo(
       position: Vector2(pipeX, 0),
-      birdType: bird1.getBirdType(),
+      butterflyType: bird1.getButterflyType(),
     )..priority = pipeBird1Priority;
     add(newPipeDuo1);
     lastPipeDuoBird1 = newPipeDuo1;
@@ -515,7 +515,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     if (twoPlayers) {
       PipeDuo newPipeDuo2 = PipeDuo(
         position: Vector2(pipeX + 50, 0),
-        birdType: bird2.getBirdType(),
+        butterflyType: bird2.getButterflyType(),
       )..priority = pipeBird2Priority;
       add(newPipeDuo2);
       lastPipeDuoBird2 = newPipeDuo2;
@@ -526,14 +526,14 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     while(pipeX > initialPosBird1.x + pipeInterval) {
       PipeDuo newPipeDuo1 = PipeDuo(
         position: Vector2(pipeX, 0),
-        birdType: bird1.getBirdType(),
+        butterflyType: bird1.getButterflyType(),
       )..priority = pipeBird1Priority;
       add(newPipeDuo1);
       pipesBird1.add(newPipeDuo1);
       if (twoPlayers) {
         PipeDuo newPipeDuo2 = PipeDuo(
           position: Vector2(pipeX + 50, 0),
-          birdType: bird2.getBirdType(),
+          butterflyType: bird2.getButterflyType(),
         )..priority = pipeBird2Priority;
         add(newPipeDuo2);
         lastPipeDuoBird2 = newPipeDuo2;
@@ -551,7 +551,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
         if (lastPipeDuoBird1!.position.x < pipeBuffer - pipeInterval) {
           PipeDuo newPipeDuo = PipeDuo(
             position: Vector2(pipeBuffer, 0),
-            birdType: bird1.getBirdType(),
+            butterflyType: bird1.getButterflyType(),
           )..priority = pipeBird1Priority;
           add(newPipeDuo);
           pipesBird1.add(newPipeDuo);
@@ -559,7 +559,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
           if (twoPlayers) {
             PipeDuo newPipeDuo2 = PipeDuo(
               position: Vector2(pipeBuffer + 50, 0),
-              birdType: bird2.getBirdType(),
+              butterflyType: bird2.getButterflyType(),
             )..priority = pipeBird2Priority;
             add(newPipeDuo2);
             lastPipeDuoBird2 = newPipeDuo2;
@@ -636,17 +636,17 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   checkPipePassed() {
     for (PipeDuo pipe in pipesBird1) {
       if (twoPlayers) {
-        if (pipe.passedBird1 && pipe.passedBird2) {
+        if (pipe.passedButterfly1 && pipe.passedButterfly2) {
           continue;
         }
       } else {
-        if (pipe.passedBird1) {
+        if (pipe.passedButterfly1) {
           continue;
         }
       }
 
-      if ((pipe.position.x < bird1.position.x) && !pipe.passedBird1) {
-        pipe.pipePassedBird1();
+      if ((pipe.position.x < bird1.position.x) && !pipe.passedButterfly1) {
+        pipe.pipePassedButterfly1();
         score += 1;
         scoreIndicator.scoreChange(score);
         pipesCleared += 1;
@@ -656,23 +656,23 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       }
       if (twoPlayers) {
         if (pipe.position.x < bird2.position.x) {
-          pipe.pipePassedBird2();
+          pipe.pipePassedButterfly2();
         }
       }
     }
     for (PipeDuo pipe in pipesBird2) {
       if (twoPlayers) {
-        if (pipe.passedBird1 && pipe.passedBird2) {
+        if (pipe.passedButterfly1 && pipe.passedButterfly2) {
           continue;
         }
       }
 
-      if ((pipe.position.x < bird1.position.x) && !pipe.passedBird1) {
-        pipe.pipePassedBird1();
+      if ((pipe.position.x < bird1.position.x) && !pipe.passedButterfly1) {
+        pipe.pipePassedButterfly1();
       }
       if (twoPlayers) {
         if (pipe.position.x < bird2.position.x) {
-          pipe.pipePassedBird2();
+          pipe.pipePassedButterfly2();
           score += 1;
           scoreIndicator.scoreChange(score);
           pipesCleared += 1;
@@ -764,12 +764,12 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       clearPipes();
       speed = 130;
     }
-    if (gameSettings.getBirdType1() != bird1.getBirdType()) {
-      bird1.changeBird(gameSettings.getBirdType1());
+    if (gameSettings.getBirdType1() != bird1.getButterflyType()) {
+      bird1.changeButterfly(gameSettings.getBirdType1());
       clearPipes();
     }
-    if (gameSettings.getBirdType2() != bird2.getBirdType()) {
-      bird2.changeBird(gameSettings.getBirdType2());
+    if (gameSettings.getBirdType2() != bird2.getButterflyType()) {
+      bird2.changeButterfly(gameSettings.getBirdType2());
       clearPipes();
     }
   }
@@ -803,11 +803,11 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   }
 
   changeBird1(int birdType1) async {
-    bird1.changeBird(birdType1);
+    bird1.changeButterfly(birdType1);
     clearPipes();
   }
   changeBird2(int birdType2) async {
-    bird2.changeBird(birdType2);
+    bird2.changeButterfly(birdType2);
     clearPipes();
   }
 
