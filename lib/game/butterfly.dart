@@ -9,16 +9,16 @@ import 'package:flutterfly/game/flutter_fly.dart';
 import 'package:flutterfly/game/pipe.dart';
 import 'package:flutterfly/services/game_settings.dart';
 
-class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<FlutterFly> {
+class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<FlutterFly> {
 
-  int birdType;
+  int butterflyType;
   Vector2 initialPos;
-  BirdOutline birdOutline2;
+  BirdOutline butterflyOutline2;
 
-  Bird({
-    required this.birdType,
+  Butterfly({
+    required this.butterflyType,
     required this.initialPos,
-    required this.birdOutline2,
+    required this.butterflyOutline2,
   }) : super(size: Vector2(85, 60));
 
   double heightScale = 1;
@@ -27,26 +27,26 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
 
   late GameSettings gameSettings;
 
-  double birdWidth = 27;
-  double birdHeight = 18;
+  double butterflyWidth = 27;
+  double butterflyHeight = 18;
 
   @override
   Future<void> onLoad() async {
     gameSettings = GameSettings();
-    if (birdType == 0) {
-      await loadBird("bird/flutter_fly_red.png");
-    } else if (birdType == 1) {
-      await loadBird("bird/flutter_fly_blue.png");
-    } else if (birdType == 2) {
-      await loadBird("bird/flutter_fly_green.png");
-    } else if (birdType == 3) {
-      await loadBird("bird/flutter_fly_yellow.png");
-    } else if (birdType == 4) {
-      await loadBird("bird/flutter_fly_purple.png");
-    } else if (birdType == 5) {
-      await loadBird("bird/flutter_fly_white.png");
-    } else if (birdType == 6) {
-      await loadBird("bird/flutter_fly_black.png");
+    if (butterflyType == 0) {
+      await loadButterfly("butterfly/flutter_fly_red.png");
+    } else if (butterflyType == 1) {
+      await loadButterfly("butterfly/flutter_fly_blue.png");
+    } else if (butterflyType == 2) {
+      await loadButterfly("butterfly/flutter_fly_green.png");
+    } else if (butterflyType == 3) {
+      await loadButterfly("butterfly/flutter_fly_yellow.png");
+    } else if (butterflyType == 4) {
+      await loadButterfly("butterfly/flutter_fly_purple.png");
+    } else if (butterflyType == 5) {
+      await loadButterfly("butterfly/flutter_fly_white.png");
+    } else if (butterflyType == 6) {
+      await loadButterfly("butterfly/flutter_fly_black.png");
     }
 
     return super.onLoad();
@@ -54,22 +54,22 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
 
   setInitialPos(Vector2 initialPosition) {
     initialPos = initialPosition;
-    birdOutline2.setInitialPos(initialPosition);
+    butterflyOutline2.setInitialPos(initialPosition);
   }
 
   setSize(Vector2 newSize) {
     size = newSize;
-    birdOutline2.setSize(newSize);
+    butterflyOutline2.setSize(newSize);
   }
 
-  loadBird(String birdImageName) async {
+  loadButterfly(String birdImageName) async {
     add(CircleHitbox());
 
     final image = await Flame.images.load(birdImageName);
     animation = SpriteAnimation.fromFrameData(image, SpriteAnimationData.sequenced(
       amount: 3,
       stepTime: 0.10,
-      textureSize: Vector2(birdWidth, birdHeight),
+      textureSize: Vector2(butterflyWidth, butterflyHeight),
     ));
 
     anchor = Anchor.center;
@@ -77,7 +77,7 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
     heightScale = gameRef.size.y / 800;
 
     size.y = (gameRef.size.y / 10000) * 466;
-    size.x = (size.y / birdHeight) * birdWidth;
+    size.x = (size.y / butterflyHeight) * butterflyWidth;
 
     position = Vector2(initialPos.x, initialPos.y);
 
@@ -86,7 +86,7 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
       minPlayers: 0,
       maxPlayers: 4,
     );
-    birdOutline2.loadBird("bird/flutter_fly_outline.png");
+    butterflyOutline2.loadBird("butterfly/flutter_fly_outline.png");
   }
 
   double flapSpeed = 600;
@@ -98,27 +98,27 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
     velocityY = 0;
     accelerationY = 5000;
     rotation = 0;
-    birdOutline2.gameStarted();
+    butterflyOutline2.gameStarted();
   }
 
   reset(double screenSizeY) {
     heightScale = screenSizeY / 800;
 
     size.y = (screenSizeY / 10000) * 466;
-    size.x = (size.y / birdHeight) * birdWidth;
+    size.x = (size.y / butterflyHeight) * butterflyWidth;
 
     position = Vector2(initialPos.x, initialPos.y);
     flapSpeed = 600;
     velocityY = 0;
     accelerationY = 5000;
     rotation = 0;
-    birdOutline2.reset(screenSizeY);
+    butterflyOutline2.reset(screenSizeY);
   }
 
   @override
   onCollisionStart(_, PositionComponent other) async {
     if (other is Pipe) {
-      if (other.birdType != birdType) {
+      if (other.birdType != butterflyType) {
         // We only want a collision with pipes that are the same colour.
         // Otherwise the bird flies behind or in front of it.
         return;
@@ -127,7 +127,7 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
     if (!gameRef.gameEnded) {
       // For the death animation we set the velocity such that the bird flies up and then falls down
       velocityY = -1000;
-      birdOutline2.velocityY = -1000;
+      butterflyOutline2.velocityY = -1000;
       gameRef.gameOver();
     }
     super.onCollisionStart(_, other);
@@ -137,34 +137,34 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
     double floorHeight = gameRef.size.y * 0.785;
     if (position.y >= floorHeight) {
       velocityY = 0;
-      birdOutline2.velocityY = 0;
+      butterflyOutline2.velocityY = 0;
       return;
     }
     velocityY -= (((accelerationY * dt) / 2) * -1);
     position.y -= ((velocityY * dt) * heightScale) * -1;
 
-    rotation = ((velocityY * -1) / birdHeight).clamp(-90, 90);
+    rotation = ((velocityY * -1) / butterflyHeight).clamp(-90, 90);
     angle = radians(rotation * -1);
 
     // There were issues syncing the position and rotation of the bird and the outline.
     // So we will decide these values here and set it on the outline.
-    birdOutline2.angle = angle;
-    birdOutline2.rotation = rotation;
-    birdOutline2.position.y -= ((velocityY * dt) * heightScale) * -1;
+    butterflyOutline2.angle = angle;
+    butterflyOutline2.rotation = rotation;
+    butterflyOutline2.position.y -= ((velocityY * dt) * heightScale) * -1;
   }
 
   _updatePositionGame(double dt) {
     velocityY -= (((accelerationY * dt) / 2) * -1);
     position.y -= ((velocityY * dt) * heightScale) * -1;
 
-    rotation = ((velocityY * -1) / birdHeight).clamp(-90, 20);
+    rotation = ((velocityY * -1) / butterflyHeight).clamp(-90, 20);
     angle = radians(rotation * -1);
 
     // There were issues syncing the position and rotation of the bird and the outline.
     // So we will decide these values here and set it on the outline.
-    birdOutline2.angle = angle;
-    birdOutline2.rotation = rotation;
-    birdOutline2.position.y -= ((velocityY * dt) * heightScale) * -1;
+    butterflyOutline2.angle = angle;
+    butterflyOutline2.rotation = rotation;
+    butterflyOutline2.position.y -= ((velocityY * dt) * heightScale) * -1;
   }
 
   _updatePositionMenu(double dt) {
@@ -178,14 +178,14 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
     velocityY = velocityY.clamp(-250, 250);
     position.y -= ((velocityY * dt) * heightScale) * -1;
 
-    rotation = ((velocityY * -1) / birdHeight).clamp(-90, 90);
+    rotation = ((velocityY * -1) / butterflyHeight).clamp(-90, 90);
     angle = radians(rotation * -1);
 
     // There were issues syncing the position and rotation of the bird and the outline.
     // So we will decide these values here and set it on the outline.
-    birdOutline2.angle = angle;
-    birdOutline2.rotation = rotation;
-    birdOutline2.position.y -= ((velocityY * dt) * heightScale) * -1;
+    butterflyOutline2.angle = angle;
+    butterflyOutline2.rotation = rotation;
+    butterflyOutline2.position.y -= ((velocityY * dt) * heightScale) * -1;
   }
 
   double startupTimer = 0.5;
@@ -208,7 +208,7 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
 
   fly() {
     velocityY = flapSpeed * -1;
-    birdOutline2.velocityY = flapSpeed * -1;
+    butterflyOutline2.velocityY = flapSpeed * -1;
     if (gameSettings.getSound()) {
       wingPool.start(volume: gameRef.soundVolume);
     }
@@ -224,32 +224,32 @@ class Bird extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef<
   }
 
   changeBird(int newBirdType) async {
-    if (newBirdType == 0 && newBirdType != birdType) {
-      birdType = newBirdType;
-      await loadBird("bird/flutter_fly_red.png");
-    } else if (newBirdType == 1 && newBirdType != birdType) {
-      birdType = newBirdType;
-      await loadBird("bird/flutter_fly_blue.png");
-    } else if (newBirdType == 2 && newBirdType != birdType) {
-      birdType = newBirdType;
-      await loadBird("bird/flutter_fly_green.png");
-    } else if (newBirdType == 3 && newBirdType != birdType) {
-      birdType = newBirdType;
-      await loadBird("bird/flutter_fly_yellow.png");
-    } else if (newBirdType == 4 && newBirdType != birdType) {
-      birdType = newBirdType;
-      await loadBird("bird/flutter_fly_purple.png");
-    } else if (newBirdType == 5 && newBirdType != birdType) {
-      birdType = newBirdType;
-      await loadBird("bird/flutter_fly_white.png");
-    } else if (newBirdType == 6 && newBirdType != birdType) {
-      birdType = newBirdType;
-      await loadBird("bird/flutter_fly_black.png");
+    if (newBirdType == 0 && newBirdType != butterflyType) {
+      butterflyType = newBirdType;
+      await loadButterfly("butterfly/flutter_fly_red.png");
+    } else if (newBirdType == 1 && newBirdType != butterflyType) {
+      butterflyType = newBirdType;
+      await loadButterfly("butterfly/flutter_fly_blue.png");
+    } else if (newBirdType == 2 && newBirdType != butterflyType) {
+      butterflyType = newBirdType;
+      await loadButterfly("butterfly/flutter_fly_green.png");
+    } else if (newBirdType == 3 && newBirdType != butterflyType) {
+      butterflyType = newBirdType;
+      await loadButterfly("butterfly/flutter_fly_yellow.png");
+    } else if (newBirdType == 4 && newBirdType != butterflyType) {
+      butterflyType = newBirdType;
+      await loadButterfly("butterfly/flutter_fly_purple.png");
+    } else if (newBirdType == 5 && newBirdType != butterflyType) {
+      butterflyType = newBirdType;
+      await loadButterfly("butterfly/flutter_fly_white.png");
+    } else if (newBirdType == 6 && newBirdType != butterflyType) {
+      butterflyType = newBirdType;
+      await loadButterfly("butterfly/flutter_fly_black.png");
     }
-    birdOutline2.changeBird();
+    butterflyOutline2.changeBird();
   }
 
   int getBirdType() {
-    return birdType;
+    return butterflyType;
   }
 }

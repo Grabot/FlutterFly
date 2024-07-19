@@ -4,7 +4,7 @@ import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutterfly/game/bird.dart';
+import 'package:flutterfly/game/butterfly.dart';
 import 'package:flutterfly/game/bird_outline.dart';
 import 'package:flutterfly/game/floor.dart';
 import 'package:flutterfly/game/help_message.dart';
@@ -28,8 +28,8 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   bool playFieldFocus = true;
 
   bool twoPlayers = true;
-  late final Bird bird1;
-  late final Bird bird2;
+  late final Butterfly bird1;
+  late final Butterfly bird2;
   late final BirdOutline birdOutlineBird1;
   late final BirdOutline birdOutlineBird2;
 
@@ -108,15 +108,15 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     birdOutlineBird2 = BirdOutline(
         initialPos: initialPosBird2
     )..priority = 10;
-    bird1 = Bird(
-      birdType: 0,
+    bird1 = Butterfly(
+      butterflyType: 0,
       initialPos: initialPosBird1,
-      birdOutline2: birdOutlineBird1,
+      butterflyOutline2: birdOutlineBird1,
     )..priority = 1;
-    bird2 = Bird(
-        birdType: 1,
+    bird2 = Butterfly(
+        butterflyType: 1,
         initialPos: initialPosBird2,
-        birdOutline2: birdOutlineBird2
+        butterflyOutline2: birdOutlineBird2
     )..priority = 3;
 
     helpMessage = HelpMessage()..priority = 10;
@@ -196,7 +196,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     sky.reset();
   }
 
-  birdInteraction(Bird bird) {
+  birdInteraction(Butterfly bird) {
     if (!gameStarted && !gameEnded) {
       // start game
       gameStarted = true;

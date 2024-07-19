@@ -113,22 +113,22 @@ flutter:
     - assets/images/parallax/city_day/new_background_city_2_day.png
     - assets/images/parallax/city_day/new_background_city_2_day_2.png
     - assets/images/parallax/city_day/new_background_sky_day_gradient_4.png
-    - assets/images/bird/flutter_fly_outline.png
-    - assets/images/bird/flutter_fly_black.png
-    - assets/images/bird/flutter_fly_blue.png
-    - assets/images/bird/flutter_fly_green.png
-    - assets/images/bird/flutter_fly_purple.png
-    - assets/images/bird/flutter_fly_red.png
-    - assets/images/bird/flutter_fly_white.png
-    - assets/images/bird/flutter_fly_yellow.png
-    - assets/images/bird/flutter_fly_outline.png
-    - assets/images/bird/settings/flutter_fly_black_settings.png
-    - assets/images/bird/settings/flutter_fly_blue_settings.png
-    - assets/images/bird/settings/flutter_fly_green_settings.png
-    - assets/images/bird/settings/flutter_fly_purple_settings.png
-    - assets/images/bird/settings/flutter_fly_red_settings.png
-    - assets/images/bird/settings/flutter_fly_white_settings.png
-    - assets/images/bird/settings/flutter_fly_yellow_settings.png
+    - assets/images/butterfly/flutter_fly_outline.png
+    - assets/images/butterfly/flutter_fly_black.png
+    - assets/images/butterfly/flutter_fly_blue.png
+    - assets/images/butterfly/flutter_fly_green.png
+    - assets/images/butterfly/flutter_fly_purple.png
+    - assets/images/butterfly/flutter_fly_red.png
+    - assets/images/butterfly/flutter_fly_white.png
+    - assets/images/butterfly/flutter_fly_yellow.png
+    - assets/images/butterfly/flutter_fly_outline.png
+    - assets/images/butterfly/settings/flutter_fly_black_settings.png
+    - assets/images/butterfly/settings/flutter_fly_blue_settings.png
+    - assets/images/butterfly/settings/flutter_fly_green_settings.png
+    - assets/images/butterfly/settings/flutter_fly_purple_settings.png
+    - assets/images/butterfly/settings/flutter_fly_red_settings.png
+    - assets/images/butterfly/settings/flutter_fly_white_settings.png
+    - assets/images/butterfly/settings/flutter_fly_yellow_settings.png
     - assets/images/help_messages/message_phone_single.png
     - assets/images/help_messages/message_phone_double.png
     - assets/images/help_messages/message_web_single.png
