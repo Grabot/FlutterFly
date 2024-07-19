@@ -139,14 +139,14 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
 
   pressedBird1Change(int birdType1) {
     if (gameSettings.getButterflyType1() != birdType1) {
-      gameSettings.setBirdType1(birdType1);
+      gameSettings.setButterflyType1(birdType1);
       widget.game.changeButterfly1(birdType1);
     }
   }
 
   pressedBird2Change(int birdType2) {
     if (gameSettings.getButterflyType2() != birdType2) {
-      gameSettings.setBirdType2(birdType2);
+      gameSettings.setButterflyType2(birdType2);
       widget.game.changeButterfly2(birdType2);
     }
   }
@@ -257,8 +257,8 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
   }
 
   List<String> playerImagePath = [
-    'assets/images/ui/game_settings/player/2_birds.png',
-    'assets/images/ui/game_settings/player/1_bird.png',
+    'assets/images/ui/game_settings/player/2_butterflies.png',
+    'assets/images/ui/game_settings/player/1_butterfly.png',
   ];
 
   Widget playerSelection(double gameSettingsWidth, double fontSize) {

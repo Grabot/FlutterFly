@@ -109,7 +109,7 @@ class LoginScreenState extends State<LoginScreen> {
         if (!mounted) return;
         setState(() {
           if (uri != null) {
-            if (uri.path == routes.BirdAccessRoute) {
+            if (uri.path == routes.ButterflyAccessRoute) {
               refreshLogin(uri);
               return;
             }

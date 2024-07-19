@@ -24,7 +24,7 @@ import 'services/navigation_service.dart';
 import 'services/settings.dart';
 import 'services/socket_services.dart';
 import 'services/user_score.dart';
-import 'views/bird_access_page.dart';
+import 'views/butterfly_access_page.dart';
 import 'views/password_reset_page.dart';
 import 'views/privacy_page.dart';
 import 'views/terms_page.dart';
@@ -80,7 +80,7 @@ Future<void> main() async {
       )
   );
 
-  Widget birdAccess = BirdAccess(key: UniqueKey(), game: game);
+  Widget butterflyAccess = ButterflyAccess(key: UniqueKey(), game: game);
   Widget passwordReset = PasswordReset(key: UniqueKey(), game: game);
   Widget privacy = PrivacyPage(key: UniqueKey());
   Widget terms = TermsPage(key: UniqueKey());
@@ -100,17 +100,17 @@ Future<void> main() async {
           initialRoute: '/',
           routes: {
             routes.HomeRoute: (context) => gameWidget,
-            routes.BirdAccessRoute: (context) => birdAccess,
+            routes.ButterflyAccessRoute: (context) => butterflyAccess,
             routes.PasswordResetRoute: (context) => passwordReset,
             routes.PrivacyRoute: (context) => privacy,
             routes.TermsRoute: (context) => terms,
           },
           scrollBehavior: MyCustomScrollBehavior(),
           onGenerateRoute: (settings) {
-            if (settings.name != null && settings.name!.startsWith(routes.BirdAccessRoute)) {
+            if (settings.name != null && settings.name!.startsWith(routes.ButterflyAccessRoute)) {
               return MaterialPageRoute(
                   builder: (context) {
-                    return birdAccess;
+                    return butterflyAccess;
                   }
               );
             } else if (settings.name!.startsWith(routes.PasswordResetRoute)) {

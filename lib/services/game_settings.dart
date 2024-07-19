@@ -8,8 +8,8 @@ import 'package:flutterfly/util/web_storage.dart';
 class GameSettings extends ChangeNotifier {
   static final GameSettings _instance = GameSettings._internal();
 
-  int birdType1 = 0;
-  int birdType2 = 1;
+  int butterflyType1 = 0;
+  int butterflyType2 = 1;
   int pipeType = 0;
   int playerType = 0;
 
@@ -33,21 +33,21 @@ class GameSettings extends ChangeNotifier {
       storageLoaded += 1;
       checkIfShouldNotify();
     });
-    secureStorage.getBirdType1().then((value) {
+    secureStorage.getButterflyType1().then((value) {
       if (value != null) {
-        int newBirdType1 = int.parse(value);
-        if (newBirdType1 != birdType1) {
-          birdType1 = newBirdType1;
+        int newButterflyType1 = int.parse(value);
+        if (newButterflyType1 != butterflyType1) {
+          butterflyType1 = newButterflyType1;
         }
       }
       storageLoaded += 1;
       checkIfShouldNotify();
     });
-    secureStorage.getBirdType2().then((value) {
+    secureStorage.getButterflyType2().then((value) {
       if (value != null) {
-        int newBirdType2 = int.parse(value);
-        if (newBirdType2 != birdType2) {
-          birdType2 = newBirdType2;
+        int newButterflyType2 = int.parse(value);
+        if (newButterflyType2 != butterflyType2) {
+          butterflyType2 = newButterflyType2;
         }
       }
       storageLoaded += 1;
@@ -88,14 +88,14 @@ class GameSettings extends ChangeNotifier {
 
   checkIfShouldNotify() {
     if (storageLoaded == 6) {
-      // quick check to see if both birdtypes are given the same value.
-      if (birdType1 == birdType2) {
-        if (birdType1 != 0) {
-          birdType1 = 0;
+      // quick check to see if both butterfly types are given the same value.
+      if (butterflyType1 == butterflyType2) {
+        if (butterflyType1 != 0) {
+          butterflyType1 = 0;
         } else {
-          birdType1 = 1;
+          butterflyType1 = 1;
         }
-        secureStorage.setBirdType1(birdType1.toString());
+        secureStorage.setButterflyType1(butterflyType1.toString());
       }
       notify();
     }
@@ -109,22 +109,22 @@ class GameSettings extends ChangeNotifier {
     notifyListeners();
   }
 
-  setBirdType1(int birdType1) {
-    this.birdType1 = birdType1;
-    secureStorage.setBirdType1(birdType1.toString());
+  setButterflyType1(int butterflyType1) {
+    this.butterflyType1 = butterflyType1;
+    secureStorage.setButterflyType1(butterflyType1.toString());
   }
 
   int getButterflyType1() {
-    return birdType1;
+    return butterflyType1;
   }
 
-  setBirdType2(int birdType2) {
-    this.birdType2 = birdType2;
-    secureStorage.setBirdType2(birdType2.toString());
+  setButterflyType2(int butterflyType2) {
+    this.butterflyType2 = butterflyType2;
+    secureStorage.setButterflyType2(butterflyType2.toString());
   }
 
   int getButterflyType2() {
-    return birdType2;
+    return butterflyType2;
   }
 
   setPipeType(int pipeType) {
@@ -164,8 +164,8 @@ class GameSettings extends ChangeNotifier {
   }
 
   logout() {
-    birdType1 = 0;
-    birdType2 = 1;
+    butterflyType1 = 0;
+    butterflyType2 = 1;
     pipeType = 0;
     playerType = 0;
     sound = false;

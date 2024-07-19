@@ -52,7 +52,7 @@ class Settings extends ChangeNotifier {
   }
 
   checkRoutes(String path) async {
-    if (path != routes.BirdAccessRoute || path != routes.PasswordResetRoute) {
+    if (path != routes.ButterflyAccessRoute || path != routes.PasswordResetRoute) {
       WidgetsFlutterBinding.ensureInitialized();
       WidgetsBinding.instance.addPostFrameCallback((_){
         loginCheck(path);

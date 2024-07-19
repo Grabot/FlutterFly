@@ -580,7 +580,7 @@ class LeaderBoardState extends State<LeaderBoard> {
                     width: onePlayerTwoPlayerOptionWidth-(2*onePlayerTwoPlayerOptionMargin),
                     height: onePlayerTwoPlayerOptionWidth-(2*onePlayerTwoPlayerOptionMargin),
                     child: Image.asset(
-                      "assets/images/ui/game_settings/player/1_bird.png",
+                      "assets/images/ui/game_settings/player/1_butterfly.png",
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -599,7 +599,7 @@ class LeaderBoardState extends State<LeaderBoard> {
                     width: onePlayerTwoPlayerOptionWidth-(2*onePlayerTwoPlayerOptionMargin),
                     height: onePlayerTwoPlayerOptionWidth-(2*onePlayerTwoPlayerOptionMargin),
                     child: Image.asset(
-                      "assets/images/ui/game_settings/player/2_birds.png",
+                      "assets/images/ui/game_settings/player/2_butterflies.png",
                       fit: BoxFit.fill,
                     ),
                   ),

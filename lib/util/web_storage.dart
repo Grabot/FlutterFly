@@ -54,19 +54,19 @@ class SecureStorage {
     return await storage.read(key: _keyTotalGamesToken);
   }
 
-  Future setBestScoreSingleBird(String bestScoreSingleBird) async {
+  Future setBestScoreSingleButterfly(String bestScoreSingleBird) async {
     await storage.write(key: _keyBestScoreSingleBird, value: bestScoreSingleBird);
   }
 
-  Future<String?> getBestScoreSingleBird() async {
+  Future<String?> getBestScoreSingleButterfly() async {
     return await storage.read(key: _keyBestScoreSingleBird);
   }
 
-  Future setBestScoreDoubleBird(String bestScoreDoubleBird) async {
+  Future setBestScoreDoubleButterfly(String bestScoreDoubleBird) async {
     await storage.write(key: _keyBestScoreDoubleBird, value: bestScoreDoubleBird);
   }
 
-  Future<String?> getBestScoreDoubleBird() async {
+  Future<String?> getBestScoreDoubleButterfly() async {
     return await storage.read(key: _keyBestScoreDoubleBird);
   }
 
@@ -77,19 +77,19 @@ class SecureStorage {
   final String _keySound = 'sound';
   final String _keyButtonVisibility = 'buttonVisibility';
 
-  Future setBirdType1(String birdType1) async {
+  Future setButterflyType1(String birdType1) async {
     await storage.write(key: _keyBirdType1, value: birdType1);
   }
 
-  Future<String?> getBirdType1() async {
+  Future<String?> getButterflyType1() async {
     return await storage.read(key: _keyBirdType1);
   }
 
-  Future setBirdType2(String birdType2) async {
+  Future setButterflyType2(String birdType2) async {
     await storage.write(key: _keyBirdType2, value: birdType2);
   }
 
-  Future<String?> getBirdType2() async {
+  Future<String?> getButterflyType2() async {
     return await storage.read(key: _keyBirdType2);
   }
 

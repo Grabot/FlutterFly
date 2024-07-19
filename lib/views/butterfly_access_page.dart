@@ -9,20 +9,20 @@ import 'package:flutterfly/util/util.dart';
 
 
 
-class BirdAccess extends StatefulWidget {
+class ButterflyAccess extends StatefulWidget {
 
   final FlutterFly game;
 
-  const BirdAccess({
+  const ButterflyAccess({
     super.key,
     required this.game
   });
 
   @override
-  State<BirdAccess> createState() => _BirdAccessState();
+  State<ButterflyAccess> createState() => _ButterflyAccessState();
 }
 
-class _BirdAccessState extends State<BirdAccess> {
+class _ButterflyAccessState extends State<ButterflyAccess> {
 
   final NavigationService _navigationService = locator<NavigationService>();
 

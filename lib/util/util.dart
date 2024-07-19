@@ -57,16 +57,16 @@ getScore(LoginResponse loginResponse, int userId) async {
   if (score != null) {
     bool updateScore = false;
 
-    if (score.getBestScoreSingleBird() > userScore.getBestScoreSingleButterfly()) {
-      userScore.setBestScoreSingleButterfly(score.getBestScoreSingleBird());
-    } else if (userScore.getBestScoreSingleButterfly() > score.getBestScoreSingleBird()) {
-      score.setBestScoreSingleBird(userScore.getBestScoreSingleButterfly());
+    if (score.getBestScoreSingleButterfly() > userScore.getBestScoreSingleButterfly()) {
+      userScore.setBestScoreSingleButterfly(score.getBestScoreSingleButterfly());
+    } else if (userScore.getBestScoreSingleButterfly() > score.getBestScoreSingleButterfly()) {
+      score.setBestScoreSingleButterfly(userScore.getBestScoreSingleButterfly());
       updateScore = true;
     }
-    if (score.getBestScoreDoubleBird() > userScore.getBestScoreDoubleButterfly()) {
-      userScore.setBestScoreDoubleButterfly(score.getBestScoreDoubleBird());
-    } else if (userScore.getBestScoreDoubleButterfly() > score.getBestScoreDoubleBird()) {
-      score.setBestScoreDoubleBird(userScore.getBestScoreDoubleButterfly());
+    if (score.getBestScoreDoubleButterfly() > userScore.getBestScoreDoubleButterfly()) {
+      userScore.setBestScoreDoubleButterfly(score.getBestScoreDoubleButterfly());
+    } else if (userScore.getBestScoreDoubleButterfly() > score.getBestScoreDoubleButterfly()) {
+      score.setBestScoreDoubleButterfly(userScore.getBestScoreDoubleButterfly());
       updateScore = true;
     }
     if (score.getTotalFlutters() > userScore.getTotalFlutters()) {
@@ -89,7 +89,7 @@ getScore(LoginResponse loginResponse, int userId) async {
     }
 
     if (updateScore) {
-      AuthServiceFlutterFly().updateUserScore(score.getBestScoreSingleBird(), score.getBestScoreDoubleBird(), score).then((result) {
+      AuthServiceFlutterFly().updateUserScore(score.getBestScoreSingleButterfly(), score.getBestScoreDoubleButterfly(), score).then((result) {
         if (result.getResult()) {
           // we have updated the score in the db. Do nothing.
         }

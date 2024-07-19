@@ -29,12 +29,12 @@ class AuthServiceFlutterFly {
     return baseResponse;
   }
 
-  Future<BaseResponse> updateUserScore(int? singleBirdScore, int? doubleBirdScore, Score score) async {
+  Future<BaseResponse> updateUserScore(int? singleButterflyScore, int? doubleButterflyScore, Score score) async {
     String endPoint = "score/update";
     // We'll find the user using the token.
     Map<String, dynamic> data = {
-      if (singleBirdScore != null) "best_score_single_bird": singleBirdScore,
-      if (doubleBirdScore != null) "best_score_double_bird": doubleBirdScore,
+      if (singleButterflyScore != null) "best_score_single_butterfly": singleButterflyScore,
+      if (doubleButterflyScore != null) "best_score_double_butterfly": doubleButterflyScore,
       "total_flutters": score.getTotalFlutters(),
       "total_pipes_cleared": score.getTotalPipesCleared(),
       "total_games": score.getTotalGames(),

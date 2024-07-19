@@ -156,8 +156,8 @@ flutter:
     - assets/images/ui/visible_off.png
     - assets/images/ui/game_settings/background/day.png
     - assets/images/ui/game_settings/background/night.png
-    - assets/images/ui/game_settings/player/1_bird.png
-    - assets/images/ui/game_settings/player/2_birds.png
+    - assets/images/ui/game_settings/player/1_butterfly.png
+    - assets/images/ui/game_settings/player/2_butterflies.png
     - assets/images/achievements/bronze_double.png
     - assets/images/achievements/bronze_single.png
     - assets/images/achievements/gold_double.png
