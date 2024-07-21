@@ -81,6 +81,31 @@ class AuthServiceSetting {
     return false;
   }
 
+  Future<String?> getAchievementImage(String imageName) async {
+    // A quick request to see if the current avatar is the default avatar
+    String endPoint = "achievement/image/${imageName}";
+    var response = await AuthApi().dio.get(endPoint,
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+        }),
+    );
+
+    Map<String, dynamic> json = response.data;
+    if (!json.containsKey("result")) {
+      return null;
+    } else {
+      if (json["result"]) {
+        if (!json.containsKey("achievement_image")) {
+          return null;
+        } else {
+          return json["achievement_image"].replaceAll("\n", "");
+        }
+      } else {
+        return null;
+      }
+    }
+  }
+
   Future<BaseResponse> resetAvatar() async {
     String endPoint = "reset/avatar";
     var response = await AuthApi().dio.post(endPoint,

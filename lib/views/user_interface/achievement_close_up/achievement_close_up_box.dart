@@ -4,6 +4,7 @@ import 'package:flutterfly/models/ui/achievement.dart';
 import 'package:flutterfly/util/box_window_painter.dart';
 import 'package:flutterfly/util/change_notifiers/achievement_box_change_notifier.dart';
 import 'package:flutterfly/util/change_notifiers/achievement_close_up_change_notifier.dart';
+import 'package:flutterfly/util/util.dart';
 import 'package:themed/themed.dart';
 
 
@@ -146,16 +147,14 @@ class AchievementCloseUpBoxState extends State<AchievementCloseUpBox> {
     );
   }
 
-  achievementImage(double width) {
+  achievementImageCloseUp(double width) {
     return Container(
       child: ChangeColors(
         saturation: closeUpAchievement!.achieved ? 0 : -1,
-        child: Image.asset(
-          closeUpAchievement!.getImagePath(),
-          width: width,
-          height: width,
-          gaplessPlayback: true,
-          fit: BoxFit.fill,
+        child: achievementImage(
+          closeUpAchievement!.getAchievementImage(0),
+          width,
+          width,
         ),
       ),
     );
@@ -192,7 +191,7 @@ class AchievementCloseUpBoxState extends State<AchievementCloseUpBox> {
       children: [
         achievementName(fontSize),
         achievementInformation(fontSize),
-        achievementImage(width-80),
+        achievementImageCloseUp(width-80),
         achievementAchieved(fontSize),
       ],
     );

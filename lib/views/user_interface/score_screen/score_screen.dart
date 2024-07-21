@@ -661,12 +661,10 @@ class ScoreScreenState extends State<ScoreScreen> {
         // It uses the popup menu functionality.
         _showTooltip(context, achievementsKey, achievement.getTooltip());
       },
-      child: Image.asset(
-        achievement.getImagePath(),
-        width: achievementSize,
-        height: achievementSize,
-        gaplessPlayback: true,
-        fit: BoxFit.fill,
+      child: achievementImage(
+        achievement.getAchievementImage(3),
+        achievementSize,
+        achievementSize,
       ),
     );
   }

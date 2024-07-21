@@ -205,121 +205,141 @@ class UserAchievements {
         achievementName: "Wood single",
         imageName: "wood_single",
         tooltip: "got more than 10 points in single player",
-        achieved: woodSingle
+        achieved: woodSingle,
+        secureStorage: secureStorage
     );
     bronzeSingleAchievement = Achievement(
         achievementName: "Bronze single",
         imageName: "bronze_single",
         tooltip: "got more than 25 points in single player",
-        achieved: bronzeSingle
+        achieved: bronzeSingle,
+        secureStorage: secureStorage
     );
     silverSingleAchievement = Achievement(
         achievementName: "Silver single",
         imageName: "silver_single",
         tooltip: "got more than 50 points in single player!",
-        achieved: silverSingle
+        achieved: silverSingle,
+        secureStorage: secureStorage
     );
     goldSingleAchievement = Achievement(
         achievementName: "Gold single",
         imageName: "gold_single",
         tooltip: "got more than 100 points in single player!!!",
-        achieved: goldSingle
+        achieved: goldSingle,
+        secureStorage: secureStorage
     );
     woodDoubleAchievement = Achievement(
         achievementName: "Wood double",
         imageName: "wood_double",
         tooltip: "got more than 10 points with 2 players",
-        achieved: woodDouble
+        achieved: woodDouble,
+        secureStorage: secureStorage
     );
     bronzeDoubleAchievement = Achievement(
         achievementName: "Bronze double",
         imageName: "bronze_double",
         tooltip: "got more than 25 points with 2 players",
-        achieved: bronzeDouble
+        achieved: bronzeDouble,
+        secureStorage: secureStorage
     );
     silverDoubleAchievement = Achievement(
         achievementName: "Silver double",
         imageName: "silver_double",
         tooltip: "got more than 50 points with 2 players!",
-        achieved: silverDouble
+        achieved: silverDouble,
+        secureStorage: secureStorage
     );
     goldDoubleAchievement = Achievement(
         achievementName: "Gold double",
         imageName: "gold_double",
         tooltip: "got more than 100 points with 2 players!!!",
-        achieved: goldDouble
+        achieved: goldDouble,
+        secureStorage: secureStorage
     );
     flutterOneAchievement = Achievement(
         achievementName: "Flutter one",
         imageName: "wings_one",
         tooltip: "You have fluttered your butterflies already more than a thousand times",
-        achieved: flutterOne
+        achieved: flutterOne,
+        secureStorage: secureStorage
     );
     flutterTwoAchievement = Achievement(
         achievementName: "Flutter two",
         imageName: "wings_two",
         tooltip: "You have fluttered your butterflies already more than two thousand and five hundred times!",
-        achieved: flutterTwo
+        achieved: flutterTwo,
+        secureStorage: secureStorage
     );
     flutterThreeAchievement = Achievement(
         achievementName: "Flutter three",
         imageName: "wings_three",
         tooltip: "You have fluttered your butterflies already more than ten thousand times!!",
-        achieved: flutterThree
+        achieved: flutterThree,
+        secureStorage: secureStorage
     );
     flutterFourAchievement = Achievement(
         achievementName: "Flutter four",
         imageName: "wings_four",
         tooltip: "You have fluttered your butterflies already more than fifty thousand times!!!",
-        achieved: flutterFour
+        achieved: flutterFour,
+        secureStorage: secureStorage
     );
     pipesOneAchievement = Achievement(
         achievementName: "Pipes one",
         imageName: "pipes_one",
         tooltip: "Your butterflies have passed a total of two hundred and fifty pipes",
-        achieved: pipesOne
+        achieved: pipesOne,
+        secureStorage: secureStorage
     );
     pipesTwoAchievement = Achievement(
         achievementName: "Pipes two",
         imageName: "pipes_two",
         tooltip: "Your butterflies have passed a total of one thousand pipes!",
-        achieved: pipesTwo
+        achieved: pipesTwo,
+        secureStorage: secureStorage
     );
     pipesThreeAchievement = Achievement(
         achievementName: "Pipes three",
         imageName: "pipes_three",
         tooltip: "Your butterflies have passed a total of five thousand pipes!",
-        achieved: pipesThree
+        achieved: pipesThree,
+        secureStorage: secureStorage
     );
     perseveranceAchievement = Achievement(
         achievementName: "Perseverance",
         imageName: "perseverance",
         tooltip: "You kept playing the game even after crashing 50 times in a single session!",
-        achieved: perseverance
+        achieved: perseverance,
+        secureStorage: secureStorage
     );
     nightOwlAchievement = Achievement(
         achievementName: "Night owl",
         imageName: "midnight",
         tooltip: "You scored more than 20 points in a single session between 12:00 AM and 3:00 AM!",
-        achieved: nightOwl
+        achieved: nightOwl,
+        secureStorage: secureStorage
     );
     wingedWarriorAchievement = Achievement(
         achievementName: "Winged warrior",
         imageName: "winged_warrior",
         tooltip: "You have played Flutter Fly for 7 days in a row!",
-        achieved: wingedWarrior
+        achieved: wingedWarrior,
+        secureStorage: secureStorage
     );
     platformsAchievement = Achievement(
         achievementName: "Platforms",
         imageName: "platforms",
         tooltip: "You have played Flutter Fly on the web at flutterfly.eu and also on IOS or Android!\n(Must be logged in to achieve this)",
-        achieved: platforms
+        achieved: platforms,
+        secureStorage: secureStorage
     );
     leaderboardAchievement = Achievement(
         achievementName: "Leaderboard",
         imageName: "leaderboard",
         tooltip: "You have reached the top 3 on the daily leaderboard!\n(Must be logged in to achieve this)",
-        achieved: leaderboard
+        achieved: leaderboard,
+        secureStorage: secureStorage
     );
     allAchievementsAvailable = [
       woodSingleAchievement,

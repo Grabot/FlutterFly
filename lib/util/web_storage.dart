@@ -125,7 +125,7 @@ class SecureStorage {
     return await storage.read(key: _keyButtonVisibility);
   }
 
-  final String _keyWoodSingle = 'bronzeSingle';
+  final String _keyWoodSingle = 'woodSingle';
   final String _keyBronzeSingle = 'bronzeSingle';
   final String _keySilverSingle = 'silverSingle';
   final String _keyGoldSingle = 'goldSingle';
@@ -143,14 +143,23 @@ class SecureStorage {
   final String _keyPerseverance = 'perseverance';
   final String _keyNightOwl = 'nightOwl';
   final String _keyWingedWarrior = 'wingedWarrior';
-  final String _keyPlatforms = 'wingedWarrior';
-  final String _keyLeaderboard = 'wingedWarrior';
+  final String _keyPlatforms = 'platforms';
+  final String _keyLeaderboard = 'leaderboard';
+
+  final String _keyWoodSingleImage = 'woodSingleImage';
 
   Future setWoodSingle(String woodSingle) async {
     await storage.write(key: _keyWoodSingle, value: woodSingle);
   }
   Future<String?> getWoodSingle() async {
     return await storage.read(key: _keyWoodSingle);
+  }
+
+  Future setWoodSingleImage(String woodSingleImage) async {
+    await storage.write(key: _keyWoodSingleImage, value: woodSingleImage);
+  }
+  Future<String?> getWoodSingleImage() async {
+    return await storage.read(key: _keyWoodSingleImage);
   }
 
   Future setBronzeSingle(String bronzeSingle) async {

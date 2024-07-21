@@ -909,13 +909,18 @@ class ProfileBoxState extends State<ProfileBox> {
         // It uses the popup menu functionality.
         _showTooltip(context, achievementsKey, achievement.getTooltip());
       },
-      child: Image.asset(
-        achievement.getImagePath(),
-        width: achievementSize,
-        height: achievementSize,
-        gaplessPlayback: true,
-        fit: BoxFit.fill,
+      child: achievementImage(
+        achievement.getAchievementImage(2),
+        achievementSize,
+        achievementSize,
       ),
+      // child: Image.asset(
+      //   achievement.getImagePath(),
+      //   width: achievementSize,
+      //   height: achievementSize,
+      //   gaplessPlayback: true,
+      //   fit: BoxFit.fill,
+      // ),
     );
   }
 

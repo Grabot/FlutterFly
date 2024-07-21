@@ -55,6 +55,7 @@ dependencies:
   google_sign_in: ^6.2.1
   http: ^1.2.1
   app_links: ^6.1.1
+  image_network: ^2.5.6
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -156,26 +157,7 @@ flutter:
     - assets/images/ui/visible_off.png
     - assets/images/ui/game_settings/player/1_butterfly.png
     - assets/images/ui/game_settings/player/2_butterflies.png
-    - assets/images/achievements/bronze_double.png
-    - assets/images/achievements/bronze_single.png
-    - assets/images/achievements/gold_double.png
-    - assets/images/achievements/gold_single.png
-    - assets/images/achievements/leaderboard.png
-    - assets/images/achievements/midnight.png
-    - assets/images/achievements/perseverance.png
-    - assets/images/achievements/pipes_one.png
-    - assets/images/achievements/pipes_three.png
-    - assets/images/achievements/pipes_two.png
-    - assets/images/achievements/platforms.png
-    - assets/images/achievements/silver_double.png
-    - assets/images/achievements/silver_single.png
-    - assets/images/achievements/winged_warrior.png
-    - assets/images/achievements/wings_one.png
-    - assets/images/achievements/wings_two.png
-    - assets/images/achievements/wings_three.png
-    - assets/images/achievements/wings_four.png
-    - assets/images/achievements/wood_double.png
-    - assets/images/achievements/wood_single.png
+    - assets/images/default_achievement.png
     - assets/images/flutterfly_icon.png
     - assets/images/flutterfly_logo.png
     - assets/audio/die.wav

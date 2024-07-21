@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
@@ -133,12 +135,10 @@ class AchievementBoxState extends State<AchievementBox> {
           children: [
             ChangeColors(
               saturation: achievement.achieved ? 0 : -1,
-              child: Image.asset(
-                achievement.getImagePath(),
-                width: achievementSize,
-                height: achievementSize,
-                gaplessPlayback: true,
-                fit: BoxFit.fill,
+              child: achievementImage(
+                  achievement.getAchievementImage(0),
+                  achievementSize,
+                  achievementSize,
               ),
             ),
             const SizedBox(width: 10),
@@ -344,7 +344,7 @@ class AchievementBoxState extends State<AchievementBox> {
     );
   }
 
-  Widget profileBoxScreen(BuildContext context) {
+  Widget achievementBoxScreen(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Container(
@@ -373,7 +373,7 @@ class AchievementBoxState extends State<AchievementBox> {
   Widget build(BuildContext context) {
     return Align(
       alignment: FractionalOffset.center,
-      child: showAchievementBox ? profileBoxScreen(context) : Container(),
+      child: showAchievementBox ? achievementBoxScreen(context) : Container(),
     );
   }
 

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutterfly/models/user.dart';
 import 'package:flutterfly/services/game_settings.dart';
@@ -441,4 +443,24 @@ Widget flutterFlyLogo(double width, bool normalMode) {
         alignment: Alignment.center,
         child: Image.asset("assets/images/flutterfly_logo.png")
     );
+}
+
+Widget achievementImage(Uint8List? avatar, double achievementWidth, double achievementHeight) {
+  if (avatar != null) {
+    return Image.memory(
+      avatar,
+      width: achievementWidth,  // some scale that I determined by trial and error
+      height: achievementHeight,  // some scale that I determined by trial and error
+      gaplessPlayback: true,
+      fit: BoxFit.cover,
+    );
+  } else {
+    return Image.asset(
+      "assets/images/default_achievement.png",
+      width: achievementWidth,
+      height: achievementHeight,
+      gaplessPlayback: true,
+      fit: BoxFit.cover,
+    );
+  }
 }

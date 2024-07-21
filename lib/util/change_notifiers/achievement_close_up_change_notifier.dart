@@ -32,4 +32,8 @@ class AchievementCloseUpChangeNotifier extends ChangeNotifier {
     return achievement;
   }
 
+  notify() {
+    notifyListeners();
+  }
+
 }
