@@ -25,6 +25,17 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
     return super.onLoad();
   }
 
+  bool off = false;
+  turnedOff() {
+    position = Vector2(-100, 0);
+    off = true;
+  }
+
+  turnedOn() {
+    off = false;
+    reset(gameRef.size.y);
+  }
+
   setInitialPos(Vector2 initialPosition) {
     initialPos = initialPosition;
     initialPos.x -= 1;
@@ -53,7 +64,9 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
     size.x = (size.x / butterflyWidth) * (butterflyWidth + 2);
     size.y = (size.y / butterflyHeight) * (butterflyHeight + 2);
 
-    position = Vector2(initialPos.x, initialPos.y);
+    if (!off) {
+      position = Vector2(initialPos.x, initialPos.y);
+    }
   }
 
   double flapSpeed = defaultFlapSpeed;
@@ -75,7 +88,9 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
     size.x = (size.x / butterflyWidth) * (butterflyWidth + 2);
     size.y = (size.y / butterflyHeight) * (butterflyHeight + 2);
 
-    position = Vector2(initialPos.x, initialPos.y);
+    if (!off) {
+      position = Vector2(initialPos.x, initialPos.y);
+    }
 
     flapSpeed = defaultFlapSpeed;
     velocityY = resetVelocityY;
@@ -86,6 +101,9 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
   double startupTimer = 0.5;
   @override
   void update(double dt) {
+    if (off) {
+      return;
+    }
     if (startupTimer > 0) {
       startupTimer -= dt;
       return;
@@ -109,10 +127,15 @@ class ButterflyOutline extends SpriteAnimationComponent with HasGameRef<FlutterF
 
   @override
   void onGameResize(Vector2 gameSize) {
+    if (off) {
+      return;
+    }
     super.onGameResize(gameSize);
     heightScale = gameSize.y / 800;
     if (!gameRef.gameStarted) {
-      position = Vector2(initialPos.x, initialPos.y);
+      if (!off) {
+        position = Vector2(initialPos.x, initialPos.y);
+      }
     }
   }
 }

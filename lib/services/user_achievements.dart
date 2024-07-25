@@ -76,7 +76,7 @@ class UserAchievements {
     secureStorage.getBronzeSingle().then((value) {
       totalAchievementsRetrieved += 1;
       if (value != null) {
-        silverSingleAchievement.achieved = bool.parse(value);
+        bronzeSingleAchievement.achieved = bool.parse(value);
       }
     });
     secureStorage.getSilverSingle().then((value) {
@@ -899,7 +899,7 @@ class Achievements {
     if (leaderboard) {
       json['leaderboard'] = leaderboard;
     }
-    if (lastDayPlayed != "") {
+    if (lastDayPlayed != -1) {
       json['last_day_played'] = lastDayPlayed;
     }
     if (daysInARow != 0) {

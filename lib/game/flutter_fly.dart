@@ -18,6 +18,7 @@ import 'package:flutterfly/services/rest/auth_service_leaderboard.dart';
 import 'package:flutterfly/services/settings.dart';
 import 'package:flutterfly/services/user_achievements.dart';
 import 'package:flutterfly/services/user_score.dart';
+import 'package:flutterfly/util/change_notifiers/leader_board_change_notifier.dart';
 import 'package:flutterfly/util/change_notifiers/score_screen_change_notifier.dart';
 import 'sky.dart';
 
@@ -73,6 +74,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   List<PipeDuo> pipesButterfly2 = [];
 
   late ScoreScreenChangeNotifier scoreScreenChangeNotifier;
+  late LeaderBoardChangeNotifier leaderBoardChangeNotifier;
   late Settings settings;
   late GameSettings gameSettings;
   late UserScore userScore;
@@ -120,9 +122,11 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     helpMessage = HelpMessage()..priority = 10;
     scoreIndicator = ScoreIndicator();
     add(sky);
+    add(butterflyOutlineButterfly1);
+    add(butterflyOutlineButterfly2);
     add(butterfly1);
     add(butterfly2);
-    add(butterflyOutlineButterfly1);
+    butterfly2.turnedOn();
     add(Floor());
     add(helpMessage);
     add(ScreenHitbox());
@@ -159,6 +163,7 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     );
 
     scoreScreenChangeNotifier = ScoreScreenChangeNotifier();
+    leaderBoardChangeNotifier = LeaderBoardChangeNotifier();
     settings = Settings();
     gameSettings = GameSettings();
     gameSettings.addListener(settingsChangeListener);
@@ -175,23 +180,25 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   }
 
   startGame() {
-    timeSinceEnded = 0;
-    score = 0;
-    scoreScreenChangeNotifier.clearAchievementList();
-    gameEnded = false;
-    add(helpMessage);
-    if (!scoreRemoved) {
-      scoreIndicator.scoreChange(0);
-      remove(scoreIndicator);
+    if (!scoreScreenChangeNotifier.showScoreScreen && !leaderBoardChangeNotifier.showLeaderBoard) {
+      timeSinceEnded = 0;
+      score = 0;
+      scoreScreenChangeNotifier.clearAchievementList();
+      gameEnded = false;
+      add(helpMessage);
+      if (!scoreRemoved) {
+        scoreIndicator.scoreChange(0);
+        remove(scoreIndicator);
+      }
+      scoreRemoved = true;
+      deathTimeEnded = false;
+      clearPipes();
+      butterfly1.reset(size.y);
+      if (twoPlayers) {
+        butterfly2.reset(size.y);
+      }
+      sky.reset();
     }
-    scoreRemoved = true;
-    deathTimeEnded = false;
-    clearPipes();
-    butterfly1.reset(size.y);
-    if (twoPlayers) {
-      butterfly2.reset(size.y);
-    }
-    sky.reset();
   }
 
   butterflyInteraction(Butterfly butterfly) {
@@ -735,17 +742,18 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   }
 
   settingsChangeListener() {
-    if (gameSettings.getPlayerType() != 0 && !twoPlayers) {
+    if (gameSettings.getPlayerType() != 0) {
       settings.getLeaderBoardsOnePlayer();
       twoPlayers = false;
       helpMessage.updateMessageImage(size);
-      remove(butterfly2);
-      remove(butterflyOutlineButterfly2);
+      butterfly2.turnedOff();
+      // remove(butterfly2);
+      // remove(butterflyOutlineButterfly2);
       butterfly1.reset(size.y);
       clearPipes();
       speed = 160;
     }
-    if (gameSettings.getPlayerType() != 1 && twoPlayers) {
+    if (gameSettings.getPlayerType() != 1) {
       settings.getLeaderBoardsTwoPlayer();
       twoPlayers = true;
       helpMessage.updateMessageImage(size);
@@ -756,8 +764,9 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       Vector2 initialPosButterfly2 = determineButterflyPos(size);
       butterfly2.setInitialPos(initialPosButterfly2);
       butterfly2.reset(size.y);
-      add(butterfly2);
-      add(butterflyOutlineButterfly2);
+      butterfly2.turnedOn();
+      // add(butterfly2);
+      // add(butterflyOutlineButterfly2);
       butterfly1.reset(size.y);
       clearPipes();
       speed = 130;
@@ -767,8 +776,10 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       clearPipes();
     }
     if (gameSettings.getButterflyType2() != butterfly2.getButterflyType()) {
-      butterfly2.changeButterfly(gameSettings.getButterflyType2());
-      clearPipes();
+      if (twoPlayers) {
+        butterfly2.changeButterfly(gameSettings.getButterflyType2());
+        clearPipes();
+      }
     }
   }
 
@@ -786,16 +797,17 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       butterfly2.setInitialPos(initialPosButterfly2);
       butterfly1.reset(size.y);
       butterfly2.reset(size.y);
-      add(butterfly2);
-      add(butterflyOutlineButterfly2);
+      butterfly2.turnedOn();
+
       clearPipes();
     } else {
       twoPlayers = false;
       speed = 160;
       helpMessage.updateMessageImage(size);
-      remove(butterfly2);
       butterfly1.reset(size.y);
-      remove(butterflyOutlineButterfly2);
+      butterfly2.turnedOff();
+      // remove(butterfly2);
+      // remove(butterflyOutlineButterfly2);
       clearPipes();
     }
   }

@@ -77,7 +77,9 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
     size.y = (gameRef.size.y / 10000) * 466;
     size.x = (size.y / butterflyHeight) * butterflyWidth;
 
-    position = Vector2(initialPos.x, initialPos.y);
+    if (!off) {
+      position = Vector2(initialPos.x, initialPos.y);
+    }
 
     wingPool = await FlameAudio.createPool(
       "wing.wav",
@@ -99,13 +101,28 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
     butterflyOutline2.gameStarted();
   }
 
+  bool off = false;
+  turnedOff() {
+    position = Vector2(-100, 0);
+    butterflyOutline2.turnedOff();
+    off = true;
+  }
+
+  turnedOn() {
+    off = false;
+    reset(gameRef.size.y);
+    butterflyOutline2.turnedOn();
+  }
+
   reset(double screenSizeY) {
     heightScale = screenSizeY / 800;
 
     size.y = (screenSizeY / 10000) * 466;
     size.x = (size.y / butterflyHeight) * butterflyWidth;
 
-    position = Vector2(initialPos.x, initialPos.y);
+    if (!off) {
+      position = Vector2(initialPos.x, initialPos.y);
+    }
     flapSpeed = defaultFlapSpeed;
     velocityY = resetVelocityY;
     accelerationY = defaultAccelerationY;
@@ -115,6 +132,9 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
 
   @override
   onCollisionStart(_, PositionComponent other) async {
+    if (off) {
+      return;
+    }
     if (other is Pipe) {
       if (other.butterflyType != butterflyType) {
         // We only want a collision with pipes that are the same colour.
@@ -189,6 +209,9 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
   double startupTimer = 0.5;
   @override
   void update(double dt) {
+    if (off) {
+      return;
+    }
     if (startupTimer > 0) {
       startupTimer -= dt;
       return;
@@ -217,7 +240,9 @@ class Butterfly extends SpriteAnimationComponent with CollisionCallbacks, HasGam
     super.onGameResize(gameSize);
     heightScale = gameSize.y / 800;
     if (!gameRef.gameStarted) {
-      position = Vector2(initialPos.x, initialPos.y);
+      if (!off) {
+        position = Vector2(initialPos.x, initialPos.y);
+      }
     }
   }
 

@@ -914,13 +914,6 @@ class ProfileBoxState extends State<ProfileBox> {
         achievementSize,
         achievementSize,
       ),
-      // child: Image.asset(
-      //   achievement.getImagePath(),
-      //   width: achievementSize,
-      //   height: achievementSize,
-      //   gaplessPlayback: true,
-      //   fit: BoxFit.fill,
-      // ),
     );
   }
 

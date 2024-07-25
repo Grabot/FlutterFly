@@ -132,6 +132,15 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
       Settings().getLeaderBoardsTwoPlayer();
     }
     if (gameSettings.getPlayerType() != playerType) {
+      if (gameSettings.getButterflyType1() == gameSettings.getButterflyType2()) {
+        if (gameSettings.getButterflyType2() == 0) {
+          gameSettings.setButterflyType2(1);
+          widget.game.changeButterfly2(1);
+        } else {
+          gameSettings.setButterflyType2(0);
+          widget.game.changeButterfly2(0);
+        }
+      }
       gameSettings.setPlayerType(playerType);
       widget.game.changePlayer(playerType);
     }
@@ -302,7 +311,7 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
           scrollDirection: Axis.horizontal,
           children: List.generate(flutterFlyImagePath.length, (int butterflyType1) {
             bool selected = gameSettings.getButterflyType1() == butterflyType1;
-            if (gameSettings.getButterflyType2() == butterflyType1) {
+            if (gameSettings.getButterflyType2() == butterflyType1 && gameSettings.getPlayerType() == 0) {
               return nonSelectionButton(flutterFlyImagePath[butterflyType1], imageWidth, imageHeight);
             } else {
               return selectionButton(flutterFlyImagePath[butterflyType1], imageWidth, imageHeight,butterflyType1, 1, selected);

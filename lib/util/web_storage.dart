@@ -146,7 +146,7 @@ class SecureStorage {
   final String _keyPlatforms = 'platforms';
   final String _keyLeaderboard = 'leaderboard';
 
-  final String _keyWoodSingleImage = 'woodSingleImage';
+  final String _keyAchievementImage = 'achievementImage_';
 
   Future setWoodSingle(String woodSingle) async {
     await storage.write(key: _keyWoodSingle, value: woodSingle);
@@ -155,11 +155,13 @@ class SecureStorage {
     return await storage.read(key: _keyWoodSingle);
   }
 
-  Future setWoodSingleImage(String woodSingleImage) async {
-    await storage.write(key: _keyWoodSingleImage, value: woodSingleImage);
+  setAchievementImage(String achievementImageName, String valueAchievementImage) async {
+    String key = _keyAchievementImage + achievementImageName;
+    await storage.write(key: key, value: valueAchievementImage);
   }
-  Future<String?> getWoodSingleImage() async {
-    return await storage.read(key: _keyWoodSingleImage);
+  Future<String?> getAchievementImage(String achievementImageName) async {
+    String key = _keyAchievementImage + achievementImageName;
+    return await storage.read(key: key);
   }
 
   Future setBronzeSingle(String bronzeSingle) async {

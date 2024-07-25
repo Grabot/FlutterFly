@@ -68,9 +68,9 @@ class Achievement {
   }
 
   Uint8List? getAchievementImage(int origin) {
-    // We only want to retrieve the image if it's needed.
+    // We to retrieve the image from storage or the server if it's needed.
     if (imageContent == null) {
-      secureStorage.getWoodSingleImage().then((value) {
+      secureStorage.getAchievementImage(imageName).then((value) {
         if (value != null) {
           Uint8List avatar = base64Decode(value.replaceAll("\n", ""));
           imageContent = avatar;
@@ -86,7 +86,7 @@ class Achievement {
               if (value != null) {
                 // Image retrieved from server, so we store it in the storage.
                 // If no image found we do nothing, since it was an error.
-                secureStorage.setWoodSingleImage(value);
+                secureStorage.setAchievementImage(imageName, value);
                 Uint8List avatar = base64Decode(value.replaceAll("\n", ""));
                 imageContent = avatar;
                 // We don't return it here, because we have already returned null
@@ -104,14 +104,6 @@ class Achievement {
       return imageContent;
     }
     return null;
-  }
-
-  getImagePath() {
-    return getDefaultImagePath();
-  }
-
-  getDefaultImagePath() {
-    return "assets/images/default_achievement.png";
   }
 
   getTooltip() {
