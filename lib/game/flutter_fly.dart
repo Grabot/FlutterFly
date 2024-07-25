@@ -747,8 +747,6 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       twoPlayers = false;
       helpMessage.updateMessageImage(size);
       butterfly2.turnedOff();
-      // remove(butterfly2);
-      // remove(butterflyOutlineButterfly2);
       butterfly1.reset(size.y);
       clearPipes();
       speed = 160;
@@ -765,8 +763,6 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       butterfly2.setInitialPos(initialPosButterfly2);
       butterfly2.reset(size.y);
       butterfly2.turnedOn();
-      // add(butterfly2);
-      // add(butterflyOutlineButterfly2);
       butterfly1.reset(size.y);
       clearPipes();
       speed = 130;
@@ -806,8 +802,6 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       helpMessage.updateMessageImage(size);
       butterfly1.reset(size.y);
       butterfly2.turnedOff();
-      // remove(butterfly2);
-      // remove(butterflyOutlineButterfly2);
       clearPipes();
     }
   }

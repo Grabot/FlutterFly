@@ -162,22 +162,18 @@ class LoginScreenState extends State<LoginScreen> {
           _controller.position.minScrollExtent -
               _controller.position.pixels;
       if (distanceToBottom != 0) {
-        setState(() {
-          showBottomScoreScreen = false;
-        });
+        WidgetsBinding.instance
+            .addPostFrameCallback((_) => setState(() {showBottomScoreScreen = false;}));
       } else {
-        setState(() {
-          showBottomScoreScreen = true;
-        });
+        WidgetsBinding.instance
+            .addPostFrameCallback((_) => setState(() {showBottomScoreScreen = true;}));
       }
       if (distanceToTop != 0) {
-        setState(() {
-          showTopScoreScreen = false;
-        });
+        WidgetsBinding.instance
+            .addPostFrameCallback((_) => setState(() {showBottomScoreScreen = false;}));
       } else {
-        setState(() {
-          showTopScoreScreen = true;
-        });
+        WidgetsBinding.instance
+            .addPostFrameCallback((_) => setState(() {showBottomScoreScreen = true;}));
       }
     }
   }

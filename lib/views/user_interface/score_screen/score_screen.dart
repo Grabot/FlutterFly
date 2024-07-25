@@ -435,7 +435,7 @@ class ScoreScreenState extends State<ScoreScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    scoreSingleButterflyDoubleButterflyHeader(rightWidth, (2*rightWidth)/12, fontSize),
+                    scoreSingleButterflyDoubleButterflyHeader(rightWidth, (2*rightWidth)/6, fontSize),
                     scoreNowHeader(rightWidth, rightWidth/6, fontSize),
                     scoreNow(rightWidth, scoreHeight, fontSize),
                     scoreBestHeader(rightWidth, rightWidth/6, fontSize),
