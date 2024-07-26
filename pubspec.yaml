@@ -45,7 +45,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   image: ^4.2.0
   isolated_worker: ^0.1.1
-  file_picker: ^8.0.3
+  file_picker: ^8.0.6
   back_button_interceptor: ^7.0.3
   url_launcher: ^6.3.0
   linked_scroll_controller: ^0.2.0
@@ -71,8 +71,8 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  lints: ^3.0.0
-  flutter_lints: ^3.0.1
+  lints: ^4.0.0
+  flutter_lints: ^4.0.0
 
 flutter_launcher_icons:
   ios: true
