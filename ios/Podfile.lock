@@ -59,19 +59,23 @@ PODS:
   - GTMAppAuth (4.1.1):
     - AppAuth/Core (~> 1.7)
     - GTMSessionFetcher/Core (< 4.0, >= 3.3)
-  - GTMSessionFetcher (3.4.1):
-    - GTMSessionFetcher/Full (= 3.4.1)
-  - GTMSessionFetcher/Core (3.4.1)
-  - GTMSessionFetcher/Full (3.4.1):
+  - GTMSessionFetcher (3.5.0):
+    - GTMSessionFetcher/Full (= 3.5.0)
+  - GTMSessionFetcher/Core (3.5.0)
+  - GTMSessionFetcher/Full (3.5.0):
     - GTMSessionFetcher/Core
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - SDWebImage (5.19.2):
-    - SDWebImage/Core (= 5.19.2)
-  - SDWebImage/Core (5.19.2)
+  - pointer_interceptor_ios (0.0.1):
+    - Flutter
+  - SDWebImage (5.19.4):
+    - SDWebImage/Core (= 5.19.4)
+  - SDWebImage/Core (5.19.4)
   - SwiftyGif (5.4.5)
   - url_launcher_ios (0.0.1):
+    - Flutter
+  - webview_flutter_wkwebview (0.0.1):
     - Flutter
 
 DEPENDENCIES:
@@ -82,7 +86,9 @@ DEPENDENCIES:
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - pointer_interceptor_ios (from `.symlinks/plugins/pointer_interceptor_ios/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
@@ -110,8 +116,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in_ios/darwin"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  pointer_interceptor_ios:
+    :path: ".symlinks/plugins/pointer_interceptor_ios/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   app_links: e70ca16b4b0f88253b3b3660200d4a10b4ea9795
@@ -125,11 +135,13 @@ SPEC CHECKSUMS:
   google_sign_in_ios: 07375bfbf2620bc93a602c0e27160d6afc6ead38
   GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
-  GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
+  GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
+  pointer_interceptor_ios: 508241697ff0947f853c061945a8b822463947c1
+  SDWebImage: 066c47b573f408f18caa467d71deace7c0f8280d
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+  webview_flutter_wkwebview: 2a23822e9039b7b1bc52e5add778e5d89ad488d1
 
 PODFILE CHECKSUM: 9d8d1770d47a428fcb57a5d5f228a34e6d072ae7
 
