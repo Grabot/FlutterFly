@@ -437,7 +437,6 @@ class LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       final Uri url = Uri.parse(redditLogin);
                       _launchUrl(url);
-                      // launchReddit();
                     },
                     child: SizedBox(
                       height: loginBoxSize,
