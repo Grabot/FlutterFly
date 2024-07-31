@@ -1020,7 +1020,7 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _handleSignInGoogle() async {
-
+    print("handle sign in Google");
     isLoading = true;
     const List<String> scopes = <String>[
       'email',
@@ -1041,6 +1041,7 @@ class LoginScreenState extends State<LoginScreen> {
         clientId: clientIdLoginIOS,
         scopes: scopes,
       );
+      print("Google object ios created");
     } else {
       // Android
       googleSignIn = GoogleSignIn(
@@ -1050,9 +1051,13 @@ class LoginScreenState extends State<LoginScreen> {
 
     String? googleAccessToken;
     try {
+      print("Going to do the sign in");
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      print("Google sign in account: $googleSignInAccount");
       final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+      print("Google sign in authentication: $googleSignInAuthentication");
       googleAccessToken = googleSignInAuthentication.accessToken;
+      print("Google access token: $googleAccessToken");
 
       if (googleAccessToken == null) {
         isLoading = false;
