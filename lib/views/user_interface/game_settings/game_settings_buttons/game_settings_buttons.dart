@@ -34,6 +34,13 @@ class GameSettingsButtonSState extends State<GameSettingsButtons> {
   void initState() {
     super.initState();
     gameSettings = GameSettings();
+    gameSettings.addListener(gameSettingsChangeListener);
+  }
+
+  gameSettingsChangeListener() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
