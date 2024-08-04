@@ -23,7 +23,6 @@ class _DeletePageState extends State<DeletePage> {
   deleteAccount() {
     if (deleteKeyRegister.currentState!.validate()) {
       String email = emailController.text;
-      print("delete account $email");
       AuthServiceSetting().deleteAccount(email).then((response) {
         if (response.getResult()) {
           showToast("email sent to $email to finalize account deletion");

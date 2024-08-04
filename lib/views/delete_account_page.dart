@@ -41,7 +41,6 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
     if (accessToken != null && refreshToken != null) {
       // Check if the token from the mail is still valid.
       AuthServiceLogin().removeAccount(accessToken!, refreshToken!).then((deleteAccountResponse) {
-        print("got a response ${deleteAccountResponse.getResult()}");
         setState(() {
           invalid = !deleteAccountResponse.getResult();
         });
