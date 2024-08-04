@@ -6,6 +6,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
 import 'package:flutterfly/locator.dart';
+import 'package:flutterfly/views/delete_page.dart';
 import 'package:flutterfly/views/user_interface/achievement_box/achievement_box.dart';
 import 'package:flutterfly/views/user_interface/achievement_close_up/achievement_close_up_box.dart';
 import 'package:flutterfly/views/user_interface/are_you_sure_box/are_you_sure_box.dart';
@@ -25,6 +26,7 @@ import 'services/settings.dart';
 import 'services/socket_services.dart';
 import 'services/user_score.dart';
 import 'views/butterfly_access_page.dart';
+import 'views/delete_account_page.dart';
 import 'views/password_reset_page.dart';
 import 'views/privacy_page.dart';
 import 'views/terms_page.dart';
@@ -84,10 +86,13 @@ Future<void> main() async {
   Widget passwordReset = PasswordReset(key: UniqueKey(), game: game);
   Widget privacy = PrivacyPage(key: UniqueKey());
   Widget terms = TermsPage(key: UniqueKey());
+  Widget delete = DeletePage(key: UniqueKey());
+  Widget deleteAccount = DeleteAccountPage(key: UniqueKey());
 
   runApp(
       OKToast(
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: "Flutter Fly",
           navigatorKey: locator<NavigationService>().navigatorKey,
           theme: ThemeData(
@@ -104,6 +109,8 @@ Future<void> main() async {
             routes.PasswordResetRoute: (context) => passwordReset,
             routes.PrivacyRoute: (context) => privacy,
             routes.TermsRoute: (context) => terms,
+            routes.DeleteRoute: (context) => delete,
+            routes.DeleteAccountRoute: (context) => deleteAccount,
           },
           scrollBehavior: MyCustomScrollBehavior(),
           onGenerateRoute: (settings) {
@@ -129,6 +136,18 @@ Future<void> main() async {
               return MaterialPageRoute(
                   builder: (context) {
                     return terms;
+                  }
+              );
+            } else if (settings.name!.startsWith(routes.DeleteRoute)) {
+              return MaterialPageRoute(
+                  builder: (context) {
+                    return delete;
+                  }
+              );
+            } else if (settings.name!.startsWith(routes.DeleteAccountRoute)) {
+              return MaterialPageRoute(
+                  builder: (context) {
+                    return deleteAccount;
                   }
               );
             } else {

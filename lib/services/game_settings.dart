@@ -168,8 +168,8 @@ class GameSettings extends ChangeNotifier {
     butterflyType2 = 1;
     pipeType = 0;
     playerType = 0;
-    sound = false;
-    buttonVisibility = false;
+    sound = true;
+    buttonVisibility = true;
     notifyListeners();
   }
 }

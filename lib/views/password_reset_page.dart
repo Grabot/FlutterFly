@@ -32,7 +32,8 @@ class _PasswordResetState extends State<PasswordReset> {
   String? accessToken;
   String? refreshToken;
 
-  bool invalid = false;
+  // By default we assume it's invalid
+  bool invalid = true;
   bool passwordUpdated = false;
 
   @override
@@ -43,6 +44,7 @@ class _PasswordResetState extends State<PasswordReset> {
     accessToken = Uri.base.queryParameters["access_token"];
     refreshToken = Uri.base.queryParameters["refresh_token"];
 
+    invalid = true;
     if (accessToken != null && refreshToken != null) {
       // Check if the token from the mail is still valid.
       AuthServiceLogin().passwordResetCheck(accessToken!, refreshToken!).then((passwordResetResponse) {
@@ -55,7 +57,6 @@ class _PasswordResetState extends State<PasswordReset> {
         _navigationService.navigateTo(routes.HomeRoute);
       });
     }
-    invalid = false;
   }
 
   resetPassword() {

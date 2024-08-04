@@ -239,4 +239,21 @@ class AuthServiceLogin {
     }
     return loginResponse;
   }
+
+  Future<BaseResponse> removeAccount(String accessToken, String refreshToken) async {
+    String endPoint = "remove/account/verify";
+    var response = await AuthApi().dio.post(endPoint,
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+        }),
+        data: jsonEncode(<String, String> {
+          "access_token": accessToken,
+          "refresh_token": refreshToken
+        }
+      )
+    );
+
+    BaseResponse baseResponse = BaseResponse.fromJson(response.data);
+    return baseResponse;
+  }
 }

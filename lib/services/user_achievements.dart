@@ -204,56 +204,56 @@ class UserAchievements {
     woodSingleAchievement = Achievement(
         achievementName: "Wood single",
         imageName: "wood_single",
-        tooltip: "got more than 10 points in single player",
+        tooltip: "got more than 10 points with one butterfly",
         achieved: woodSingle,
         secureStorage: secureStorage
     );
     bronzeSingleAchievement = Achievement(
         achievementName: "Bronze single",
         imageName: "bronze_single",
-        tooltip: "got more than 25 points in single player",
+        tooltip: "got more than 25 points with one butterfly",
         achieved: bronzeSingle,
         secureStorage: secureStorage
     );
     silverSingleAchievement = Achievement(
         achievementName: "Silver single",
         imageName: "silver_single",
-        tooltip: "got more than 50 points in single player!",
+        tooltip: "got more than 50 points with one butterfly!",
         achieved: silverSingle,
         secureStorage: secureStorage
     );
     goldSingleAchievement = Achievement(
         achievementName: "Gold single",
         imageName: "gold_single",
-        tooltip: "got more than 100 points in single player!!!",
+        tooltip: "got more than 100 points with one butterfly!!!",
         achieved: goldSingle,
         secureStorage: secureStorage
     );
     woodDoubleAchievement = Achievement(
         achievementName: "Wood double",
         imageName: "wood_double",
-        tooltip: "got more than 10 points with 2 players",
+        tooltip: "got more than 10 points with two butterflies",
         achieved: woodDouble,
         secureStorage: secureStorage
     );
     bronzeDoubleAchievement = Achievement(
         achievementName: "Bronze double",
         imageName: "bronze_double",
-        tooltip: "got more than 25 points with 2 players",
+        tooltip: "got more than 25 points with two butterflies",
         achieved: bronzeDouble,
         secureStorage: secureStorage
     );
     silverDoubleAchievement = Achievement(
         achievementName: "Silver double",
         imageName: "silver_double",
-        tooltip: "got more than 50 points with 2 players!",
+        tooltip: "got more than 50 points with two butterflies!",
         achieved: silverDouble,
         secureStorage: secureStorage
     );
     goldDoubleAchievement = Achievement(
         achievementName: "Gold double",
         imageName: "gold_double",
-        tooltip: "got more than 100 points with 2 players!!!",
+        tooltip: "got more than 100 points with two butterflies!!!",
         achieved: goldDouble,
         secureStorage: secureStorage
     );

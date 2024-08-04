@@ -86,7 +86,10 @@ class ChangeAvatarBoxState extends State<ChangeAvatarBox> {
 
     if (picked != null) {
       String? extension = picked.files.first.extension;
-      if (extension != "png" && extension != "jpg" && extension != "jpeg") {
+      if (extension != null
+          && extension.toLowerCase() != "png"
+          && extension.toLowerCase() != "jpg"
+          && extension.toLowerCase() != "jpeg") {
         showToastMessage("Please pick a png or jpeg file");
       } else {
         setState(() {
