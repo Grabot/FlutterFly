@@ -15,6 +15,7 @@ import 'package:flutterfly/util/change_notifiers/user_change_notifier.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
+import '../constants/flutterfly_constant.dart';
 import 'web_storage.dart';
 
 showToastMessage(String message) {
@@ -334,7 +335,7 @@ Widget expandedText(double width, String text, double fontSize, bool bold) {
             child: Text(
               text,
               style: TextStyle(
-                color: const Color(0xFFcba830),
+                color: textColor,
                 fontSize: fontSize,
                 fontWeight: bold ? FontWeight.bold : FontWeight.normal,
               ),
@@ -439,9 +440,9 @@ Widget flutterFlyLogo(double width, bool normalMode) {
   return Container(
         padding: normalMode
             ? EdgeInsets.only(left: width/4, right: width/4)
-            : EdgeInsets.only(left: width/8, right: width/8),
+            : EdgeInsets.only(left: width/6, right: width/6),
         alignment: Alignment.center,
-        child: Image.asset("assets/images/flutterfly_logo.png")
+        child: Image.asset("assets/images/flutterfly_banner_rework_4.png")
     );
 }
 

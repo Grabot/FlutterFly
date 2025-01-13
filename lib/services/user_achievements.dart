@@ -322,7 +322,7 @@ class UserAchievements {
     );
     wingedWarriorAchievement = Achievement(
         achievementName: "Winged warrior",
-        imageName: "winged_warrior",
+        imageName: "winged_warrior.txt",
         tooltip: "You have played Flutter Fly for 7 days in a row!",
         achieved: wingedWarrior,
         secureStorage: secureStorage
@@ -819,8 +819,8 @@ class Achievements {
     if (json.containsKey("night_owl")) {
       nightOwl = json["night_owl"];
     }
-    if (json.containsKey("winged_warrior")) {
-      wingedWarrior = json["winged_warrior"];
+    if (json.containsKey("winged_warrior.txt")) {
+      wingedWarrior = json["winged_warrior.txt"];
     }
     if (json.containsKey("platforms")) {
       platforms = json["platforms"];
@@ -891,7 +891,7 @@ class Achievements {
       json['night_owl'] = nightOwl;
     }
     if (wingedWarrior) {
-      json['winged_warrior'] = wingedWarrior;
+      json['winged_warrior.txt'] = wingedWarrior;
     }
     if (platforms) {
       json['platforms'] = platforms;

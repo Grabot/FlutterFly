@@ -18,7 +18,7 @@ Widget logo(double maxWidth) {
           height: 250,
           width: logoWidthBrocast,
           child: const Image(
-            image: AssetImage("assets/images/flutterfly_logo.png"),
+            image: AssetImage("assets/images/flutterfly_banner_rework_4.png"),
           ),
         ),
         const Text(

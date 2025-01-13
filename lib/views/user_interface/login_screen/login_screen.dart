@@ -1,24 +1,24 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterfly/constants/url_base.dart';
 import 'package:flutterfly/game/flutter_fly.dart';
-import 'package:flutterfly/locator.dart';
 import 'package:flutterfly/models/rest/login_request.dart';
 import 'package:flutterfly/models/rest/register_request.dart';
-import 'package:flutterfly/services/navigation_service.dart';
 import 'package:flutterfly/services/rest/auth_service_login.dart';
 import 'package:flutterfly/util/box_window_painter.dart';
 import 'package:flutterfly/util/change_notifiers/login_screen_change_notifier.dart';
 import 'package:flutterfly/util/change_notifiers/score_screen_change_notifier.dart';
 import 'package:flutterfly/util/util.dart';
-import 'package:flutterfly/constants/route_paths.dart' as routes;
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../util/change_notifiers/loading_box_change_notifier.dart';
+import '../../../util/change_notifiers/web_view_box_change_notifier.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -38,8 +38,6 @@ class LoginScreenState extends State<LoginScreen> {
   bool showLoginScreen = false;
 
   late LoginScreenChangeNotifier loginScreenChangeNotifier;
-
-  final NavigationService _navigationService = locator<NavigationService>();
 
   bool normalMode = true;
   bool isLoading = false;
@@ -73,78 +71,6 @@ class LoginScreenState extends State<LoginScreen> {
       checkTopBottomScroll();
     });
     super.initState();
-    _handleIncomingLinks();
-    _handleInitialUri();
-  }
-
-  final _appLinks = AppLinks();
-  bool _initialUriIsHandled = false;
-  Uri? _initialUri;
-  Uri? _latestUri;
-  Object? _err;
-  StreamSubscription? _sub;
-
-  refreshLogin(Uri uri) {
-    String? accessToken = uri.queryParameters["access_token"];
-    String? refreshToken = uri.queryParameters["refresh_token"];
-
-    // Use the tokens to immediately refresh the access token
-    if (accessToken != null && refreshToken != null) {
-      AuthServiceLogin authService = AuthServiceLogin();
-      authService.getRefresh(accessToken, refreshToken).then((loginResponse) {
-        if (loginResponse.getResult()) {
-          // We go back to the home screen now that we are logged in.
-          goBack();
-          return;
-        }
-      });
-    }
-  }
-
-  void _handleIncomingLinks() {
-    if (!kIsWeb) {
-      // It will handle app links while the app is already started - be it in
-      // the foreground or in the background.
-      _sub = _appLinks.uriLinkStream.listen((uri) {
-        if (!mounted) return;
-        setState(() {
-          if (uri != null) {
-            if (uri.path == routes.ButterflyAccessRoute) {
-              refreshLogin(uri);
-              return;
-            }
-          }
-          _latestUri = uri;
-          _err = null;
-        });
-      }, onError: (Object err) {
-        if (!mounted) return;
-        setState(() {
-          _latestUri = null;
-          if (err is FormatException) {
-            _err = err;
-          } else {
-            _err = null;
-          }
-        });
-      });
-    }
-  }
-
-  Future<void> _handleInitialUri() async {
-    if (!_initialUriIsHandled) {
-      _initialUriIsHandled = true;
-      try {
-        final uri = await _appLinks.getInitialLink();
-        if (!mounted) return;
-        setState(() => _initialUri = uri);
-      } on PlatformException {
-        // Platform messages may fail but we ignore the exception
-      } on FormatException catch (err) {
-        if (!mounted) return;
-        setState(() => _err = err);
-      }
-    }
   }
 
   @override
@@ -170,10 +96,10 @@ class LoginScreenState extends State<LoginScreen> {
       }
       if (distanceToTop != 0) {
         WidgetsBinding.instance
-            .addPostFrameCallback((_) => setState(() {showBottomScoreScreen = false;}));
+            .addPostFrameCallback((_) => setState(() {showTopScoreScreen = false;}));
       } else {
         WidgetsBinding.instance
-            .addPostFrameCallback((_) => setState(() {showBottomScoreScreen = true;}));
+            .addPostFrameCallback((_) => setState(() {showTopScoreScreen = true;}));
       }
     }
   }
@@ -288,60 +214,6 @@ class LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Widget justPlayGame(double screenWidth, double fontSize) {
-    double width = 400;
-    // When the width is smaller than this we assume it's mobile.
-    if (screenWidth <= 500) {
-      width = screenWidth-100;
-    }
-    return Column(
-      children: [
-        Row(
-            children: [
-              Expanded(
-                child: Container(
-                    margin: const EdgeInsets.only(left: 10.0, right: 20.0),
-                    child: const Divider(
-                      color: Colors.white,
-                      height: 36,
-                    )),
-              ),
-              Text(
-                "or",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: fontSize
-                ),
-              ),
-              Expanded(
-                child: Container(
-                    margin: const EdgeInsets.only(left: 20.0, right: 10.0),
-                    child: const Divider(
-                      color: Colors.white,
-                      height: 36,
-                    )),
-              ),
-            ]
-        ),
-        ElevatedButton(
-          onPressed: () {
-            goBack();
-          },
-          style: buttonStyle(false, Colors.blue),
-          child: Container(
-            alignment: Alignment.center,
-            width: width,
-            height: 50,
-            child: Text(
-              'Just play the game!',
-              style: simpleTextStyle(fontSize),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
   Widget loginAlternatives(double loginBoxSize, double fontSize) {
     return Column(
       children: [
@@ -404,6 +276,30 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                   )
                 ]
+            ),
+            const SizedBox(width: 10),
+            Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    _handleSignInApple();
+                  },
+                  child: SizedBox(
+                    height: loginBoxSize,
+                    width: loginBoxSize,
+                    child: Image.asset(
+                        "assets/images/apple_button.png"
+                    ),
+                  ),
+                ),
+                Text(
+                  "Apple",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: fontSize
+                  ),
+                )
+              ],
             ),
             const SizedBox(width: 10),
             Column(
@@ -550,7 +446,7 @@ class LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Back to login",
-                          style: TextStyle(color: Colors.blue, fontSize: fontSize),
+                          style: TextStyle(color: Colors.yellowAccent, fontSize: fontSize),
                         )
                     ),
                   ],
@@ -619,7 +515,7 @@ class LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           "Log In",
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: Colors.yellowAccent,
                               fontSize: fontSize*0.8
                           ),
                         )
@@ -774,7 +670,7 @@ class LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           "Create new Account",
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: Colors.yellowAccent,
                               fontSize: fontSize*0.8
                           ),
                         )
@@ -869,7 +765,7 @@ class LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Forgot password?",
-                          style: TextStyle(color: Colors.blue, fontSize: fontSize*0.8),
+                          style: TextStyle(color: Colors.yellowAccent, fontSize: fontSize*0.8),
                         )
                     ),
                   ],
@@ -917,6 +813,55 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget justPlayTheGame(double width, double fontSize) {
+    return Column(
+      children: [
+        Row(
+            children: [
+              Expanded(
+                child: Container(
+                    margin: const EdgeInsets.only(left: 10.0, right: 20.0),
+                    child: const Divider(
+                      color: Colors.white,
+                      height: 36,
+                    )),
+              ),
+              Text(
+                "or",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: fontSize
+                ),
+              ),
+              Expanded(
+                child: Container(
+                    margin: const EdgeInsets.only(left: 20.0, right: 10.0),
+                    child: const Divider(
+                      color: Colors.white,
+                      height: 36,
+                    )),
+              ),
+            ]
+        ),
+        ElevatedButton(
+          onPressed: () {
+            goBack();
+          },
+          style: buttonStyle(false, Colors.blue),
+          child: Container(
+            alignment: Alignment.center,
+            width: width,
+            height: 50,
+            child: Text(
+              'Just Play The Game',
+              style: simpleTextStyle(fontSize),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget loginScreen(double width, double loginBoxSize, double fontSize) {
     return NotificationListener(
         child: SingleChildScrollView(
@@ -932,6 +877,7 @@ class LoginScreenState extends State<LoginScreen> {
                 signUpMode == 2 && !passwordResetSend ? resetPassword(width - (30 * 2), fontSize) : Container(),
                 signUpMode == 2 && passwordResetSend ? resetPasswordEmailSend(width - (30 * 2), fontSize) : Container(),
                 signUpMode != 2 ? loginAlternatives(loginBoxSize, fontSize) : Container(),
+                justPlayTheGame(width - (30 * 2), fontSize),
                 const SizedBox(height: 40),
               ],
             ),
@@ -985,7 +931,6 @@ class LoginScreenState extends State<LoginScreen> {
                     children: [
                       Container(),
                       loginOrRegisterBox(screenWidth, screenHeight, fontSize),
-                      justPlayGame(screenWidth, fontSize),
                     ]
                 )
             )
@@ -1001,6 +946,55 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Future<void> _handleSignInApple() async {
+    if (!kIsWeb) {
+      // We also set the loadingbox, this is to not allow any tapping while the url is loading.
+      LoadingBoxChangeNotifier loadingBoxChangeNotifier = LoadingBoxChangeNotifier();
+      loadingBoxChangeNotifier.setLoadingBoxVisible(true);
+
+      String appleLogin = "$appleLoginUrl?response_type=code&client_id=$appleClientId&redirect_uri=$appleRedirectUri&scope=email%20name&state=random_generated_state&response_mode=form_post";
+      WebViewBoxChangeNotifier webViewBoxChangeNotifier = WebViewBoxChangeNotifier();
+      webViewBoxChangeNotifier.setWebViewBoxUrl(appleLogin);
+      webViewBoxChangeNotifier.setWebViewBoxVisible(true);
+
+      return;
+    } else {
+      isLoading = true;
+      final AuthorizationCredentialAppleID credential;
+      try {
+        credential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+          webAuthenticationOptions: WebAuthenticationOptions(
+            clientId: appleClientId,
+            redirectUri: Uri.parse(
+              appleRedirectUri,
+            ),
+          ),
+        );
+      } catch (error) {
+        isLoading = false;
+        return;
+      }
+
+      AuthServiceLogin().getLoginApple(credential.authorizationCode).then((
+          loginResponse) {
+        if (loginResponse.getResult()) {
+          goBack();
+          isLoading = false;
+          setState(() {});
+        } else if (!loginResponse.getResult()) {
+          showToastMessage(loginResponse.getMessage());
+        }
+      }).onError((error, stackTrace) {
+        showToastMessage(error.toString());
+      });
+      isLoading = false;
+    }
+  }
+
   Future<void> _launchUrl(Uri url) async {
     if (kIsWeb) {
       if (!await launchUrl(
@@ -1010,12 +1004,12 @@ class LoginScreenState extends State<LoginScreen> {
         throw 'Could not launch $url';
       }
     } else {
-      if (!await launchUrl(
-          url,
-          mode: LaunchMode.externalApplication
-      )) {
-        throw 'Could not launch $url';
-      }
+      LoadingBoxChangeNotifier loadingBoxChangeNotifier = LoadingBoxChangeNotifier();
+      loadingBoxChangeNotifier.setLoadingBoxVisible(true);
+
+      WebViewBoxChangeNotifier webViewBoxChangeNotifier = WebViewBoxChangeNotifier();
+      webViewBoxChangeNotifier.setWebViewBoxUri(url);
+      webViewBoxChangeNotifier.setWebViewBoxVisible(true);
     }
   }
 

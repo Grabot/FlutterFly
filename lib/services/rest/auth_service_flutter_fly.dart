@@ -32,19 +32,26 @@ class AuthServiceFlutterFly {
   Future<BaseResponse> updateUserScore(int? singleButterflyScore, int? doubleButterflyScore, Score score) async {
     String endPoint = "score/update";
     // We'll find the user using the token.
-    Map<String, dynamic> data = {
-      if (singleButterflyScore != null) "best_score_single_butterfly": singleButterflyScore,
-      if (doubleButterflyScore != null) "best_score_double_butterfly": doubleButterflyScore,
-      "total_flutters": score.getTotalFlutters(),
-      "total_pipes_cleared": score.getTotalPipesCleared(),
-      "total_games": score.getTotalGames(),
-    };
+    int singleButterflyScoreSend = -1;
+    int doubleButterflyScoreSend = -1;
+    if (singleButterflyScore != null) {
+      singleButterflyScoreSend = singleButterflyScore;
+    }
+    if (doubleButterflyScore != null) {
+      doubleButterflyScoreSend = doubleButterflyScore;
+    }
 
     var response = await AuthApi().dio.post(endPoint,
         options: Options(headers: {
           HttpHeaders.contentTypeHeader: "application/json",
         }),
-        data: jsonEncode(data)
+        data: jsonEncode(<String, dynamic> {
+          "best_score_single_butterfly": singleButterflyScoreSend,
+          "best_score_double_butterfly": doubleButterflyScoreSend,
+          "total_flutters": score.getTotalFlutters(),
+          "total_pipes_cleared": score.getTotalPipesCleared(),
+          "total_games": score.getTotalGames(),
+        })
     );
 
     BaseResponse baseResponse = BaseResponse.fromJson(response.data);

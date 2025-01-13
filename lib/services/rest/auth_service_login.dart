@@ -8,6 +8,7 @@ import 'package:flutterfly/models/rest/register_request.dart';
 import 'package:flutterfly/services/settings.dart';
 import 'package:flutterfly/util/util.dart';
 import 'auth_api.dart';
+import 'auth_api_clean.dart';
 
 
 class AuthServiceLogin {
@@ -240,7 +241,7 @@ class AuthServiceLogin {
     return loginResponse;
   }
 
-  Future<BaseResponse> removeAccount(String accessToken, String refreshToken) async {
+  Future<BaseResponse> removeAccount(String accessToken, String refreshToken, String origin) async {
     String endPoint = "remove/account/verify";
     var response = await AuthApi().dio.post(endPoint,
         options: Options(headers: {
@@ -248,12 +249,29 @@ class AuthServiceLogin {
         }),
         data: jsonEncode(<String, String> {
           "access_token": accessToken,
-          "refresh_token": refreshToken
+          "refresh_token": refreshToken,
+          "origin": origin
         }
       )
     );
 
     BaseResponse baseResponse = BaseResponse.fromJson(response.data);
     return baseResponse;
+  }
+
+  Future<LoginResponse> getLoginApple(String authorizationCode) async {
+    Settings().setLoggingIn(true);
+    String endPoint = "/login/apple/verify?code=$authorizationCode";
+    var response = await AuthApiClean().dio.get(endPoint,
+      options: Options(headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+      }),
+    );
+
+    LoginResponse loginResponse = LoginResponse.fromJson(response.data);
+    if (loginResponse.getResult()) {
+      successfulLogin(loginResponse);
+    }
+    return loginResponse;
   }
 }

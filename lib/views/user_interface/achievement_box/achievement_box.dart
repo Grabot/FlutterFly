@@ -15,6 +15,8 @@ import 'package:flutterfly/util/change_notifiers/user_change_notifier.dart';
 import 'package:flutterfly/util/util.dart';
 import 'package:themed/themed.dart';
 
+import '../../../constants/flutterfly_constant.dart';
+
 
 class AchievementBox extends StatefulWidget {
 
@@ -146,8 +148,8 @@ class AchievementBoxState extends State<AchievementBox> {
                 width: achievementWindowWidth - achievementSize - marginWidth - 10,
                 child: AutoSizeText(
                   achievement.getTooltip(),
-                  style: const TextStyle(
-                    color: Color(0xFFcba830),
+                  style: TextStyle(
+                    color: textColor,
                     fontSize: 50,
                   ),
                   group: sizeGroupAchievements,
@@ -172,7 +174,7 @@ class AchievementBoxState extends State<AchievementBox> {
               TextSpan(
                 text: "Total achievements achieved $numberOfAchievementsAchieved/$totalOfAchievements",
                 style: TextStyle(
-                    color: const Color(0xFFcba830),
+                    color: textColor,
                     fontSize: fontSize*1.4
                 ),
               ),
@@ -304,7 +306,7 @@ class AchievementBoxState extends State<AchievementBox> {
           child: Text(
             "Achievement window",
             style: TextStyle(
-                color: const Color(0xFFcba830),
+                color: textColor,
                 fontSize: fontSize*1.4
             ),
           )

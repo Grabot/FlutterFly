@@ -20,6 +20,9 @@ import 'package:flutterfly/services/user_achievements.dart';
 import 'package:flutterfly/services/user_score.dart';
 import 'package:flutterfly/util/change_notifiers/leader_board_change_notifier.dart';
 import 'package:flutterfly/util/change_notifiers/score_screen_change_notifier.dart';
+import '../services/rest/auth_service_setting.dart';
+import 'flutter_fly_logo.dart';
+import 'get_ready_text.dart';
 import 'sky.dart';
 
 class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetection, KeyboardEvents {
@@ -47,6 +50,8 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
   double pipeInterval = 0;
 
   late HelpMessage helpMessage;
+  late FlutterFlyLogo flutterFlyLogo;
+  late GetReadyText getReadyText;
   late Sky sky;
   late ScoreIndicator scoreIndicator;
 
@@ -120,6 +125,8 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     )..priority = 3;
 
     helpMessage = HelpMessage()..priority = 10;
+    flutterFlyLogo = FlutterFlyLogo()..priority = 10;
+    getReadyText = GetReadyText()..priority = 10;
     scoreIndicator = ScoreIndicator();
     add(sky);
     add(butterflyOutlineButterfly1);
@@ -129,6 +136,10 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
     butterfly2.turnedOn();
     add(Floor());
     add(helpMessage);
+    add(flutterFlyLogo);
+    add(getReadyText);
+    add(flutterFlyLogo);
+    add(getReadyText);
     add(ScreenHitbox());
 
     double pipeWidth = (52 * heightScale) * 1.5;
@@ -186,6 +197,10 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
       scoreScreenChangeNotifier.clearAchievementList();
       gameEnded = false;
       add(helpMessage);
+      add(flutterFlyLogo);
+      add(getReadyText);
+      add(flutterFlyLogo);
+      add(getReadyText);
       if (!scoreRemoved) {
         scoreIndicator.scoreChange(0);
         remove(scoreIndicator);
@@ -212,6 +227,8 @@ class FlutterFly extends FlameGame with MultiTouchTapDetector, HasCollisionDetec
         butterfly2.gameStarted();
       }
       remove(helpMessage);
+      remove(flutterFlyLogo);
+      remove(getReadyText);
       add(scoreIndicator);
       scoreRemoved = false;
       spawnInitialPipes();

@@ -141,3 +141,8 @@ coverage/
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+
+web/.well-known/assetlinks.json
+web/.well-known/apple-app-site-association
+
+flutter_fly_images/*

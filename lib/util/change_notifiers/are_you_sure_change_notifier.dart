@@ -6,7 +6,9 @@ class AreYouSureBoxChangeNotifier extends ChangeNotifier {
   bool showAreYouSure = false;
 
   int? userId;
-  int? guildId;
+
+  bool showLogout = false;
+  bool showDelete = false;
 
   static final AreYouSureBoxChangeNotifier _instance = AreYouSureBoxChangeNotifier._internal();
 
@@ -33,11 +35,19 @@ class AreYouSureBoxChangeNotifier extends ChangeNotifier {
     return userId;
   }
 
-  setGuildId(int? guildId) {
-    this.guildId = guildId;
+  setShowLogout(bool showLogout) {
+    this.showLogout = showLogout;
   }
 
-  int? getGuildId() {
-    return guildId;
+  getShowLogout() {
+    return showLogout;
+  }
+
+  setShowDelete(bool showDelete) {
+    this.showDelete = showDelete;
+  }
+
+  getShowDelete() {
+    return showDelete;
   }
 }

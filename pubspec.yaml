@@ -31,31 +31,30 @@ dependencies:
   flutter:
     sdk: flutter
 
-  web: ^0.5.1
-  flame: ^1.18.0
-  flame_audio: ^2.10.2
-  get_it: ^7.7.0
-  url_strategy: ^0.2.0
+  flame: ^1.23.0
+  flame_audio: ^2.10.7
+  get_it: ^8.0.3
+  url_strategy: ^0.3.0
   oktoast: ^3.4.0
-  socket_io_client: ^2.0.3+1
-  intl: ^0.19.0
-  dio: ^5.4.3+1
-  flutter_secure_storage: ^9.2.2
+  socket_io_client: ^3.0.2
+  intl: ^0.20.1
+  dio: ^5.7.0
+  flutter_secure_storage: ^9.2.4
   jwt_decode: ^0.3.1
   dropdown_button2: ^2.3.9
-  image: ^4.2.0
+  image: ^4.5.2
   isolated_worker: ^0.1.1
-  file_picker: ^8.0.6
-  back_button_interceptor: ^7.0.3
-  url_launcher: ^6.3.0
+  file_picker: ^8.1.7
+  back_button_interceptor: ^8.0.3
+  url_launcher: ^6.3.1
   linked_scroll_controller: ^0.2.0
-  themed: ^5.0.3
-  flutter_launcher_icons: ^0.13.1
+  themed: ^8.0.2
+  flutter_launcher_icons: ^0.14.2
   auto_size_text: ^3.0.0
-  google_sign_in: ^6.2.1
-  http: ^1.2.1
-  app_links: ^6.1.1
-  image_network: ^2.5.6
+  google_sign_in: ^6.2.2
+  http: ^1.2.2
+  image_network: ^2.6.0
+  sign_in_with_apple: ^6.1.4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -130,15 +129,16 @@ flutter:
     - assets/images/butterfly/settings/flutter_fly_red_settings.png
     - assets/images/butterfly/settings/flutter_fly_white_settings.png
     - assets/images/butterfly/settings/flutter_fly_yellow_settings.png
-    - assets/images/help_messages/message_phone_single.png
-    - assets/images/help_messages/message_phone_double.png
-    - assets/images/help_messages/message_web_single.png
-    - assets/images/help_messages/message_web_double.png
-    - assets/images/gameover.png
-    - assets/images/leaderboard_image.png
+    - assets/images/help_messages/message_phone_single_rework.png
+    - assets/images/help_messages/message_phone_double_rework.png
+    - assets/images/help_messages/message_web_single_rework.png
+    - assets/images/help_messages/message_web_double_rework.png
+    - assets/images/game_over_rework_2.png
+    - assets/images/leaderboard_rework.png
     - assets/images/reddit_button.png
     - assets/images/google_button.png
     - assets/images/github_button.png
+    - assets/images/apple_button.png
     - assets/images/score/0.png
     - assets/images/score/1.png
     - assets/images/score/2.png
@@ -159,7 +159,9 @@ flutter:
     - assets/images/ui/game_settings/player/2_butterflies.png
     - assets/images/default_achievement.png
     - assets/images/flutterfly_icon.png
-    - assets/images/flutterfly_logo.png
+    - assets/images/flutterfly_banner_rework_4.png
+    - assets/images/new_logo_text_rework_5.png
+    - assets/images/get_ready_rework.png
     - assets/audio/die.wav
     - assets/audio/hit.wav
     - assets/audio/point.wav

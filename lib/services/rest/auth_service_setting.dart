@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutterfly/models/rest/base_response.dart';
+import 'package:flutterfly/services/rest/auth_api_clean.dart';
 import 'auth_api.dart';
 
 
@@ -82,28 +83,13 @@ class AuthServiceSetting {
   }
 
   Future<String?> getAchievementImage(String imageName) async {
-    // A quick request to see if the current avatar is the default avatar
-    String endPoint = "achievement/image/${imageName}";
-    var response = await AuthApi().dio.get(endPoint,
-        options: Options(headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-        }),
-    );
+    String endPoint = "/flutterfly_images/${imageName}.txt";
+    var response = await AuthApiClean().dio.get(endPoint);
 
-    Map<String, dynamic> json = response.data;
-    if (!json.containsKey("result")) {
+    if (response.data == null) {
       return null;
-    } else {
-      if (json["result"]) {
-        if (!json.containsKey("achievement_image")) {
-          return null;
-        } else {
-          return json["achievement_image"].replaceAll("\n", "");
-        }
-      } else {
-        return null;
-      }
     }
+    return response.data;
   }
 
   Future<BaseResponse> resetAvatar() async {
@@ -136,4 +122,21 @@ class AuthServiceSetting {
     BaseResponse baseResponse = BaseResponse.fromJson(response.data);
     return baseResponse;
   }
+
+  Future<BaseResponse> deleteAccountLoggedIn(String email) async {
+    String endPoint = "remove/account/token";
+    var response = await AuthApi().dio.post(endPoint,
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+        }),
+        data: jsonEncode(<String, String>{
+          "email": email
+        }
+        )
+    );
+
+    BaseResponse baseResponse = BaseResponse.fromJson(response.data);
+    return baseResponse;
+  }
+
 }

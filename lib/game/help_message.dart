@@ -25,13 +25,13 @@ class HelpMessage extends SpriteComponent with HasGameRef<FlutterFly> {
   void onGameResize(Vector2 gameSize) async {
     super.onGameResize(gameSize);
     position = Vector2(gameSize.x / 2, gameSize.y / 2);
-    position.y -= gameSize.y / 8;
+    position.y += gameSize.y / 8;
     double heightScale = gameRef.size.y / 800;
 
     if (gameSize.x <= 800 || gameSize.y > gameSize.x) {
-      size = Vector2(200 * heightScale * 1.2, 267 * heightScale * 1.2);
+      size = Vector2(200 * heightScale * 1.2, 127 * heightScale * 1.2);
     } else {
-      size = Vector2(200 * heightScale * 2, 267 * heightScale * 2);
+      size = Vector2(200 * heightScale * 2, 127 * heightScale * 2);
     }
 
     updateMessageImage(gameSize);
@@ -62,7 +62,7 @@ class HelpMessage extends SpriteComponent with HasGameRef<FlutterFly> {
         showSinglePhone = false;
         showDoubleWeb = false;
         showSingleWeb = false;
-        var image = await Flame.images.load('help_messages/message_phone_double.png');
+        var image = await Flame.images.load('help_messages/message_phone_double_rework.png');
         sprite = Sprite(image);
       }
     } else if (gameRef.twoPlayers && !isPhone) {
@@ -71,7 +71,7 @@ class HelpMessage extends SpriteComponent with HasGameRef<FlutterFly> {
         showSinglePhone = false;
         showDoubleWeb = true;
         showSingleWeb = false;
-        var image = await Flame.images.load('help_messages/message_web_double.png');
+        var image = await Flame.images.load('help_messages/message_web_double_rework.png');
         sprite = Sprite(image);
       }
     } else if (!gameRef.twoPlayers && isPhone) {
@@ -82,7 +82,7 @@ class HelpMessage extends SpriteComponent with HasGameRef<FlutterFly> {
         showSinglePhone = true;
         showDoubleWeb = false;
         showSingleWeb = false;
-        var image = await Flame.images.load('help_messages/message_phone_single.png');
+        var image = await Flame.images.load('help_messages/message_phone_single_rework.png');
         sprite = Sprite(image);
       }
     } else if (!gameRef.twoPlayers && !isPhone) {
@@ -91,7 +91,7 @@ class HelpMessage extends SpriteComponent with HasGameRef<FlutterFly> {
         showSinglePhone = false;
         showDoubleWeb = false;
         showSingleWeb = true;
-        var image = await Flame.images.load('help_messages/message_web_single.png');
+        var image = await Flame.images.load('help_messages/message_web_single_rework.png');
         sprite = Sprite(image);
       }
     }

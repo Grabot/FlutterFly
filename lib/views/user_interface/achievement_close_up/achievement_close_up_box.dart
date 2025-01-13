@@ -7,6 +7,8 @@ import 'package:flutterfly/util/change_notifiers/achievement_close_up_change_not
 import 'package:flutterfly/util/util.dart';
 import 'package:themed/themed.dart';
 
+import '../../../constants/flutterfly_constant.dart';
+
 
 class AchievementCloseUpBox extends StatefulWidget {
 
@@ -116,7 +118,7 @@ class AchievementCloseUpBoxState extends State<AchievementCloseUpBox> {
               child: Text(
                 "Achievement",
                 style: TextStyle(
-                    color: const Color(0xFFcba830),
+                    color: textColor,
                     fontSize: fontSize*1.4
                 ),
               )
@@ -140,7 +142,7 @@ class AchievementCloseUpBoxState extends State<AchievementCloseUpBox> {
       child: Text(
         closeUpAchievement!.getAchievementName(),
         style: TextStyle(
-            color: const Color(0xFFcba830),
+            color: textColor,
             fontSize: fontSize*1.4
         ),
       ),
@@ -166,7 +168,7 @@ class AchievementCloseUpBoxState extends State<AchievementCloseUpBox> {
       child: Text(
         closeUpAchievement!.achieved ? "Achieved" : "Not achieved",
         style: TextStyle(
-            color: const Color(0xFFcba830),
+            color: textColor,
             fontSize: fontSize*1.2
         ),
       ),
@@ -179,7 +181,7 @@ class AchievementCloseUpBoxState extends State<AchievementCloseUpBox> {
       child: Text(
         closeUpAchievement!.getTooltip(),
         style: TextStyle(
-            color: const Color(0xFFcba830),
+            color: textColor,
             fontSize: fontSize*1.2
         ),
       ),

@@ -190,7 +190,7 @@ class GameSettingsBoxState extends State<GameSettingsBox> {
               width: buttonWidth,
               height: buttonHeight,
               color: selected
-                  ? Colors.green.shade600
+                  ? Colors.blue[300]
                   : Colors.transparent,
             ),
             Row(

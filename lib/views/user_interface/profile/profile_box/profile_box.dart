@@ -18,6 +18,8 @@ import 'package:flutterfly/util/change_notifiers/user_change_notifier.dart';
 import 'package:flutterfly/util/render_avatar.dart';
 import 'package:flutterfly/util/util.dart';
 
+import '../../../../constants/flutterfly_constant.dart';
+
 
 class ProfileBox extends StatefulWidget {
 
@@ -272,14 +274,14 @@ class ProfileBoxState extends State<ProfileBox> {
               ? Text(
             "No user logged in",
             style: TextStyle(
-                color: const Color(0xFFcba830),
+                color: textColor,
                 fontSize: fontSize*1.4
             ),
           )
             : Text(
             "Profile Page",
             style: TextStyle(
-                color: const Color(0xFFcba830),
+                color: textColor,
                 fontSize: fontSize*1.4
             ),
           ),
@@ -330,7 +332,7 @@ class ProfileBoxState extends State<ProfileBox> {
                           ? "Also try Flutter Fly on Android or IOS!"
                           : "Also try Flutter Fly in your browser on flutterfly.eu",
                       style: TextStyle(
-                          color: const Color(0xFFcba830),
+                          color: textColor,
                           fontSize: fontSize*1.4
                       ),
                   )
@@ -353,7 +355,7 @@ class ProfileBoxState extends State<ProfileBox> {
           child: Text(
             "Achievements:",
             style: TextStyle(
-                color: const Color(0xFFcba830),
+                color: textColor,
                 fontSize: fontSize*1.4
             ),
           ),
@@ -376,7 +378,7 @@ class ProfileBoxState extends State<ProfileBox> {
           child: Text(
             "No achievements yet!",
             style: TextStyle(
-                color: const Color(0xFFcba830),
+                color: textColor,
                 fontSize: fontSize*1.4
             ),
           ),
@@ -445,7 +447,7 @@ class ProfileBoxState extends State<ProfileBox> {
                     "Save your progress by logging in!",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: const Color(0xFFcba830),
+                        color: textColor,
                         fontSize: fontSize*1.4
                     ),
                 ),
@@ -485,7 +487,7 @@ class ProfileBoxState extends State<ProfileBox> {
                 "Save your progress by logging in!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: const Color(0xFFcba830),
+                    color: textColor,
                     fontSize: fontSize*1.4
                 ),
             ),
@@ -887,8 +889,18 @@ class ProfileBoxState extends State<ProfileBox> {
         showChangePassword();
       } else if (delta == 3) {
         // logout user
-        AreYouSureBoxChangeNotifier().setAreYouSureBoxVisible(true);
+        AreYouSureBoxChangeNotifier areYouSureBoxChangeNotifier = AreYouSureBoxChangeNotifier();
+        areYouSureBoxChangeNotifier.setShowLogout(true);
+        areYouSureBoxChangeNotifier.setShowDelete(false);
+        areYouSureBoxChangeNotifier.setAreYouSureBoxVisible(true);
+      } else if (delta == 4) {
+        // delete account
+        AreYouSureBoxChangeNotifier areYouSureBoxChangeNotifier = AreYouSureBoxChangeNotifier();
+        areYouSureBoxChangeNotifier.setShowLogout(false);
+        areYouSureBoxChangeNotifier.setShowDelete(true);
+        areYouSureBoxChangeNotifier.setAreYouSureBoxVisible(true);
       }
+
       return;
     });
   }
@@ -990,6 +1002,10 @@ void buttonLogout(BuildContext context) {
   Navigator.pop<int>(context, 3);
 }
 
+void buttonDeleteAccount(BuildContext context) {
+  Navigator.pop<int>(context, 4);
+}
+
 Widget getPopupItems(BuildContext context) {
   return Column(
     children: [
@@ -1054,6 +1070,23 @@ Widget getPopupItems(BuildContext context) {
               children: [
                 Text(
                   "Logout",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                )
+              ],
+            )
+        ),
+      ),
+      Container(
+        alignment: Alignment.centerLeft,
+        child: TextButton(
+            onPressed: () {
+              buttonDeleteAccount(context);
+            },
+            child: const Row(
+              children: [
+                Text(
+                  "Delete Account",
                   textAlign: TextAlign.left,
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )

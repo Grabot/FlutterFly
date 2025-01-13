@@ -13,6 +13,8 @@ import 'package:flutterfly/util/change_notifiers/login_screen_change_notifier.da
 import 'package:flutterfly/util/change_notifiers/score_screen_change_notifier.dart';
 import 'package:flutterfly/util/util.dart';
 
+import '../../../constants/flutterfly_constant.dart';
+
 
 class ScoreScreen extends StatefulWidget {
 
@@ -114,7 +116,7 @@ class ScoreScreenState extends State<ScoreScreen> {
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
-          color: const Color(0xFFcba830)
+          color: textColor
         )
       ),
     );
@@ -191,7 +193,7 @@ class ScoreScreenState extends State<ScoreScreen> {
                     style: TextStyle(
                         fontSize: (fontSize/4)*3,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFFcba830)
+                        color: textColor
                     )
                 )
             ),
@@ -211,7 +213,7 @@ class ScoreScreenState extends State<ScoreScreen> {
                   style: TextStyle(
                       fontSize: (fontSize/4)*3,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFFcba830)
+                      color: textColor
                   )
               )
           ),
@@ -224,7 +226,7 @@ class ScoreScreenState extends State<ScoreScreen> {
                   style: TextStyle(
                       fontSize: (fontSize/4)*3,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFFcba830)
+                      color: textColor
                   )
               )
           ),
@@ -256,9 +258,9 @@ class ScoreScreenState extends State<ScoreScreen> {
       child: Text(
           butterflyHeader,
           style: TextStyle(
-              fontSize: fontSize,
+              fontSize: fontSize*0.8,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFFcba830)
+              color: textColor
           )
       ),
     );
@@ -275,7 +277,7 @@ class ScoreScreenState extends State<ScoreScreen> {
         style: TextStyle(
           fontSize: fontSize*1.5,
           fontWeight: FontWeight.bold,
-          color: const Color(0xFFcba830)
+          color: textColor
         )
       ),
     );
@@ -326,7 +328,7 @@ class ScoreScreenState extends State<ScoreScreen> {
         style: TextStyle(
           fontSize: fontSize*1.5,
           fontWeight: FontWeight.bold,
-          color: const Color(0xFFcba830)
+          color: textColor
         )
       ),
     );
@@ -412,7 +414,10 @@ class ScoreScreenState extends State<ScoreScreen> {
     double achievementHeight = (totalHeight/6)*5;
     User? currentUser = settings.getUser();
 
-    double scoreHeight = (rightWidth/12)*3;
+
+    double scoreTitleHeaderHeight = totalHeight/6;
+    double scoreHeaderHeight = totalHeight/6;
+    double scoreHeight = (totalHeight/12)*3;
     return Column(
       children: [
         SizedBox(
@@ -435,10 +440,10 @@ class ScoreScreenState extends State<ScoreScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    scoreSingleButterflyDoubleButterflyHeader(rightWidth, (2*rightWidth)/6, fontSize),
-                    scoreNowHeader(rightWidth, rightWidth/6, fontSize),
+                    scoreSingleButterflyDoubleButterflyHeader(rightWidth, scoreTitleHeaderHeight, fontSize),
+                    scoreNowHeader(rightWidth, scoreHeaderHeight, fontSize),
                     scoreNow(rightWidth, scoreHeight, fontSize),
-                    scoreBestHeader(rightWidth, rightWidth/6, fontSize),
+                    scoreBestHeader(rightWidth, scoreHeaderHeight, fontSize),
                     scoreScreenChangeNotifier.isTwoPlayer()
                         ? scoreBestDoubleButterfly(rightWidth, scoreHeight, fontSize)
                         : scoreBestSingleButterfly(rightWidth, scoreHeight, fontSize),
@@ -460,7 +465,7 @@ class ScoreScreenState extends State<ScoreScreen> {
       width: gameOverMessageWidth,
       height: gameOverMessageHeight,
       child: Image.asset(
-        "assets/images/gameover.png",
+        "assets/images/game_over_rework_2.png",
         width: gameOverMessageWidth,
         height: gameOverMessageHeight,
         gaplessPlayback: true,

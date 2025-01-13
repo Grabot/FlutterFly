@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutterfly/constants/route_paths.dart' as routes;
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
@@ -30,6 +31,8 @@ import 'views/delete_account_page.dart';
 import 'views/password_reset_page.dart';
 import 'views/privacy_page.dart';
 import 'views/terms_page.dart';
+import 'views/user_interface/loading_box/loading_box.dart';
+import 'views/user_interface/web_view/web_view_box.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,9 +65,11 @@ Future<void> main() async {
           'loginScreen': _loginScreenBuilder,
           'changeAvatar': _changeAvatarBoxBuilder,
           'gameSettingsBox': _gameSettingsBoxBuilder,
-          'areYouSureBox': _areYouSureBoxBuilder,
           'achievementBox': _achievementBoxBuilder,
           'achievementCloseUpBox': _achievementCloseUpBoxBuilder,
+          'areYouSureBox': _areYouSureBoxBuilder,
+          'webviewBox': _webViewBoxBuilder,
+          'loadingBox': _loadingBoxBuilder,
         },
         initialActiveOverlays: const [
           'profileOverview',
@@ -74,10 +79,12 @@ Future<void> main() async {
           'loginScreen',
           'changeAvatar',
           'gameSettingsBox',
-          'areYouSureBox',
           'leaderBoard',
           'achievementBox',
           'achievementCloseUpBox',
+          'areYouSureBox',
+          'webviewBox',
+          'loadingBox',
         ],
       )
   );
@@ -205,6 +212,21 @@ Widget _achievementBoxBuilder(BuildContext buildContext, FlutterFly game) {
 
 Widget _achievementCloseUpBoxBuilder(BuildContext buildContext, FlutterFly game) {
   return AchievementCloseUpBox(key: UniqueKey(), game: game);
+}
+
+Widget _loadingBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  return LoadingBox(key: UniqueKey(), game: game);
+}
+
+Widget _webViewBoxBuilder(BuildContext buildContext, FlutterFly game) {
+  if (kIsWeb) {
+    // If we are on the web, we can't use the web view
+    // But we don't need to.
+    // We load the LoadingBox to avoid initialization errors
+    // But this view should never be opened in the web.
+    return LoadingBox(key: UniqueKey(), game: game);
+  }
+  return WebViewBox(key: UniqueKey(), game: game);
 }
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {

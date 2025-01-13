@@ -31,14 +31,14 @@ class BoxWindowPainter extends CustomPainter {
 
     final borderPaintOuter = Paint()
       ..strokeWidth = 10
-      ..color = const Color(0xFFece4a9)
+      ..color = const Color(0xffa9eccb)
       ..style = PaintingStyle.stroke;
     final borderPaintLine = Paint()
       ..strokeWidth = 4
-      ..color = const Color(0xFFd3aa33)
+      ..color = const Color(0xff27a866)
       ..style = PaintingStyle.stroke;
     final borderPaintInner = Paint()
-      ..color = const Color(0xFFdcd587)
+      ..color = const Color(0xff47b8a0)
       ..style = PaintingStyle.fill;
 
     canvas.drawRect(rectBorderInner, borderPaintInner);
