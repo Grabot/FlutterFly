@@ -146,4 +146,3 @@ web/.well-known/assetlinks.json
 web/.well-known/apple-app-site-association
 
 flutter_fly_images/*
-web/flutterfly_images/*
