@@ -22,7 +22,7 @@ Widget logo(double maxWidth) {
           ),
         ),
         const Text(
-            "Flutter Fly",
+            "FlutterFly",
             style: TextStyle(color: Color(0xff949494), fontSize: 35)
         ),
         const SizedBox(height: 30),

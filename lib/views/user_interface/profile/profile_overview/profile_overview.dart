@@ -87,7 +87,7 @@ class ProfileOverviewState extends State<ProfileOverview> {
     );  // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: const Text("Leave?"),
-      content: const Text("Do you want to logout of Flutter Fly?"),
+      content: const Text("Do you want to logout of FlutterFly?"),
       actions: [
         cancelButton,
         continueButton,

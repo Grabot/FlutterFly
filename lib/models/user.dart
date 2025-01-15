@@ -10,6 +10,7 @@ class User {
   bool verified = false;
   late List<Friend> friends;
   Uint8List? avatar;
+  bool origin = false;
 
   User(this.id, this.userName, this.verified, this.friends);
 
@@ -39,6 +40,10 @@ class User {
 
   List<Friend> getFriends() {
     return friends;
+  }
+
+  bool isOrigin() {
+    return origin;
   }
 
   addFriend(Friend friend) {
@@ -90,6 +95,9 @@ class User {
 
     if (json.containsKey("avatar") && json["avatar"] != null) {
       avatar = base64Decode(json["avatar"].replaceAll("\n", ""));
+    }
+    if (json.containsKey("origin")) {
+      origin = json["origin"];
     }
   }
 

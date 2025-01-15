@@ -48,7 +48,7 @@ class WebViewBoxState extends State<WebViewBox> {
           onWebResourceError: (WebResourceError error) {
           },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://flutterfly.eu/worldaccess?') || request.url.startsWith('https://www.flutterfly.eu/worldaccess?')) {
+            if (request.url.startsWith('https://flutterfly.eu/butterflyaccess?') || request.url.startsWith('https://www.flutterfly.eu/butterflyaccess?')) {
               LoadingBoxChangeNotifier loadingBoxChangeNotifier = LoadingBoxChangeNotifier();
               loadingBoxChangeNotifier.setLoadingBoxVisible(true);
               // When we detect the redirect to the worldaccess page

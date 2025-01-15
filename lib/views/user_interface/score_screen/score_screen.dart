@@ -392,8 +392,8 @@ class ScoreScreenState extends State<ScoreScreen> {
                   child: Text.rich(
                       TextSpan(
                           text: kIsWeb
-                              ? "Also try Flutter Fly on Android or IOS!"
-                              : "Also try Flutter Fly in your browser on flutterfly.eu",
+                              ? "Also try FlutterFly on Android or IOS!"
+                              : "Also try FlutterFly in your browser on flutterfly.eu",
                           style: simpleTextStyle(fontSize)
                       )
                   )

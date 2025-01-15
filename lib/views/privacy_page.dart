@@ -38,7 +38,7 @@ class _PrivacyPageState extends State<PrivacyPage> {
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                        "Zwaar Developers built the Flutter Fly app as an Open Source game app. This GAME and SERVICE is provided by Zwaar Developers at no cost and is intended for use as is.",
+                        "Zwaar Developers built the FlutterFly app as an Open Source game app. This GAME and SERVICE is provided by Zwaar Developers at no cost and is intended for use as is.",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 16)
                     ),
                     const SizedBox(height: 10),
@@ -53,7 +53,7 @@ class _PrivacyPageState extends State<PrivacyPage> {
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                        "The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Flutter Fly unless otherwise defined in this Privacy Policy.",
+                        "The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at FlutterFly unless otherwise defined in this Privacy Policy.",
                         style: TextStyle(color: Color(0xfff1f1f1), fontSize: 16)
                     ),
                     const SizedBox(height: 30),

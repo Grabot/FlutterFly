@@ -323,14 +323,14 @@ class UserAchievements {
     wingedWarriorAchievement = Achievement(
         achievementName: "Winged warrior",
         imageName: "winged_warrior.txt",
-        tooltip: "You have played Flutter Fly for 7 days in a row!",
+        tooltip: "You have played FlutterFly for 7 days in a row!",
         achieved: wingedWarrior,
         secureStorage: secureStorage
     );
     platformsAchievement = Achievement(
         achievementName: "Platforms",
         imageName: "platforms",
-        tooltip: "You have played Flutter Fly on the web at flutterfly.eu and also on IOS or Android!\n(Must be logged in to achieve this)",
+        tooltip: "You have played FlutterFly on the web at flutterfly.eu and also on IOS or Android!\n(Must be logged in to achieve this)",
         achieved: platforms,
         secureStorage: secureStorage
     );

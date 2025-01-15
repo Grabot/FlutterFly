@@ -100,7 +100,7 @@ Future<void> main() async {
       OKToast(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: "Flutter Fly",
+          title: "FlutterFly",
           navigatorKey: locator<NavigationService>().navigatorKey,
           theme: ThemeData(
             // Define the default brightness and colors.
