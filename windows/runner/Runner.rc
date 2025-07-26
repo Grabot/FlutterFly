@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "flutterfly.eu" "\0"
+            VALUE "CompanyName", "flutterfly.nl" "\0"
             VALUE "FileDescription", "flutterfly" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "flutterfly" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 flutterfly.eu. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 flutterfly.nl. All rights reserved." "\0"
             VALUE "OriginalFilename", "flutterfly.exe" "\0"
             VALUE "ProductName", "flutterfly" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

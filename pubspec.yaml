@@ -1,5 +1,5 @@
 name: flutterfly
-description: "A new Flutter project."
+description: "Guide two beautiful butterflies through the mesmerizing city sky, skillfully dodging tricky pipes to score points. Test your reflexes and challenge your precision as you navigate this whimsical adventure."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1+4
+version: 1.1.1+5
 
 environment:
   sdk: '>=3.2.6 <4.0.0'
@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
   flame: ^1.23.0
   flame_audio: ^2.10.7
   get_it: ^8.0.3
@@ -56,11 +58,6 @@ dependencies:
   image_network: ^2.6.0
   sign_in_with_apple: ^6.1.4
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,8 +67,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  lints: ^4.0.0
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter_launcher_icons:
   ios: true
@@ -80,7 +76,6 @@ flutter_launcher_icons:
   image_path_ios: "assets/images/flutterfly_icon.png"
   adaptive_icon_background: "assets/images/flutterfly_icon.png"
   adaptive_icon_foreground: "assets/images/flutterfly_icon.png"
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
