@@ -7,6 +7,10 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val localPropertiesFile = rootProject.file("local.properties")
+val localProperties = Properties().apply {
+    load(FileInputStream(localPropertiesFile))
+}
 val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties().apply {
     load(FileInputStream(keystorePropertiesFile))
@@ -14,7 +18,11 @@ val keystoreProperties = Properties().apply {
 
 android {
     namespace = "flutterfly.nl.flutterfly"
-    compileSdk = flutter.compileSdkVersion
+    try {
+        compileSdk = Integer.parseInt(localProperties.getProperty("flutter.compileSdkVersion"))
+    } catch (e: NumberFormatException) {
+        compileSdk = 36
+    }
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -28,8 +36,16 @@ android {
 
     defaultConfig {
         applicationId = "flutterfly.nl.flutterfly"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        try {
+            minSdk = Integer.parseInt(localProperties.getProperty("flutter.minSdkVersion"))
+        } catch (e: NumberFormatException) {
+            minSdk = 24
+        }
+        try {
+            targetSdk = Integer.parseInt(localProperties.getProperty("flutter.targetSdkVersion"))
+        } catch (e: NumberFormatException) {
+            targetSdk = 36
+        }
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
